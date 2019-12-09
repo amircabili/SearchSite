@@ -1,0 +1,16 @@
+<div class="container direction-rtl ">
+    <div class="jumbotron  mt-5  p-md-5 text-dark box-shadow">
+        <div class="col-md-12 text-center mx-auto">
+            <div class="lead my-3">
+                <form class="form-inline">
+                    <input size="60" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" class="form-control mr-sm-0" type="text" placeholder="חפש לפי שם"
+                        aria-label="חפש לפי שם">
+                    <button class="btn btn btn-primary my-0 my-sm-0 mr-2 pr-5 pl-5" type="submit">חפש</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container list-employees">
+        <app-list-employees></app-list-employees>
+    </div>
+</div>

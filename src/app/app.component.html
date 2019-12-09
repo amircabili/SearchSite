@@ -1,0 +1,34 @@
+<header class="blog-header py-3 pb-4  direction-rtl  ">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top  background-cyan ">
+        <a routerLink="/app-list-employees" routerLinkActive="active" class="navbar-brand" href="#"> אתר חיפוש </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a routerLink="/app-list-employees" routerLinkActive="active" class="nav-link">עמוד חיפוש <span
+                            class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/app-instructions" routerLinkActive="active" class="nav-link">עמוד הוראות</a>
+                </li>
+                <li class="nav-item">
+                     <a routerLink="/app-instructions" routerLinkActive="active" class="nav-link">  עידכון לקוחות </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/app-read-files" routerLinkActive="active" class="nav-link">   העלאת קובץ  </a>
+               </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<router-outlet></router-outlet>
+
+<footer class="footer background-cyan direction-rtl p-2">
+    <div class="container">
+        <span class="text-white text-right"> .... </span>
+    </div>
+</footer>
