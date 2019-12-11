@@ -7,6 +7,7 @@ import { EmployeeService } from '../employee.service';
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.less']
 })
+
 export class SearchBarComponent implements OnInit {
 
 public employees =  [];
