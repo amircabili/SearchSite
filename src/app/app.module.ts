@@ -12,6 +12,7 @@ import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReadFilesComponent } from './read-files/read-files.component';
 import { FileSaverModule } from 'ngx-filesaver';
+import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { FileSaverModule } from 'ngx-filesaver';
     InstructionsComponent,
     ListEmployeesComponent,
     EmployeeFilterPipe,
-    ReadFilesComponent
+    ReadFilesComponent,
+    CreateEmployeeComponent
   ],
   
   imports: [

@@ -12,22 +12,22 @@ import { Employee } from '../models/employee.model';
 export class ListEmployeesComponent implements OnInit {
   public employees: Employee[] ;
   FilteredEmployees: Employee[] ;
-  public _searchTerm : string;
+  public searchTerm : string;
 
   public errorMsg;
   
-  get searchTerm(): string{
-    return this._searchTerm;
-  }
+  // get searchTerm(): string{
+  //   return this._searchTerm;
+  // }
 
-  set searchTerm(value: string){
-    this._searchTerm = value;
-    this.FilteredEmployees = this.filtereEmployees(value);
-  }
+  // set searchTerm(value: string){
+  //   this._searchTerm = value;
+  //   this.FilteredEmployees = this.filtereEmployees(value);
+  // }
 
-  filtereEmployees(searchString : string){
+  filtereEmployees(searchTerm : string){
     return this.employees.filter(employee=> 
-      employee.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+      employee.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
   }
 
   constructor(private _employeeService: EmployeeService) { }
@@ -63,4 +63,6 @@ export class ListEmployeesComponent implements OnInit {
       this.searchTerm = null;
       location.reload();
   }
+
+  
 }

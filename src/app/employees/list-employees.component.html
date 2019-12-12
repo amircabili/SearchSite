@@ -8,16 +8,18 @@
                         
                     <button class="btn btn-primary my-0 my-sm-0 mr-2 pr-5 pl-5" (click)="clickSearchInput()" type="submit">חפש לפי שם</button>
                     <button class="btn btn-primary my-0 my-sm-0 mr-2 pr-5 pl-5" (click)="clearSearchInput()">נקה</button>
-                    <button class="btn btn-primary my-0 my-sm-0 mr-2 pr-5 p-2 pl-5" (click)="changeEmployeeName()">changeEmployeeName</button>
+                    <!-- <button class="btn btn-primary my-0 my-sm-0 mr-2 pr-5 p-2 pl-5" (click)="changeEmployeeName()">changeEmployeeName</button> -->
 
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- <div class="row mb-2 box  box-shadow" *ngFor="let employee of employees | employeeFilter:searchTerm"   > -->
+    <div class="row mb-2 box  box-shadow" *ngFor="let employee of employees | employeeFilter:searchTerm"   >
 
-    <div class="row mb-2 box  box-shadow" *ngFor="let employee of FilteredEmployees">
+    <!-- <div class="row mb-2 box  box-shadow" *ngFor="let employee of FilteredEmployees"> -->
+
+
         <div class="col-md-12">
             <h3 class="text-dark stretched-link">{{errorMsg}}</h3>
             <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
