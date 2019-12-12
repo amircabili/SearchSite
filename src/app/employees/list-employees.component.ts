@@ -36,6 +36,7 @@ export class ListEmployeesComponent implements OnInit {
 
     clickSearchInput() {
       if(this.searchTerm){
+        
         this._employeeService.getEmployees()
                     .subscribe(data => this.employees = data)
                         error => this.errorMsg = error;

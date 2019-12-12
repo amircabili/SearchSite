@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { EmployeeService } from '../employee.service';
- 
+  
 
 @Component({
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.less']
 })
+
 export class SearchBarComponent implements OnInit {
 
 public employees =  [];
