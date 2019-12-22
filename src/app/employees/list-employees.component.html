@@ -4,10 +4,11 @@
             <div class="lead my-3">
                 <form class="form-inline">
                     <input size="60" [(ngModel)]="searchTerm" [ngModelOptions]="{standalone: true}" id="input-search"
-                        class="form-control mr-sm-0" type="text" placeholder="חפש לפי שם" aria-label="חפש לפי שם"  >
-                        
-                    <button class="btn btn-primary my-0 my-sm-0 mr-2 pr-5 pl-5" (click)="clickSearchInput()" type="submit">חפש לפי שם</button>
-                    <button class="btn btn-primary my-0 my-sm-0 mr-2 pr-5 pl-5" (click)="clearSearchInput()">נקה</button>
+                        class="form-control mr-sm-0" type="text" placeholder="חפש לפי שם" aria-label="חפש לפי שם">
+                    <button class="btn btn-primary my-0 my-sm-0 mr-2 pr-5 pl-5" (click)="clickSearchInput()"
+                        type="submit">חפש לפי שם</button>
+                    <button class="btn btn-primary my-0 my-sm-0 mr-2 pr-5 pl-5"
+                        (click)="clearSearchInput()">נקה</button>
                     <!-- <button class="btn btn-primary my-0 my-sm-0 mr-2 pr-5 p-2 pl-5" (click)="changeEmployeeName()">changeEmployeeName</button> -->
 
                 </form>
@@ -15,14 +16,12 @@
         </div>
     </div>
 
-    <div class="row mb-2 box  box-shadow" *ngFor="let employee of employees | employeeFilter:searchTerm"   >
-
-    <!-- <div class="row mb-2 box  box-shadow" *ngFor="let employee of FilteredEmployees"> -->
-
-
+    <div class="row mb-2 box  box-shadow" *ngFor="let employee of employees | employeeFilter:searchTerm">
+        <!-- <div class="row mb-2 box  box-shadow" *ngFor="let employee of FilteredEmployees"> -->
         <div class="col-md-12">
             <h3 class="text-dark stretched-link">{{errorMsg}}</h3>
-            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class=" col p-4 d-flex flex-column position-static vertical-align ">
                     <strong class="d-inline-block mb-2 text-primary">מספר סידורי : {{employee.id}} </strong>
                     <div class="panel-heading">
@@ -30,19 +29,31 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-sm-6"><h4 class="mb-2"> מין : <span class="text-muted"> {{employee.gender}}</span></h4></div>
-                        <div class="col-sm-6"> <h4 class="mb-2"> טלפון : <span class="text-muted"> {{employee.phonenumber}}</span></h4></div>
+                        <div class="col-sm-6">
+                            <h4 class="mb-2"> מין : <span class="text-muted"> {{employee.gender}}</span></h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4 class="mb-2"> טלפון : <span class="text-muted"> {{employee.phonenumber}}</span></h4>
+                        </div>
                     </div>
                     <div class="row">
-                            <div class="col-sm-6"><h4 class="mb-2"> אי-מייל: <span class="text-muted"> {{employee.email}}</span></h4></div>
-                            <div class="col-sm-6"><h4 class="mb-2"> תאריך לידה: <span class="text-muted">  {{employee.dateOfBirth}}</span></h4></div>
+                        <div class="col-sm-6">
+                            <h4 class="mb-2"> אי-מייל: <span class="text-muted"> {{employee.email}}</span></h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4 class="mb-2"> תאריך לידה: <span class="text-muted"> {{employee.dateOfBirth}}</span></h4>
+                        </div>
                     </div>
                     <div class="row">
-                            <div class="col-sm-6"><h4 class="mb-2  "> מחלקה: <span class="text-muted"> {{employee.department}}</span></h4></div>
-                            <div class="col-sm-6"><h4 class="mb-2  "> פעיל: <span class="text-muted"> {{employee.isActive}}</span></h4></div>
+                        <div class="col-sm-6">
+                            <h4 class="mb-2  "> מחלקה: <span class="text-muted"> {{employee.department}}</span></h4>
+                        </div>
+                        <div class="col-sm-6">
+                            <h4 class="mb-2  "> פעיל: <span class="text-muted"> {{employee.isActive}}</span></h4>
+                        </div>
                     </div>
-                        <br>
-                        <a href="#" class="stretched-link"> עוד פרטים -> </a>
+                    <br>
+                    <a href="#" class="stretched-link"> עוד פרטים -> </a>
                 </div>
             </div>
         </div>

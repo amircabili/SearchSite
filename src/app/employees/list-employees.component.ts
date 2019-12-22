@@ -8,10 +8,9 @@ import { Employee } from '../models/employee.model';
   styleUrls: ['./list-employees.component.less']
 })
 
-
 export class ListEmployeesComponent implements OnInit {
-  public employees: Employee[] ;
-  FilteredEmployees: Employee[] ;
+  public employees: Employee[];
+  FilteredEmployees: Employee[];
   public searchTerm : string;
 
   public errorMsg;
@@ -35,14 +34,12 @@ export class ListEmployeesComponent implements OnInit {
   ngOnInit() { }
 
     clickSearchInput() {
+
       if(this.searchTerm){
-        
         this._employeeService.getEmployees()
                     .subscribe(data => this.employees = data)
                         error => this.errorMsg = error;
-
         this.FilteredEmployees = this.employees;
-
       }
       else{
         location.reload();
@@ -58,11 +55,9 @@ export class ListEmployeesComponent implements OnInit {
 
   }
 
- 
     clearSearchInput(){
       this.searchTerm = null;
       location.reload();
   }
-
   
 }
