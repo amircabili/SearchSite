@@ -8,12 +8,10 @@ import { Employee } from '../models/employee.model';
   styleUrls: ['./list-employees.component.less']
 })
 
-
 export class ListEmployeesComponent implements OnInit {
-  public employees: Employee[] ;
-  FilteredEmployees: Employee[] ;
+  public employees: Employee[];
+  FilteredEmployees: Employee[];
   public searchTerm : string;
-
   public errorMsg;
   
   // get searchTerm(): string{
@@ -24,13 +22,13 @@ export class ListEmployeesComponent implements OnInit {
   //   this._searchTerm = value;
   //   this.FilteredEmployees = this.filtereEmployees(value);
   // }
-
+        
   filtereEmployees(searchTerm : string){
     return this.employees.filter(employee=> 
       employee.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
   }
 
-  constructor(private _employeeService: EmployeeService) { }
+  constructor( private _employeeService: EmployeeService ) { }
 
   ngOnInit() { }
 
@@ -39,9 +37,7 @@ export class ListEmployeesComponent implements OnInit {
         this._employeeService.getEmployees()
                     .subscribe(data => this.employees = data)
                         error => this.errorMsg = error;
-
         this.FilteredEmployees = this.employees;
-
       }
       else{
         location.reload();
@@ -50,7 +46,6 @@ export class ListEmployeesComponent implements OnInit {
 
   changeEmployeeName(){
       this.employees[0].name = 'Jordan';
-
     // const newEmployeeArray : Employee[] = Object.assign([], this.employees);
     // newEmployeeArray[0].name = 'Jordan';
     // this.employees = newEmployeeArray;

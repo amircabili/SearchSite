@@ -1,25 +1,26 @@
-<div class="container" >
-    <div class="jumbotron mt-4 p-4 p-md-5 text-white rounded bg-dark">
-        
-        <div class="panel panel-primary" >
-            <div class="panel-heading">
-                <h3 class="panel-title">   יצירת לקוח</h3>
-            </div>
-            <div class="panel-body">
-                <div class="form-group">
-                    <label> שם מלא  </label>
-                    <input id="fullName" type="text" class="form-control">
+<form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm)" >
+    <div class="container">
+        <div class="jumbotron mt-4 p-4 p-md-5 text-white rounded bg-dark">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title"> יצירת לקוח</h3>
                 </div>
-                <div class="form-group">
-                        <label> אימייל</label>
-                        <input id="email" type="text" class="form-control">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label> שם מלא </label>
+                        <input [(ngModel)]="fullName" name="fullName" id="fullName" type="text" class="form-control">
                     </div>
-            </div>
-        
-            <div class="panel-footer">
-                    <button class="btn btn-primary" type="submit">Save</button>
+                    <div class="form-group">
+                        <label> אימייל</label>
+                        <input [(ngModel)]="email" name="email" id="email" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <button class="btn btn-primary" type="submit">Send</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 
+Angular Generated Form model : {{ employeeForm.value | json }}
