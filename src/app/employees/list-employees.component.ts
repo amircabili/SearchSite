@@ -23,7 +23,7 @@ export class ListEmployeesComponent implements OnInit {
   //   this.FilteredEmployees = this.filtereEmployees(value);
   // }
 
-  // filtereEmployees(searchTerm : string){
+  //// filtereEmployees(searchTerm : string){
   //   return this.employees.filter(employee=> 
   //     employee.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
   // }
