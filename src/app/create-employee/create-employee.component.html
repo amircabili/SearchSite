@@ -8,8 +8,11 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label  for="fullName" class="text-dark">שם מלא</label>
-                        <input required [(ngModel)]="fullName" name="fullName" id="fullName" type="text" class="form-control">
+                        <input #fullNameControl="ngModel" required [(ngModel)]="fullName" name="fullName" id="fullName" type="text" class="form-control">
                     </div>
+                    <div class="text-dark">touched:{{fullNameControl.touched}}</div>
+                    <div class="text-dark">untouched:{{fullNameControl.untouched}}</div>
+                     
                     <div class="form-group">
                         <label for="email" class="text-dark">אימייל</label>
                         <input [(ngModel)]="email" name="email" id="email" type="text" class="form-control">
