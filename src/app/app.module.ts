@@ -12,7 +12,10 @@ import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReadFilesComponent } from './read-files/read-files.component';
 import { FileSaverModule } from 'ngx-filesaver';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -34,7 +37,9 @@ import { CreateEmployeeComponent } from './create-employee/create-employee.compo
     HttpClientModule,
     FormsModule,      
     ReactiveFormsModule,
-    FileSaverModule
+    FileSaverModule,
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot()
   ],
 
   providers: [EmployeeService],

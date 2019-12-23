@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="jumbotron mt-4 p-4 p-md-5 text-white rounded bg-dark">
+    <div class="jumbotron mt-4 p-4 p-md-5 text-white rounded bg-light">
         <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm)">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -23,11 +23,11 @@
                     <div class="form-group">
                         <label>מין</label>
                         <div class="form-control">
-                            <label class="radio-inline">
+                            <label class="mr-4">
                                 <input type="radio" value="male" name="gender" [(ngModel)]="gender">
                                 זכר
                             </label>
-                            <label class="radio-inline pr-3">
+                            <label class="mr-4">
                                 <input type="radio" value="female" name="gender" [(ngModel)]="gender">
                                 נקבה
                             </label>
@@ -36,7 +36,7 @@
                     <br>
                     <div class="form-group">
                         <div class="form-control">
-                            <label class="checkbox-inline">
+                            <label class=" ">
                                 <input type="checkbox" name="isActive" [(ngModel)]="isActive">
                                 פעיל
                             </label>
@@ -57,8 +57,16 @@
 
                     <div class="form-group">
                         <label for="dateOfBirth"> תאריך לידה</label>
-                        <input [(ngModel)]="dateOfBirth" name="dateOfBirth" id="dateOfBirth" type="date"
-                            class="form-control">
+                        <input [(ngModel)]="dateOfBirth"
+                                name="dateOfBirth" 
+                                bsDatepicker
+                                id="dateOfBirth"
+                                type="text"
+                                autocomplete="off"
+                                class="form-control"
+                                placeholder="Datepicker"
+                                [bsConfig]="{ isAnimated: true }"
+                            >
                     </div>
 
 
@@ -69,6 +77,7 @@
             </div>
         </form>
 
-        Angular Generated Form model : {{ employeeForm.value | json }}
+       <label class="text-dark float-left text-left"> Angular Generated Form model : {{ employeeForm.value | json }}</label>
+       
     </div>
 </div>
