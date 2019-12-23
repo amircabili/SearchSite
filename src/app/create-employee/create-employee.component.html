@@ -1,27 +1,26 @@
 <div class="container">
-    <div class="jumbotron mt-4 p-4 p-md-5 text-white rounded bg-light">
-        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm)">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
+    <div class="jumbotron p-md-5 text-white rounded bg-white">
+        <form #employeeForm="ngForm" ngNativeValidate (ngSubmit)="saveEmployee(employeeForm)">
+            <div class="panel panel-info ">
+                <div class="panel-heading  bg-blue">
                     <h3 class="panel-title"> יצירת לקוח</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="fullName"> שם מלא </label>
-                        <input [(ngModel)]="fullName" name="fullName" id="fullName" type="text" class="form-control">
+                        <label  for="fullName" class="text-dark">שם מלא</label>
+                        <input required [(ngModel)]="fullName" name="fullName" id="fullName" type="text" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="email"> אימייל</label>
+                        <label for="email" class="text-dark">אימייל</label>
                         <input [(ngModel)]="email" name="email" id="email" type="text" class="form-control">
                     </div>
-
                     <div class="form-group">
-                        <label for="phoneNumber"> טלפון</label>
+                        <label for="phoneNumber" class="text-dark">טלפון</label>
                         <input [(ngModel)]="phoneNumber" name="phoneNumber" id="phoneNumber" type="text"
                             class="form-control">
                     </div>
                     <div class="form-group">
-                        <label>מין</label>
+                        <label  class="text-dark">מין</label>
                         <div class="form-control">
                             <label class="mr-4">
                                 <input type="radio" value="male" name="gender" [(ngModel)]="gender">
@@ -32,10 +31,10 @@
                                 נקבה
                             </label>
                         </div>
-                    </div>
-                    <br>
+                    </div>                     
                     <div class="form-group">
-                        <div class="form-control">
+                        <label class="text-dark" for="department">פעיל \ לא פעיל</label>
+                        <div class="form-control">                            
                             <label class=" ">
                                 <input type="checkbox" name="isActive" [(ngModel)]="isActive">
                                 פעיל
@@ -44,7 +43,7 @@
                     </div>
                     <div class="row">
                         <div class="form-group col-md-3">
-                            <label class="checkbox-inline" for="department">Department</label>
+                            <label class="text-dark" for="department">מחלקה</label>
                             <select id="department" name="department" [(ngModel)]="department" class="form-control">
                                 <!-- <option class="1">Help Desk</option>
                                 <option class="2"> HR </option>
@@ -56,12 +55,23 @@
                             </select>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="dateOfBirth"> תאריך לידה</label>
+                            <label for="dateOfBirth" class="text-dark"> תאריך לידה</label>
                             <input [(ngModel)]="dateOfBirth" name="dateOfBirth" bsDatepicker id="dateOfBirth" type="text"
                                 autocomplete="off" class="form-control" placement="top" placeholder="בחר תאריך"
                                 [bsConfig]="datePickerConfig">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="photoPath" class="text-dark" > תמונה</label>
+                            <input disabled [(ngModel)]="photoPath" name="photoPath" id="photoPath" type="text" class="direction-ltr form-control">
+                            <button (click)="togglePhotoPreview();" class="btn btn mt-2 btn-info pr-4 pl-4" type="button">{{previewPhoto? "הסתר" : "הראה" }} תמונה</button>
+                        </div>                         
+                    </div>
+                    <div class="form-group">
+                         <img *ngIf="previewPhoto" [src]="photoPath" height="200" width="200"/>
+                    </div>
+ 
                     <div class="row">
                         <div class="panel-footer col-md-6 text-right">
                             <button class="btn btn btn-info pr-4 pl-4" type="submit">שמור</button>
@@ -73,7 +83,6 @@
                 </div>
             </div>
         </form>
-        <label class="text-dark float-left text-left"> Angular Generated Form model :
-            {{ employeeForm.value | json }}</label>
+        <label class="text-dark float-left text-left"> Angular Generated Form model : {{ employeeForm.value | json }}</label>
     </div>
 </div>

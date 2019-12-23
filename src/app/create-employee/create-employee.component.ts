@@ -15,6 +15,8 @@ export class CreateEmployeeComponent implements OnInit {
   gender = 'male';
   isActive = true;
   department = 'HR';
+  photoPath = '../assets/images/image1.png';
+  previewPhoto = false;
 
   datePickerConfig : Partial< BsDatepickerConfig >;
 
@@ -44,6 +46,10 @@ export class CreateEmployeeComponent implements OnInit {
   clearSearchInput(){
     //this.searchTerm = null;
     location.reload();
-}
+  }
+
+    togglePhotoPreview(){
+      this.previewPhoto = !this.previewPhoto;
+    }
 
 }
