@@ -11,7 +11,7 @@ export class CreateEmployeeComponent implements OnInit {
 
   gender = 'male';
   isActive = true;
-  // department = 'Help Desk';
+  department = 'HR';
 
   departments : Department[] = [
     {id:1, name:'Help Desk'},
