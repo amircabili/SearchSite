@@ -33,7 +33,6 @@ export class ListEmployeesComponent implements OnInit {
   ngOnInit() { }
 
     clickSearchInput() {
-
       if(this.searchTerm){
         this._employeeService.getEmployees()
                     .subscribe(data => this.employees = data)
@@ -56,9 +55,5 @@ export class ListEmployeesComponent implements OnInit {
       this.searchTerm = null;
       location.reload();
   }
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 3487da4f9203dac784b69834c844c60d1ac8f206
 }
+

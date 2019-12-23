@@ -1,23 +1,15 @@
-<<<<<<< HEAD
-<form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm)" >
-    <div class="container">
-        <div class="jumbotron mt-4 p-4 p-md-5 text-white rounded bg-dark">
-=======
 <div class="container">
     <div class="jumbotron mt-4 p-4 p-md-5 text-white rounded bg-dark">
-
-        <form #employeeForm="ngForm"> 
-             <div class="panel panel-primary">
+        <form #employeeForm="ngForm" (ngSubmit)="saveEmployee(employeeForm)">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h3 class="panel-title"> יצירת לקוח</h3>
                 </div>
                 <div class="panel-body">
-
                     <div class="form-group">
                         <label for="fullName"> שם מלא </label>
                         <input [(ngModel)]="fullName" name="fullName" id="fullName" type="text" class="form-control">
                     </div>
-
                     <div class="form-group">
                         <label for="email"> אימייל</label>
                         <input [(ngModel)]="email" name="email" id="email" type="text" class="form-control">
@@ -25,12 +17,13 @@
 
                     <div class="form-group">
                         <label for="phoneNumber"> טלפון</label>
-                        <input [(ngModel)]="phoneNumber" name="phoneNumber" id="phoneNumber" type="text" class="form-control">
+                        <input [(ngModel)]="phoneNumber" name="phoneNumber" id="phoneNumber" type="text"
+                            class="form-control">
                     </div>
                     <div class="form-group">
                         <label>מין</label>
                         <div class="form-control">
-                            <label class="radio-inline"> 
+                            <label class="radio-inline">
                                 <input type="radio" value="male" name="gender" [(ngModel)]="gender">
                                 זכר
                             </label>
@@ -41,37 +34,41 @@
                         </div>
                     </div>
                     <br>
-
                     <div class="form-group">
                         <div class="form-control">
-                            <label class="checkbox-inline"> 
+                            <label class="checkbox-inline">
                                 <input type="checkbox" name="isActive" [(ngModel)]="isActive">
                                 פעיל
                             </label>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label class="checkbox-inline" for="department">Department</label>
-                        <select id="department" name="department" 
-                                [(ngModel)]="department" class="form-control">
-                                <option class="1">Help Desk</option>
-                                <option class="2">  HR </option>
-                                <option class="3">  IT </option>
-                                <option class="4">  Parol </option>
+                        <select id="department" name="department" [(ngModel)]="department" class="form-control">
+                            <!-- <option class="1">Help Desk</option>
+                            <option class="2"> HR </option>
+                            <option class="3"> IT </option>
+                            <option class="4"> Parol </option> -->
+                            <option *ngFor="let dept of departments" [value]="dept.name" [id]="dept.name">
+                                {{dept.name}}
+                            </option>
                         </select>
                     </div>
 
+                    <div class="form-group">
+                        <label for="dateOfBirth"> תאריך לידה</label>
+                        <input [(ngModel)]="dateOfBirth" name="dateOfBirth" id="dateOfBirth" type="date"
+                            class="form-control">
+                    </div>
+
+
                 </div>
                 <div class="panel-footer mt-3 ">
-                    <button class="btn btn-primary pl-2 mt-4 pr-2" type="submit" >שמור</button>
+                    <button class="btn btn-primary pl-2 mt-4 pr-2" type="submit">שמור</button>
                 </div>
             </div>
         </form>
 
-        {{employeeForm.value | json}}
-
+        Angular Generated Form model : {{ employeeForm.value | json }}
     </div>
-</form>
-
-Angular Generated Form model : {{ employeeForm.value | json }}
+</div>
