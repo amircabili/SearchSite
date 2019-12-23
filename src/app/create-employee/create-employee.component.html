@@ -6,17 +6,59 @@
                     <h3 class="panel-title"> יצירת לקוח</h3>
                 </div>
                 <div class="panel-body">
+
                     <div class="form-group">
-                        <label> שם מלא </label>
+                        <label for="fullName"> שם מלא </label>
                         <input [(ngModel)]="fullName" name="fullName" id="fullName" type="text" class="form-control">
                     </div>
+
                     <div class="form-group">
-                        <label> אימייל</label>
+                        <label for="email"> אימייל</label>
                         <input [(ngModel)]="email" name="email" id="email" type="text" class="form-control">
                     </div>
+
+                    <div class="form-group">
+                        <label for="phoneNumber"> טלפון</label>
+                        <input [(ngModel)]="phoneNumber" name="phoneNumber" id="phoneNumber" type="text" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>מין</label>
+                        <div class="form-control">
+                            <label class="radio-inline"> 
+                                <input type="radio" value="male" name="gender" [(ngModel)]="gender">
+                                זכר
+                            </label>
+                            <label class="radio-inline pr-3">
+                                <input type="radio" value="female" name="gender" [(ngModel)]="gender">
+                                נקבה
+                            </label>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="form-group">
+                        <div class="form-control">
+                            <label class="checkbox-inline"> 
+                                <input type="checkbox" name="isActive" [(ngModel)]="isActive">
+                                פעיל
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-inline" for="department">Department</label>
+                        <select id="department" name="department" 
+                                [(ngModel)]="department" class="form-control">
+                                <option class="1">Help Desk</option>
+                                <option class="2">  HR </option>
+                                <option class="3">  IT </option>
+                                <option class="4">  Parol </option>
+                        </select>
+                    </div>
+
                 </div>
-                <div class="panel-footer">
-                    <button class="btn btn-primary" type="submit">Send</button>
+                <div class="panel-footer mt-3 ">
+                    <button class="btn btn-primary pl-2 mt-4 pr-2" type="submit" >שמור</button>
                 </div>
             </div>
         </div>

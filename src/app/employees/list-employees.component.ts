@@ -22,11 +22,11 @@ export class ListEmployeesComponent implements OnInit {
   //   this._searchTerm = value;
   //   this.FilteredEmployees = this.filtereEmployees(value);
   // }
-        
-  filtereEmployees(searchTerm : string){
-    return this.employees.filter(employee=> 
-      employee.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
-  }
+
+  // filtereEmployees(searchTerm : string){
+  //   return this.employees.filter(employee=> 
+  //     employee.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
+  // }
 
   constructor( private _employeeService: EmployeeService ) { }
 
@@ -49,14 +49,11 @@ export class ListEmployeesComponent implements OnInit {
     // const newEmployeeArray : Employee[] = Object.assign([], this.employees);
     // newEmployeeArray[0].name = 'Jordan';
     // this.employees = newEmployeeArray;
-
   }
 
- 
     clearSearchInput(){
       this.searchTerm = null;
       location.reload();
   }
 
-  
 }

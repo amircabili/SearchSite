@@ -8,13 +8,16 @@ import { NgForm } from '@angular/forms';
 })
 export class CreateEmployeeComponent implements OnInit {
 
+  gender = 'male';
+  isActive = true;
+
   constructor() {  }
 
   ngOnInit() { 
   }
 
   saveEmployee(empForm: NgForm):void{
-      console.log(empForm.value);
+      console.log(empForm.value); 
   }
 
 }
