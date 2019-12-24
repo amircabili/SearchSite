@@ -24,7 +24,8 @@ export class CreateEmployeeComponent implements OnInit {
     {id:1, name:'Help Desk'},
     {id:2, name:'HR'},
     {id:3, name:'IT'},
-    {id:4, name:'PayRoll'}
+    {id:4, name:'PayRoll'},
+    {id:5, name:'PayRoll11'}
   ];
 
   constructor() {  
