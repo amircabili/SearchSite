@@ -1,36 +1,43 @@
 <div class="container">
     <div class="jumbotron p-md-5 text-white rounded bg-white">
-        <form #employeeForm="ngForm" ngNativeValidate (ngSubmit)="saveEmployee(employeeForm)">
+        <form #employeeForm="ngForm" ngNativeValidate (ngSubmit)="saveEmployee(employee)">
             <div class="panel panel-info ">
                 <div class="panel-heading  bg-blue">
                     <h3 class="panel-title"> יצירת לקוח</h3>
                 </div>
+<!-- 
+                <div class="text-dark">touched:{{employeeForm.touched}}</div>
+                <div class="text-dark">untouched:{{employeeForm.untouched}}</div>
+                <div class="text-dark">pristine:{{employeeForm.pristine}}</div>
+                <div class="text-dark">dirty:{{employeeForm.dirty}}</div>
+                <div class="text-dark">valid:{{employeeForm.valid}}</div>
+                <div class="text-dark">invalid:{{employeeForm.invalid}}</div> -->
+
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label  for="fullName" class="text-dark">שם מלא</label>
-                        <input #fullNameControl="ngModel" required [(ngModel)]="fullName" name="fullName" id="fullName" type="text" class="form-control">
-                    </div>
-                    <div class="text-dark">touched:{{fullNameControl.touched}}</div>
-                    <div class="text-dark">untouched:{{fullNameControl.untouched}}</div>
-                     
+                    <div class="form-group" [class.has-error]='name.invalid && name.touched'
+                    [class.has-success]="name.valid">
+                        <label  for="name" class="text-dark control-label">שם מלא</label>
+                        <input #name="ngModel" required [(ngModel)]="employee.name" name="name" id="name" type="text" class="form-control">
+                        <span class="help-block" *ngIf="name.invalid && name.touched">Full Name is required</span>
+                    </div>                     
                     <div class="form-group">
                         <label for="email" class="text-dark">אימייל</label>
-                        <input [(ngModel)]="email" name="email" id="email" type="text" class="form-control">
+                        <input  [(ngModel)]="employee.email" name="email" id="email" type="text" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="phoneNumber" class="text-dark">טלפון</label>
-                        <input [(ngModel)]="phoneNumber" name="phoneNumber" id="phoneNumber" type="text"
+                        <label for="phonenumber" class="text-dark">טלפון</label>
+                        <input  [(ngModel)]="employee.phonenumber" name="phonenumber" id="phonenumber" type="text"
                             class="form-control">
                     </div>
                     <div class="form-group">
                         <label  class="text-dark">מין</label>
                         <div class="form-control">
                             <label class="mr-4">
-                                <input type="radio" value="male" name="gender" [(ngModel)]="gender">
+                                <input type="radio" value="male" name="gender" [(ngModel)]="employee.gender">
                                 זכר
                             </label>
                             <label class="mr-4">
-                                <input type="radio" value="female" name="gender" [(ngModel)]="gender">
+                                <input type="radio" value="female" name="gender" [(ngModel)]="employee.gender">
                                 נקבה
                             </label>
                         </div>
@@ -39,7 +46,7 @@
                         <label class="text-dark" for="department">פעיל \ לא פעיל</label>
                         <div class="form-control">                            
                             <label class=" ">
-                                <input type="checkbox" name="isActive" [(ngModel)]="isActive">
+                                <input type="checkbox" name="isActive" [(ngModel)]="employee.isActive">
                                 פעיל
                             </label>
                         </div>
@@ -47,7 +54,7 @@
                     <div class="row">
                         <div class="form-group col-md-3">
                             <label class="text-dark" for="department">מחלקה</label>
-                            <select id="department" name="department" [(ngModel)]="department" class="form-control">
+                            <select id="department" name="department" [(ngModel)]="employee.department" class="form-control">
                                 <!-- <option class="1">Help Desk</option>
                                 <option class="2"> HR </option>
                                 <option class="3"> IT </option>
@@ -59,7 +66,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="dateOfBirth" class="text-dark"> תאריך לידה</label>
-                            <input [(ngModel)]="dateOfBirth" name="dateOfBirth" bsDatepicker id="dateOfBirth" type="text"
+                            <input [(ngModel)]="employee.dateOfBirth" name="dateOfBirth" bsDatepicker id="dateOfBirth" type="text"
                                 autocomplete="off" class="form-control" placement="top" placeholder="בחר תאריך"
                                 [bsConfig]="datePickerConfig">
                         </div>
@@ -67,7 +74,7 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="photoPath" class="text-dark" > תמונה</label>
-                            <input disabled [(ngModel)]="photoPath" name="photoPath" id="photoPath" type="text" class="direction-ltr form-control">
+                            <input  [(ngModel)]="employee.photoPath" name="photoPath" id="photoPath" type="text" class="direction-ltr form-control">
                             <button (click)="togglePhotoPreview();" class="btn btn mt-2 btn-info pr-4 pl-4" type="button">{{previewPhoto? "הסתר" : "הראה" }} תמונה</button>
                         </div>                         
                     </div>
@@ -77,7 +84,7 @@
  
                     <div class="row">
                         <div class="panel-footer col-md-6 text-right">
-                            <button class="btn btn btn-info pr-4 pl-4" type="submit">שמור</button>
+                            <button class="btn btn btn-info pr-4 pl-4" [disabled]="employeeForm.invalid"  type="submit">שמור</button>
                         </div>
                         <div class="panel-footer col-md-6 text-left">
                             <button (click)="clearSearchInput()" class="btn btn btn-info  pr-4 pl-4" type="submit">נקה</button>
@@ -87,5 +94,7 @@
             </div>
         </form>
         <label class="text-dark float-left text-left"> Angular Generated Form model : {{ employeeForm.value | json }}</label>
+        <br><br>
+        <label class="text-dark float-left text-left"> our employee model : {{ employee | json }}</label>
     </div>
 </div>
