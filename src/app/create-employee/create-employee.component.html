@@ -15,32 +15,38 @@
 
                 <div class="panel-body">
                     <div class="form-group" [class.has-error]='name.invalid && name.touched'
-                    [class.has-success]="name.valid">
+                        [class.has-success]="name.valid">
                         <label  for="name" class="text-dark control-label">שם מלא</label>
                         <input #name="ngModel" required [(ngModel)]="employee.name" name="name" id="name" type="text" class="form-control">
                         <span class="help-block" *ngIf="name.invalid && name.touched">Full Name is required</span>
-                    </div>                     
-                    <div class="form-group">
-                        <label for="email" class="text-dark">אימייל</label>
-                        <input  [(ngModel)]="employee.email" name="email" id="email" type="text" class="form-control">
+                    </div>  
+                                       
+                    <div class="form-group" [class.has-error]='email.invalid && email.touched'
+                        [class.has-success]="email.valid">
+                        <label for="email" class=" control-label text-dark">אימייל</label>
+                        <input required  [email]="employee.email!==''" #email="ngModel" [(ngModel)]="employee.email" name="email" id="email" type="text" class="form-control">
+                        <span class="help-block" *ngIf="email.errors?.required && email.touched">Email is required</span>
+                        <span class="help-block" *ngIf="email.errors?.email && email.touched">Email is invalid</span>
                     </div>
+
                     <div class="form-group">
                         <label for="phonenumber" class="text-dark">טלפון</label>
                         <input  [(ngModel)]="employee.phonenumber" name="phonenumber" id="phonenumber" type="text"
                             class="form-control">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" [class.has-error]='gender.invalid && gender.touched'>
                         <label  class="text-dark">מין</label>
                         <div class="form-control">
                             <label class="mr-4">
-                                <input type="radio" value="male" name="gender" [(ngModel)]="employee.gender">
+                                <input type="radio" required #gender="ngModel" value="male" name="gender" [(ngModel)]="employee.gender">
                                 זכר
                             </label>
                             <label class="mr-4">
-                                <input type="radio" value="female" name="gender" [(ngModel)]="employee.gender">
+                                <input type="radio"  required #gender="ngModel" value="female" name="gender" [(ngModel)]="employee.gender">
                                 נקבה
                             </label>
                         </div>
+                        <span class="help-block" *ngIf="gender.errors?.required && gender.touched">Gender is required</span>
                     </div>                     
                     <div class="form-group">
                         <label class="text-dark" for="department">פעיל \ לא פעיל</label>

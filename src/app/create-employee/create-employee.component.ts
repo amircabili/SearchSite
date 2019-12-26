@@ -19,7 +19,7 @@ export class CreateEmployeeComponent implements OnInit {
   photoPath = '../assets/images/image1.png';
   previewPhoto = false;
 
-  datePickerConfig : Partial < BsDatepickerConfig > ;
+  datePickerConfig : Partial<BsDatepickerConfig>;
 
   employee: Employee = {
     id : null, 
