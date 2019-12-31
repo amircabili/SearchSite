@@ -15,6 +15,7 @@ import { FileSaverModule } from 'ngx-filesaver';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
 
 
 
@@ -28,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ListEmployeesComponent,
     EmployeeFilterPipe,
     ReadFilesComponent,
-    CreateEmployeeComponent
+    CreateEmployeeComponent,
+    SelectRequiredValidatorDirective
   ],
   
   imports: [

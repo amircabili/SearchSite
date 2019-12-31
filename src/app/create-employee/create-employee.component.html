@@ -5,8 +5,8 @@
                 <div class="panel-heading  bg-blue">
                     <h3 class="panel-title"> יצירת לקוח</h3>
                 </div>
-<!-- 
-                <div class="text-dark">touched:{{employeeForm.touched}}</div>
+
+                <!-- <div class="text-dark">touched:{{employeeForm.touched}}</div>
                 <div class="text-dark">untouched:{{employeeForm.untouched}}</div>
                 <div class="text-dark">pristine:{{employeeForm.pristine}}</div>
                 <div class="text-dark">dirty:{{employeeForm.dirty}}</div>
@@ -16,7 +16,8 @@
                 <div class="panel-body">
                     <div class="form-group" [class.has-error]='name.invalid && name.touched' [class.has-success]="name.valid">
                         <label  for="name" class="text-dark control-label">שם מלא</label>
-                        <input #name="ngModel" required [(ngModel)]="employee.name" name="name" id="name" type="text" class="form-control">
+                        <input #name="ngModel" required [(ngModel)]="employee.name" name="name" id="name" type="text"
+                         class="form-control">
                         <span class="help-block" *ngIf="name.invalid && name.touched">Full Name is required</span>
                     </div>  
                                        
@@ -47,27 +48,30 @@
                         </div>
                         <span class="help-block" *ngIf="gender.errors?.required && gender.touched">Gender is required</span>
                     </div>                     
-                    <div class="form-group">
+                    <div class="form-group" [class.has-error]='isActive.invalid && isActive.touched'>
                         <label class="text-dark" for="department">פעיל \ לא פעיל</label>
                         <div class="form-control">                            
-                            <label class=" ">
-                                <input type="checkbox" name="isActive" [(ngModel)]="employee.isActive">
+                            <label class=" control-label">
+                                <input required type="checkbox" [required]="employee.isActive==null"  #isActive="ngModel" name="isActive" [(ngModel)]="employee.isActive">
                                 פעיל
                             </label>
                         </div>
+                        <span class="help-block" *ngIf="isActive.touched && isActive.errors?.required">isActive is invalid</span>
+
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-3"  [class.has-error]='department.invalid && department.touched'>
                             <label class="text-dark" for="department">מחלקה</label>
-                            <select id="department" name="department" [(ngModel)]="employee.department" class="form-control">
-                                <!-- <option class="1">Help Desk</option>
-                                <option class="2"> HR </option>
-                                <option class="3"> IT </option>
-                                <option class="4"> Parol </option> -->
-                                <option *ngFor="let dept of departments" [value]="dept.name" [id]="dept.name">
+                            <select id="department" appSelectValidator="select" #department="ngModel" 
+                            name="department" [(ngModel)]="employee.department" class="form-control">          
+                                <option disabled value="select">Select Department</option>
+                                <option *ngFor="let dept of departments" [ngValue]="dept" [id]="dept.name">
                                     {{dept.name}}
                                 </option>
                             </select>
+                            <span class="help-block" *ngIf="department.touched && department.errors?.defaultSelected">
+                                department is required
+                            </span>
                         </div>
                         <div class="form-group col-md-3">
                             <label for="dateOfBirth" class="text-dark"> תאריך לידה</label>
