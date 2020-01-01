@@ -28,9 +28,9 @@ export class ListEmployeesComponent implements OnInit {
   //     employee.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
   // }
 
-  constructor( private _employeeService: EmployeeService ) { }
+  constructor( private _employeeService: EmployeeService ) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
     clickSearchInput() {
       if(this.searchTerm){
@@ -38,22 +38,29 @@ export class ListEmployeesComponent implements OnInit {
                     .subscribe(data => this.employees = data)
                         error => this.errorMsg = error;
         this.FilteredEmployees = this.employees;
+        }
+        else{
+          location.reload();
+        }
       }
-      else{
+
+    ShowAllEmployees(){
+      this._employeeService.getEmployees()
+        .subscribe(data => this.employees = data)
+            error => this.errorMsg = error;
+    }
+
+    changeEmployeeName(){
+        this.employees[0].name = 'Jordan';
+      // const newEmployeeArray : Employee[] = Object.assign([], this.employees);
+      // newEmployeeArray[0].name = 'Jordan';
+      // this.employees = newEmployeeArray;
+    }
+
+      clearSearchInput(){
+        this.searchTerm = null;
         location.reload();
-      }
-  }
+    }
 
-  changeEmployeeName(){
-      this.employees[0].name = 'Jordan';
-    // const newEmployeeArray : Employee[] = Object.assign([], this.employees);
-    // newEmployeeArray[0].name = 'Jordan';
-    // this.employees = newEmployeeArray;
   }
-
-    clearSearchInput(){
-      this.searchTerm = null;
-      location.reload();
-  }
-}
 
