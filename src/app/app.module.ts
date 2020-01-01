@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
- 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
@@ -16,7 +15,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
-
+import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 
 
 
@@ -30,9 +29,11 @@ import { SelectRequiredValidatorDirective } from './shared/select-required-valid
     EmployeeFilterPipe,
     ReadFilesComponent,
     CreateEmployeeComponent,
-    SelectRequiredValidatorDirective
+    SelectRequiredValidatorDirective,
+    ConfirmEqualValidatorDirective
   ],
   
+
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -47,6 +48,8 @@ import { SelectRequiredValidatorDirective } from './shared/select-required-valid
   providers: [EmployeeService],
   bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }
 
  

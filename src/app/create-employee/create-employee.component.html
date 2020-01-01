@@ -85,12 +85,47 @@
                             <label for="photoPath" class="text-dark" > תמונה</label>
                             <input  [(ngModel)]="employee.photoPath" name="photoPath" id="photoPath" type="text" class="direction-ltr form-control">
                             <button (click)="togglePhotoPreview();" class="btn btn mt-2 btn-info pr-4 pl-4" type="button">{{previewPhoto? "הסתר" : "הראה" }} תמונה</button>
-                        </div>                         
+                        </div>  
+                                               
                     </div>
                     <div class="form-group">
-                         <img *ngIf="previewPhoto" [src]="photoPath" height="200" width="200"/>
+                        <img *ngIf="previewPhoto" [src]="photoPath" height="200" width="200"/>
+                   </div>
+
+
+                   <div class="row">
+                    <div class="form-group col-md-6" [class.has-error]='password.invalid && password.touched'>
+                        <label  for="password" class="text-dark control-label">סיסמא</label>
+                        <input #password="ngModel" required [(ngModel)]="employee.password"  
+                                class="form-control"
+                                name="password"
+                                id="password" type="text">
+                            <span class="help-block" *ngIf="password.touched && password.errors?.required">
+                                Password is required
+                            </span>
+                        </div>  
                     </div>
- 
+                    <div class="row">
+                        <div class="form-group col-md-6" [class.has-error]='confirmPassword.invalid && confirmPassword.touched'>
+                            <label  for="confirmPassword" class="text-dark control-label">חזור על סיסמא</label>
+
+                            <input #confirmPassword="ngModel" required appConfirmEqualValidator="password" [(ngModel)]="employee.confirmPassword" 
+                                    class="form-control" 
+                                    name="confirmPassword" 
+                                    id="confirmPassword"  type="text">
+
+                            <span class="help-block" 
+                            *ngIf="confirmPassword.touched && confirmPassword.errors?.required">
+                                Confirm a Password is required
+                            </span>
+                            <span class="help-block"
+                             *ngIf="confirmPassword.touched && confirmPassword.errors?.notEqual && !confirmPassword.errors?.required">
+                                Passwords does not match
+                            </span>
+
+                        </div>  
+                    </div>
+                    <br>
                     <div class="row">
                         <div class="panel-footer col-md-6 text-right">
                             <button class="btn btn btn-info pr-4 pl-4" [disabled]="employeeForm.invalid" type="submit">שמור</button>
