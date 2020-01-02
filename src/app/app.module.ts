@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SelectRequiredValidatorDirective } from './shared/select-required-validator.directive';
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 import { appOldConfirmEqualValidatorDirective } from './shared/old-confirm-equal-validator.directive';
+import { DisplayEmployeeComponent } from './employees/display-employee.component';
 
 
 
@@ -33,7 +34,8 @@ import { appOldConfirmEqualValidatorDirective } from './shared/old-confirm-equal
     CreateEmployeeComponent,
     SelectRequiredValidatorDirective,
     appOldConfirmEqualValidatorDirective,
-    ConfirmEqualValidatorDirective
+    ConfirmEqualValidatorDirective,
+    DisplayEmployeeComponent
   ],
   
 

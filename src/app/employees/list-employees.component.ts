@@ -43,31 +43,31 @@ export class ListEmployeesComponent implements OnInit {
         }
       }
 
-    ShowAllEmployees(){
-      if(this.searchTerm){
+      ShowAllEmployees(){
+        if(this.searchTerm){
+            this._employeeService.getEmployees()
+              .subscribe(data => this.employees = data)
+                  error => this.errorMsg = error;
+        }
+        else{         
+          this.searchTerm = null;
           this._employeeService.getEmployees()
-            .subscribe(data => this.employees = data)
-                error => this.errorMsg = error;
-       }
-       else{         
-        this.searchTerm = null;
-        this._employeeService.getEmployees()
-        .subscribe(data => this.employees = data)
-            error => this.errorMsg = error;
-       }
-    }
+          .subscribe(data => this.employees = data)
+              error => this.errorMsg = error;
+        }
+      }
 
-    changeEmployeeName(){
-        this.employees[0].name = 'Jordan';
-      // const newEmployeeArray : Employee[] = Object.assign([], this.employees);
-      // newEmployeeArray[0].name = 'Jordan';
-      // this.employees = newEmployeeArray;
-    }
+      changeEmployeeName(){
+          this.employees[0].name = 'Jordan';
+        // const newEmployeeArray : Employee[] = Object.assign([], this.employees);
+        // newEmployeeArray[0].name = 'Jordan';
+        // this.employees = newEmployeeArray;
+      }
 
-    clearSearchInput(){
-      this._employeeService = null;
-        location.reload();
-    }
+      clearSearchInput(){
+        this._employeeService = null;
+          location.reload();
+      }
 
   }
 
