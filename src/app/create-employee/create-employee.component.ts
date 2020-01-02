@@ -6,7 +6,6 @@ import { Employee } from '../models/employee.model';
 import { EmployeeService } from '../employee.service';
 import { Routes, Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
@@ -37,7 +36,7 @@ export class CreateEmployeeComponent implements OnInit {
     isActive : null,
     photoPath : null
   };
-
+  
   departments : Department[] = [
     {id:1, name:'Help Desk'},
     {id:2, name:'HR'},
@@ -56,18 +55,23 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit() { 
   }
 
-  saveEmployee():void{
-      this._employeeService.save(this.employee);
-      this._router.navigate(['app-list-employees']);
-  }
 
-  clearSearchInput(){
-    //this.searchTerm = null;
-    location.reload();
+  clearSearchInput():void{
+    // this.searchTerm = null;
+    // location.reload();
+      this._employeeService = null;
   }
 
   togglePhotoPreview(){
     this.previewPhoto = !this.previewPhoto;
   }
+
+  
+  saveEmployee(){
+    console.log(this.employee);
+    this._employeeService.save(this.employee);
+    //this._router.navigate(['app-list-employees']);
+}
+
 
 }

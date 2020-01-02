@@ -17,12 +17,10 @@ export class ListEmployeesComponent implements OnInit {
   // get searchTerm(): string{
   //   return this._searchTerm;
   // }
-
   // set searchTerm(value: string){
   //   this._searchTerm = value;
   //   this.FilteredEmployees = this.filtereEmployees(value);
   // }
-
   //// filtereEmployees(searchTerm : string){
   //   return this.employees.filter(employee=> 
   //     employee.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
@@ -30,7 +28,7 @@ export class ListEmployeesComponent implements OnInit {
 
   constructor( private _employeeService: EmployeeService ) {}
 
-  ngOnInit() {}
+    ngOnInit() {}
 
     clickSearchInput() {
       if(this.searchTerm){
@@ -40,14 +38,23 @@ export class ListEmployeesComponent implements OnInit {
         this.FilteredEmployees = this.employees;
         }
         else{
+          this._employeeService = null;
           location.reload();
         }
       }
 
     ShowAllEmployees(){
-      this._employeeService.getEmployees()
+      if(this.searchTerm){
+          this._employeeService.getEmployees()
+            .subscribe(data => this.employees = data)
+                error => this.errorMsg = error;
+       }
+       else{         
+        this.searchTerm = null;
+        this._employeeService.getEmployees()
         .subscribe(data => this.employees = data)
             error => this.errorMsg = error;
+       }
     }
 
     changeEmployeeName(){
@@ -57,8 +64,8 @@ export class ListEmployeesComponent implements OnInit {
       // this.employees = newEmployeeArray;
     }
 
-      clearSearchInput(){
-        this.searchTerm = null;
+    clearSearchInput(){
+      this._employeeService = null;
         location.reload();
     }
 

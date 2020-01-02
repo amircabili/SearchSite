@@ -9,7 +9,6 @@ import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -255,4 +254,5 @@ export class EmployeeService {
   save(employee: Employee) {
       this.listEmployees.push(employee);
   }
+
 }
