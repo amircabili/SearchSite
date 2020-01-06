@@ -16,7 +16,14 @@
             </div>
         </div>
     </div>
+
+    <div [hidden]="buttonNext" >
+        <button (click)="nextEmployee()"  class="btn btn-primary">View Next Employee</button>
+    </div>
     
     <div class="row mb-2 box  box-shadow" *ngFor="let employee of employees | employeeFilter:searchTerm">
         <app-display-employee class="col-md-12" [employee]="employee"></app-display-employee>
-    </div>
+    </div>  
+ 
+<!-- <app-display-employee class="col-md-12" [employee]="employees"></app-display-employee> -->
+ 

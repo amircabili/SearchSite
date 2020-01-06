@@ -1,5 +1,5 @@
 <!-- <div class="row mb-2 box  box-shadow" *ngFor="let employee of FilteredEmployees"> -->
-    <div >
+    <div>
         <h3 class="text-dark stretched-link">{{errorMsg}}</h3>
         <div
             class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -19,13 +19,13 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <h4 class="mb-2"> אי-מייל: <span class="text-muted"> {{employee.email}}</span></h4>
+                        <h4 class="mb-2"> אי-מייל : <span class="text-muted"> {{employee.email}}</span></h4>
                     </div>
                     <div class="col-sm-6">
-                        <h4 class="mb-2"> תאריך לידה: <span class="text-muted"> {{employee.dateOfBirth}}</span></h4>
+                        <h4 class="mb-2"> תאריך לידה : <span class="text-muted"> {{employee.dateOfBirth}}</span></h4>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-sm-6">
                         <h4 class="mb-2" [ngSwitch]="employee.department"> מחלקה:  
                             <span *ngSwitchCase="1">Help Desk</span>
@@ -39,7 +39,7 @@
                     <div class="col-sm-6">
                         <h4 class="mb-2"> פעיל: <span class="text-muted"> {{employee.isActive}}</span></h4>
                     </div>
-                </div>
+                </div> -->
                 <br>
                 <a href="#" class="stretched-link"> עוד פרטים -> </a>
             </div>

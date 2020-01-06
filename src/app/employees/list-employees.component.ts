@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
 
@@ -10,9 +10,18 @@ import { Employee } from '../models/employee.model';
 
 export class ListEmployeesComponent implements OnInit {
   public employees: Employee[];
-  FilteredEmployees: Employee[];
+  public employeeToDisplay: any;
+
+  public previousEmployee: any;
+  public currentEmployee: any;
+
+  private arrayIndex = 1;
+
+  public FilteredEmployees: Employee[];
   public searchTerm : string;
-  public errorMsg;
+  public errorMsg: any;
+
+  public buttonNext: boolean = true;
   
   // get searchTerm(): string{
   //   return this._searchTerm;
@@ -28,19 +37,25 @@ export class ListEmployeesComponent implements OnInit {
 
   constructor( private _employeeService: EmployeeService ) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+      //this.buttonNext = false;
+
+     }
 
     clickSearchInput() {
       if(this.searchTerm){
+ 
+        this.buttonNext = false;
         this._employeeService.getEmployees()
                     .subscribe(data => this.employees = data)
                         error => this.errorMsg = error;
-        this.FilteredEmployees = this.employees;
+            // this.FilteredEmployees = this.employees;
         }
         else{
           this._employeeService = null;
           location.reload();
         }
+        //this.employeeToDisplay = this.employees[0];
       }
 
       ShowAllEmployees(){
@@ -48,20 +63,19 @@ export class ListEmployeesComponent implements OnInit {
             this._employeeService.getEmployees()
               .subscribe(data => this.employees = data)
                   error => this.errorMsg = error;
+                  this.arrayIndex= 0;
         }
         else{         
           this.searchTerm = null;
           this._employeeService.getEmployees()
-          .subscribe(data => this.employees = data)
-              error => this.errorMsg = error;
+            .subscribe(data => this.employees = data)
+                error => this.errorMsg = error;
         }
       }
 
       changeEmployeeName(){
           this.employees[0].name = 'Jordan';
-        // const newEmployeeArray : Employee[] = Object.assign([], this.employees);
-        // newEmployeeArray[0].name = 'Jordan';
-        // this.employees = newEmployeeArray;
+         
       }
 
       clearSearchInput(){
@@ -69,5 +83,34 @@ export class ListEmployeesComponent implements OnInit {
           location.reload();
       }
 
-  }
+      // nextEmployee(): void{
+      //   if(this.arrayIndex <= 2){
+      //     this.employees[0] = this.employees[this.arrayIndex];
+      //     this.arrayIndex++;
+      //   } else {
+      //     //this.employeeToDisplay = this.employees[0];
+      //     this.employees[this.arrayIndex] = this.employees[0];;
+      //     this.arrayIndex= 1;
+      //   }
+      // }
+ 
+       
+      nextEmployee(): void {
+          if( this.arrayIndex <  this.employees.length ){
+
+            this.employeeToDisplay = this.employees[this.arrayIndex];
+            // console.log("searchTerm - " + this.searchTerm)            
+            // console.log("this.previousEmployee - " + this.previousEmployee)           
+            this.arrayIndex++;
+            this.searchTerm = this.employeeToDisplay.name
+          }
+          else{
+
+            this.arrayIndex = 0;
+            this.employeeToDisplay = this.employees[this.arrayIndex];
+            this.searchTerm = this.employeeToDisplay.name;
+          }
+      }
+
+    }
 
