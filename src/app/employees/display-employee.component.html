@@ -1,8 +1,8 @@
 <!-- <div class="row mb-2 box  box-shadow" *ngFor="let employee of FilteredEmployees"> -->
-    <div>
+    <div class="panel" (click)="handleClick()">
         <h3 class="text-dark stretched-link">{{errorMsg}}</h3>
-        <div
-            class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
             <div class=" col p-4 d-flex flex-column position-static vertical-align ">
                 <strong class="d-inline-block mb-2 text-primary">מספר סידורי : {{employee.id}} </strong>
                 <div class="panel-heading">
@@ -41,7 +41,7 @@
                     </div>
                 </div> -->
                 <br>
-                <a href="#" class="stretched-link"> עוד פרטים -> </a>
+                <div class="stretched-link"> עוד פרטים -> </div>
             </div>
         </div>
     </div>

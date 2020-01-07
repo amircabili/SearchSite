@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit, SimpleChanges, Output } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
 
@@ -9,18 +9,18 @@ import { Employee } from '../models/employee.model';
 })
 
 export class ListEmployeesComponent implements OnInit {
+
   public employees: Employee[];
   public employeeToDisplay: any;
+  public dataFromChild: string;
 
   public previousEmployee: any;
   public currentEmployee: any;
-
   private arrayIndex = 1;
 
   public FilteredEmployees: Employee[];
   public searchTerm : string;
   public errorMsg: any;
-
   public buttonNext: boolean = true;
   
   // get searchTerm(): string{
@@ -35,16 +35,14 @@ export class ListEmployeesComponent implements OnInit {
   //     employee.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
   // }
 
-  constructor( private _employeeService: EmployeeService ) {}
+  constructor( private _employeeService: EmployeeService ) { }
 
     ngOnInit() {
       //this.buttonNext = false;
-
      }
 
     clickSearchInput() {
       if(this.searchTerm){
- 
         this.buttonNext = false;
         this._employeeService.getEmployees()
                     .subscribe(data => this.employees = data)
@@ -74,8 +72,7 @@ export class ListEmployeesComponent implements OnInit {
       }
 
       changeEmployeeName(){
-          this.employees[0].name = 'Jordan';
-         
+          this.employees[0].name = 'Jordan';         
       }
 
       clearSearchInput(){
@@ -93,7 +90,6 @@ export class ListEmployeesComponent implements OnInit {
       //     this.arrayIndex= 1;
       //   }
       // }
- 
        
       nextEmployee(): void {
           if( this.arrayIndex <  this.employees.length ){
@@ -111,6 +107,11 @@ export class ListEmployeesComponent implements OnInit {
             this.searchTerm = this.employeeToDisplay.name;
           }
       }
+
+      handleNotify(eventData: string){
+          this.dataFromChild = eventData;
+      }
+    
 
     }
 
