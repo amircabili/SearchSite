@@ -12,7 +12,7 @@ export class ListEmployeesComponent implements OnInit {
 
   public employees: Employee[];
   public employeeToDisplay: any;
-  public dataFromChild: string;
+  // public dataFromChild: Employee;
 
   public previousEmployee: any;
   public currentEmployee: any;
@@ -108,9 +108,9 @@ export class ListEmployeesComponent implements OnInit {
           }
       }
 
-      handleNotify(eventData: string){
-          this.dataFromChild = eventData;
-      }
+      // handleNotify(eventData: Employee){
+      //     this.dataFromChild = eventData;
+      // }
     
 
     }

@@ -8,15 +8,14 @@ import { Employee } from '../models/employee.model';
 })
 
 export class DisplayEmployeeComponent implements OnInit, OnChanges {
-
   private _employee: Employee;
   private _employeeId: number;
 
-  @Output() notify: EventEmitter<string> = new EventEmitter<string>();
+  // @Output() notify: EventEmitter<Employee> = new EventEmitter<Employee>();
 
   @Input()
   set employeeId(val: number) {
-    
+
     // console.log('Previous  :' + (this._employee ? this._employee.name : 'NULL'));
     // console.log('Current  :' + val.name);
     // console.log( '--------employeeId-------   employeeId changed from ' + 
@@ -64,10 +63,8 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
     // console.log("this.previousEmployee - " + previousEmployee)
   }
 
+  // handleClick(){
+  //     this.notify.emit(this.employee);
+  // }
 
-  handleClick(){
-      this.notify.emit(this.employee.name);
-  }
-
- 
 }
