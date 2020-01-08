@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Department } from '../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -15,6 +15,8 @@ import { Routes, Router } from '@angular/router';
 export class CreateEmployeeComponent implements OnInit {
 
   // dateOfBirth: Date = new Date(2018, 1, 28);
+  
+  @ViewChild('employeeForm', {static: false}) public createEmployeeForm: NgForm;
 
   gender = 'male';
   isActive = true;

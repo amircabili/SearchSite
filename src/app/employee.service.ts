@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
+import { ConvertActionBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ import 'rxjs/add/observable/throw';
 export class EmployeeService {
 
   private _url: string = "assets/data/employee.json";
+  
   constructor( private http: HttpClient ) { }
 
   // getEmployees(){
@@ -246,6 +248,13 @@ export class EmployeeService {
   getEmployees(){
     return this.http.get<Employee[]>(this._url); 
   }
+
+  getEmployee(id : any): Observable<Employee>  {
+    //return this.http.get<Employee[]>(this._url); 
+    console.log(' <Employee> - ' + this.http.get<Employee>(this._url).find(e=>e.id === id))
+    return this.http.get<Employee>(this._url).find(e=>e.id === id) ; 
+  }
+
 
   errorHandler(error: HttpErrorResponse){
     return Observable.throw(error.message || "Server Error");

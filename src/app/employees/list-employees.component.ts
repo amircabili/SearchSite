@@ -1,6 +1,8 @@
 import { Component, OnInit, SimpleChanges, Output } from '@angular/core';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-list-employees',
@@ -35,7 +37,7 @@ export class ListEmployeesComponent implements OnInit {
   //     employee.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
   // }
 
-  constructor( private _employeeService: EmployeeService ) { }
+  constructor( private _employeeService: EmployeeService , private _router: Router) { }
 
     ngOnInit() {
       //this.buttonNext = false;
@@ -111,6 +113,10 @@ export class ListEmployeesComponent implements OnInit {
       // handleNotify(eventData: Employee){
       //     this.dataFromChild = eventData;
       // }
+
+      onClick(employeeId: number){
+          this._router.navigate(['/employees',employeeId]);
+      }
     
 
     }

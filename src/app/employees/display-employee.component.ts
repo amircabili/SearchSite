@@ -67,4 +67,8 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
   //     this.notify.emit(this.employee);
   // }
 
+  getEmployeeNameAndGender(): string{
+    return this.employee.name + ' ' + this.employee.gender;
+  }
+
 }

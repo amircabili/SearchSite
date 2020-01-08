@@ -15,6 +15,7 @@
                         (click)="clearSearchInput()">נקה</button>
 
                     <!-- <button class="btn btn-primary my-0 my-sm-0 mr-2 pr-5 p-2 pl-5" (click)="changeEmployeeName()">changeEmployeeName</button> -->
+
                 </form>
             </div>
         </div>
@@ -23,14 +24,22 @@
         <button (click)="nextEmployee()" class="btn btn-primary">View Next Employee</button>
     </div>
 
-    <h1 #h1Variable></h1>
 
     <div class="row mb-2 box  box-shadow" *ngFor="let employee of employees | employeeFilter:searchTerm">
-        <div class="col-md-12" (click)="h1Variable.innerHTML = childComponent.employee.name + ' ' + childComponent.employee.gender">
-            <app-display-employee  [employee]="employee" [employeeId]="employee.id" #childComponent>
+        <div class="col-md-12 pointerCursor" (click)="onClick(employee.id)">
+            <app-display-employee [employee]="employee" [employeeId]="employee.id" #childComponent>
             </app-display-employee>
         </div>
     </div>
+
+
+    <!-- <h1 #h1Variable></h1> 
+    <div class="row mb-2 box  box-shadow" *ngFor="let employee of employees | employeeFilter:searchTerm">
+        <div class="col-md-12" (click)="h1Variable.innerHTML = childComponent.getEmployeeNameAndGender()">
+            <app-display-employee  [employee]="employee" [employeeId]="employee.id" #childComponent>
+            </app-display-employee>
+        </div>
+    </div> -->
 
     <!-- <div class="row mb-2 box  box-shadow" *ngFor="let employee of employees | employeeFilter:searchTerm">
         <app-display-employee (notify)="handleNotify($event)" class="col-md-12" [employee]="employee" [employeeId]="employee.id"></app-display-employee>
