@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
 
@@ -10,19 +10,49 @@ import { Employee } from '../models/employee.model';
 })
 
 export class EmployeeDetailsComponent implements OnInit {
-  employee: any;
-  id : any;
-  
-  constructor(private _route: ActivatedRoute,
-             private _employeeService: EmployeeService ) { }
+  employee: Employee;
+  employees: Employee[];
+  public _id : number;
 
-  ngOnInit() {     
-    const id =  this._route.snapshot.paramMap.get('id');
-    console.log('this._route.snapshot.paramMap - id - ' + id)
+  constructor(
+                private _route: ActivatedRoute,
+                private _employeeService: EmployeeService,
+                private _router: Router
+              ) { }
 
-    this.employee = this._employeeService.getEmployee(id);
-    console.log('this.employee name - ' +  this.employee.name)
+  ngOnInit() { 
+      this.subscribeEmployee()
 
+      console.log('this._route.snapshot.paramMap - id ------- ' + this._id)
+      console.log('this.employee --------- ' +  this.employee);
   }
 
+  subscribeEmployee(){
+
+    this._id = +this._route.snapshot.paramMap.get('id');
+
+    this._employeeService.getEmployees()
+        .subscribe(data => {
+                      this.employees = data;
+                      this.employee = this.employees[this._id-1] ;
+            })
+    }
+
+  viewNextEmployee(){
+    
+    if(this._id < this.employees.length){
+
+      this._id = this._id +1;   
+      this.subscribeEmployee()
+
+      this._router.navigate(['/employees', this._id])
+     
+    }
+    else{
+      alert(+this._id > this.employees.length)
+      alert(+this._id < this.employees.length)
+      this._id = 1;  
+    }
+
+  }
 }

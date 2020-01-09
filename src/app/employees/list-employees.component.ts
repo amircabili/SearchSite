@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 export class ListEmployeesComponent implements OnInit {
 
   public employees: Employee[];
+  public employee: any;
+  public employee_id: any;
   public employeeToDisplay: any;
   // public dataFromChild: Employee;
 
@@ -45,7 +47,7 @@ export class ListEmployeesComponent implements OnInit {
 
     clickSearchInput() {
       if(this.searchTerm){
-        this.buttonNext = false;
+        
         this._employeeService.getEmployees()
                     .subscribe(data => this.employees = data)
                         error => this.errorMsg = error;
@@ -59,18 +61,22 @@ export class ListEmployeesComponent implements OnInit {
       }
 
       ShowAllEmployees(){
-        if(this.searchTerm){
+        
+        if(!this.searchTerm){
             this._employeeService.getEmployees()
-              .subscribe(data => this.employees = data)
+              .subscribe(data => {
+                            this.employees = data;
+                 }) 
                   error => this.errorMsg = error;
-                  this.arrayIndex= 0;
+                  this.arrayIndex= 0;                
         }
-        else{         
-          this.searchTerm = null;
-          this._employeeService.getEmployees()
-            .subscribe(data => this.employees = data)
-                error => this.errorMsg = error;
-        }
+        
+        // else{         
+        //   this.searchTerm = null;
+        //   this._employeeService.getEmployees()
+        //     .subscribe(data => this.employees = data)
+        //         error => this.errorMsg = error;
+        // }
       }
 
       changeEmployeeName(){

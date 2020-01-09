@@ -1,9 +1,9 @@
 <div class="container">
     <div class="row mb-2 box  box-shadow">
         <div class="col-md-12">
-            <div class="panel">
+            <div class=" ">
                 <div
-                    class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    class="row no-gutters border rounded overflow-hidden flex-md-row  shadow-sm h-md-250 position-relative">
                     <div class=" col p-4 d-flex flex-column position-static vertical-align ">
                         <strong class="d-inline-block mb-2 text-primary">מספר סידורי : {{employee.id}} </strong>
                         <div class="panel-heading">
@@ -28,28 +28,36 @@
                             </div>
                         </div>
                         <!-- <div class="row">
-                    <div class="col-sm-6">
-                        <h4 class="mb-2" [ngSwitch]="employee.department"> מחלקה:  
-                            <span *ngSwitchCase="1">Help Desk</span>
-                            <span *ngSwitchCase="2">HR</span>
-                            <span *ngSwitchCase="3">IT</span>
-                            <span *ngSwitchCase="4">PayRoll</span>
-                            <span *ngSwitchCase="5">Dev</span>
-                            <span *ngSwitchDefault >N/A</span>
-                         </h4>
-                    </div>
-                    <div class="col-sm-6">
-                        <h4 class="mb-2"> פעיל: <span class="text-muted"> {{employee.isActive}}</span></h4>
-                    </div>
-                </div> -->
-                        <br>
+                            <div class="col-sm-6">
+                                    <h4 class="mb-2" [ngSwitch]="employee.department"> מחלקה:  
+                                        <span *ngSwitchCase="1">Help Desk</span>
+                                        <span *ngSwitchCase="2">HR</span>
+                                        <span *ngSwitchCase="3">IT</span>
+                                        <span *ngSwitchCase="4">PayRoll</span>
+                                        <span *ngSwitchCase="5">Dev</span>
+                                        <span *ngSwitchDefault >N/A</span>
+                                    </h4>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h4 class="mb-2"> פעיל: <span class="text-muted"> {{employee.isActive}}</span></h4>
+                                </div>
+                            </div> -->
                         <div class="stretched-link"> עוד פרטים -> </div>
+                    </div>
+                </div>
+                <div class="no-gutters background-white mt-4 no-border rounded max-width  ">
+                    <div class="pull-left">
+                        <button class="btn btn btn-info " [routerLink]="['/app-list-employees']">
+                            Back To List
+                        </button>
+                    </div>
+                    <div class="pull-right">
+                        <button (click)="viewNextEmployee()" class="btn btn btn-info ">
+                            View Next Employee
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="pull-right row no-gutters  border rounded   flex-md-row mb-4 shadow-sm h-md-250 position-relative panel-footer">
-        <a class="  btn btn-primary" [routerLink]="['/app-list-employees']">Back To List  </a>
     </div>
 </div>

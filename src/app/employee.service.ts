@@ -249,12 +249,12 @@ export class EmployeeService {
     return this.http.get<Employee[]>(this._url); 
   }
 
-  getEmployee(id : any): Observable<Employee>  {
-    //return this.http.get<Employee[]>(this._url); 
-    console.log(' <Employee> - ' + this.http.get<Employee>(this._url).find(e=>e.id === id))
-    return this.http.get<Employee>(this._url).find(e=>e.id === id) ; 
-  }
+  // getEmployee(id : any): Observable<Employee>  {
+  //   //return this.http.get<Employee[]>(this._url); 
 
+  //   console.log(' <Employee> - ' + this.http.get<Employee>(this._url).find(e=>e.id === id))    
+  //   return this.http.get<Employee>(this._url).find(e => e.id === id) ; 
+  // }
 
   errorHandler(error: HttpErrorResponse){
     return Observable.throw(error.message || "Server Error");
