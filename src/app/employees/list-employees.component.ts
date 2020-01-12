@@ -43,6 +43,7 @@ export class ListEmployeesComponent implements OnInit {
 
     ngOnInit() {
       //this.buttonNext = false;
+      //ShowAllEmployees();
      }
 
     clickSearchInput() {
@@ -101,7 +102,6 @@ export class ListEmployeesComponent implements OnInit {
        
       nextEmployee(): void {
           if( this.arrayIndex <  this.employees.length ){
-
             this.employeeToDisplay = this.employees[this.arrayIndex];
             // console.log("searchTerm - " + this.searchTerm)            
             // console.log("this.previousEmployee - " + this.previousEmployee)           
@@ -109,7 +109,6 @@ export class ListEmployeesComponent implements OnInit {
             this.searchTerm = this.employeeToDisplay.name
           }
           else{
-
             this.arrayIndex = 0;
             this.employeeToDisplay = this.employees[this.arrayIndex];
             this.searchTerm = this.employeeToDisplay.name;
@@ -123,7 +122,6 @@ export class ListEmployeesComponent implements OnInit {
       onClick(employeeId: number){
           this._router.navigate(['/employees',employeeId]);
       }
-    
 
     }
 

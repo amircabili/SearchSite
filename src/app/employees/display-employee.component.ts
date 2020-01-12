@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges,Output, SimpleChanges , EventEmitter } from '@angular/core';
 import { Employee } from '../models/employee.model';
+import { ActivatedRoute,Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-display-employee',
@@ -10,6 +12,7 @@ import { Employee } from '../models/employee.model';
 export class DisplayEmployeeComponent implements OnInit, OnChanges {
   private _employee: Employee;
   private _employeeId: number;
+  private selectedEmployeeId: number;
 
   // @Output() notify: EventEmitter<Employee> = new EventEmitter<Employee>();
 
@@ -29,6 +32,7 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
   }
 
   @Input()
+  
   set employee(val: Employee) {
 
 //  console.log( '--------employee------- emplemployeeoyeeId changed from ' + 
@@ -41,9 +45,11 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
     return this._employee;
   }
 
-  constructor() { }
+  constructor(private _route: ActivatedRoute) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.selectedEmployeeId = +this._route.snapshot.paramMap.get('');
+  }
 
   ngOnChanges(changes: SimpleChanges) {
 

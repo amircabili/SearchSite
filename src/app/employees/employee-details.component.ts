@@ -12,7 +12,7 @@ import { Employee } from '../models/employee.model';
 export class EmployeeDetailsComponent implements OnInit {
   employee: Employee;
   employees: Employee[];
-  public _id : number;
+  public _id : any;
 
   constructor(
                 private _route: ActivatedRoute,
@@ -21,38 +21,31 @@ export class EmployeeDetailsComponent implements OnInit {
               ) { }
 
   ngOnInit() { 
-      this.subscribeEmployee()
 
-      console.log('this._route.snapshot.paramMap - id ------- ' + this._id)
-      console.log('this.employee --------- ' +  this.employee);
-  }
+     this._route.paramMap.subscribe(params => {
+            this._id = +params.get('id');
 
-  subscribeEmployee(){
-
-    this._id = +this._route.snapshot.paramMap.get('id');
-
-    this._employeeService.getEmployees()
-        .subscribe(data => {
-                      this.employees = data;
-                      this.employee = this.employees[this._id-1] ;
+            this._employeeService.getEmployees().subscribe(data => {
+              this.employees = data;
+              this.employee = this.employees[this._id-1] ;
             })
-    }
-
-  viewNextEmployee(){
-    
-    if(this._id < this.employees.length){
-
-      this._id = this._id +1;   
-      this.subscribeEmployee()
-
-      this._router.navigate(['/employees', this._id])
-     
-    }
-    else{
-      alert(+this._id > this.employees.length)
-      alert(+this._id < this.employees.length)
-      this._id = 1;  
-    }
-
+            this._router.navigate(['/employees', this._id])
+      });
+            
+      // this._router.navigate(['/employees', this._id])
+      console.log('this._route.snapshot.paramMap - id ------- ' + this._id)
+      console.log('this.employee ------- ' +  this.employee);
   }
+
+    viewNextEmployee(){
+      if(this._id < this.employees.length){
+        this._id = this._id +1;  
+        this._router.navigate(['/employees', this._id])
+      }
+      else{
+        this._id = 1;  
+        this._router.navigate(['/employees', this._id])
+      }
+    }
+  
 }
