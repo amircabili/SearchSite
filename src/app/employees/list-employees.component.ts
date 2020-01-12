@@ -89,16 +89,6 @@ export class ListEmployeesComponent implements OnInit {
           location.reload();
       }
 
-      // nextEmployee(): void{
-      //   if(this.arrayIndex <= 2){
-      //     this.employees[0] = this.employees[this.arrayIndex];
-      //     this.arrayIndex++;
-      //   } else {
-      //     //this.employeeToDisplay = this.employees[0];
-      //     this.employees[this.arrayIndex] = this.employees[0];;
-      //     this.arrayIndex= 1;
-      //   }
-      // }
        
       nextEmployee(): void {
           if( this.arrayIndex <  this.employees.length ){
