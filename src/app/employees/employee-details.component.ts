@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute,Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
 
@@ -12,40 +12,41 @@ import { Employee } from '../models/employee.model';
 export class EmployeeDetailsComponent implements OnInit {
   employee: Employee;
   employees: Employee[];
-  public _id : any;
+  public _id: any;
 
   constructor(
-                private _route: ActivatedRoute,
-                private _employeeService: EmployeeService,
-                private _router: Router
-              ) { }
+    private _route: ActivatedRoute,
+    private _employeeService: EmployeeService,
+    private _router: Router
+  ) { }
 
-  ngOnInit() { 
+  ngOnInit() {
 
-     this._route.paramMap.subscribe(params => {
-            this._id = +params.get('id');
+    this._route.paramMap.subscribe(params => {
+      this._id = +params.get('id');
 
-            this._employeeService.getEmployees().subscribe(data => {
-              this.employees = data;
-              this.employee = this.employees[this._id-1] ;
-            })
-            this._router.navigate(['/employees', this._id])
-      });
-            
-      // this._router.navigate(['/employees', this._id])
-      console.log('this._route.snapshot.paramMap - id ------- ' + this._id)
-      console.log('this.employee ------- ' +  this.employee);
+      this._employeeService.getEmployees().subscribe(data => {
+        this.employees = data;
+        this.employee = this.employees[this._id - 1];
+      })
+      this._router.navigate(['/employees', this._id])
+    });
+
+    // this._router.navigate(['/employees', this._id])
+    console.log('this._route.snapshot.paramMap - id ------- ' + this._id)
+    console.log('this.employee ------- ' + this.employee);
   }
 
-    viewNextEmployee(){
-      if(this._id < this.employees.length){
-        this._id = this._id +1;  
-        this._router.navigate(['/employees', this._id])
-      }
-      else{
-        this._id = 1;  
-        this._router.navigate(['/employees', this._id])
-      }
+  viewNextEmployee() {
+    if (this._id < this.employees.length) {
+      this._id = this._id + 1;
+      this._router.navigate(['/employees', this._id])
     }
-  
+    else {
+      this._id = 1;
+      this._router.navigate(['/employees', this._id])
+    }
+  }
+
+
 }

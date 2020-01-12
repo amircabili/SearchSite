@@ -43,7 +43,7 @@ export class ListEmployeesComponent implements OnInit {
 
     ngOnInit() {
       //this.buttonNext = false;
-      //ShowAllEmployees();
+       this.ShowAllEmployees();
      }
 
     clickSearchInput() {
@@ -85,8 +85,9 @@ export class ListEmployeesComponent implements OnInit {
       }
 
       clearSearchInput(){
-        this._employeeService = null;
-          location.reload();
+        //this._employeeService = null;
+        this.searchTerm = null;
+          //location.reload();
       }
 
        

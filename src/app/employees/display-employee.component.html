@@ -2,7 +2,10 @@
 <!-- <div class="panel" (click)="handleClick()"> -->
 <div class="panel" >
    
-    <div class="row no-gutters   rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative panel-primary" [class.panel-success]="selectedEmployee === employee.id">
+    <div class="row no-gutters rounded overflow-hidden flex-md-row mb-4 
+    shadow-sm h-md-250 position-relative panel-primary"
+     [class.panel-success]="selectedEmployeeId === employee.id">
+     
         <div class=" col p-4 d-flex flex-column position-static vertical-align ">
             <strong class="d-inline-block mb-2 text-primary">מספר סידורי : {{employee.id}} </strong>
             <div class="panel-heading">
