@@ -12,20 +12,21 @@ import { EmployeeDetailsComponent } from './employees/employee-details.component
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/app-list-employees",
+    redirectTo: "/employees",
     pathMatch: "full"
   },
   {
-    path: "app-list-employees",
+    path: "employees",
     component: ListEmployeesComponent
+  },
+  {
+    path: "employees/:id", component: EmployeeDetailsComponent,
   },
   {
     path: "app-instructions",
     component: InstructionsComponent
   },
-  {
-    path: "employees/:id", component: EmployeeDetailsComponent,
-  },
+ 
   {
     path: "app-create-employee",
     component: CreateEmployeeComponent,
