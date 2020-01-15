@@ -16,8 +16,6 @@ export class CreateEmployeeComponent implements OnInit {
 
   // dateOfBirth: Date = new Date(2018, 1, 28);
   
-  public   newEmployee: Employee ;
-
   @ViewChild('employeeForm', {static: false}) public createEmployeeForm: NgForm;
 
   gender = 'male';
@@ -72,13 +70,12 @@ export class CreateEmployeeComponent implements OnInit {
 
   
   saveEmployee(){
-      //console.log(this.employee);
-      this.newEmployee  = Object.assign({},this.employee);
+     // const newEmployee: Employee = Object.assign({},this.employee);
+      // console.log('newEmployee - ' + newEmployee);
 
-      this._employeeService.save(this.newEmployee);
-      console.log('newEmployee - ' + this.newEmployee);
-
-      this._router.navigate(['employee']);
+      console.log(this.employee);
+      this._employeeService.save(this.employee);
+      //this._router.navigate(['employees']);
   }
 
 

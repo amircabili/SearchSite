@@ -61,7 +61,7 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
     //  // console.log(propName + 'changed from - ' + from + ' to ' + to);
     // }
 
-    console.log(changes);
+    //console.log(changes);
     const previousEmployee = <Employee>changes.employee.previousValue;
     const currentEmployee = <Employee>changes.employee.currentValue;
 

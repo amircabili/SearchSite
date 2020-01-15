@@ -20,7 +20,20 @@ import { appOldConfirmEqualValidatorDirective } from './shared/old-confirm-equal
 import { DisplayEmployeeComponent } from './employees/display-employee.component';
 import { CreateEmployeeCanDeactivateGuardService } from './employees/create-employee-can-deactivate-guard.service';
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
- 
+import { EmployeesTableComponent } from './employees/employees-table.component';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatListModule} from '@angular/material/list';
+import {LayoutModule} from '@angular/cdk/layout';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { AppInlineMessageComponent } from './employees/app-inline-message.component';
+
+
 
 
 @NgModule({
@@ -37,7 +50,9 @@ import { EmployeeDetailsComponent } from './employees/employee-details.component
     appOldConfirmEqualValidatorDirective,
     ConfirmEqualValidatorDirective,
     DisplayEmployeeComponent,
-    EmployeeDetailsComponent 
+    EmployeeDetailsComponent,
+    EmployeesTableComponent,
+    AppInlineMessageComponent
   ],
 
   imports: [
@@ -48,7 +63,17 @@ import { EmployeeDetailsComponent } from './employees/employee-details.component
     ReactiveFormsModule,
     FileSaverModule,
     BrowserAnimationsModule,
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    MatSliderModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatListModule,
+    LayoutModule,
+    MatExpansionModule
   ],
 
   providers: [EmployeeService,CreateEmployeeCanDeactivateGuardService],

@@ -48,5 +48,13 @@ export class EmployeeDetailsComponent implements OnInit {
     }
   }
 
+  changeEmployeeName(){        
+    // this.employees[0].name = 'Jordan Cohen';  
+    
+    const newEmployeeArray : Employee[] = Object.assign([], this.employees);
+    newEmployeeArray[0].name = 'Jordan Levine';
+    this.employees = newEmployeeArray;
+  }
+
 
 }

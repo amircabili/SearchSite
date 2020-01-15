@@ -19,12 +19,13 @@
     <div [hidden]="buttonNext">
         <button (click)="nextEmployee()" class="btn btn-primary">View Next Employee</button>
     </div>
-    <div class="row mb-2 box  box-shadow" *ngFor="let employee of employees | employeeFilter:searchTerm">
+    <div class="row mb-2 box  box-shadow" *ngFor="let employee of filteredEmployees | employeeFilter:searchTerm" (mouseMove)="onMouseMove">
         <div class="col-md-12 pointerCursor" (click)="onClick(employee.id)">
             <app-display-employee [employee]="employee" [employeeId]="employee.id" #childComponent>
             </app-display-employee>
         </div>
     </div>
+
     <!-- <h1 #h1Variable></h1> 
     <div class="row mb-2 box  box-shadow" *ngFor="let employee of employees | employeeFilter:searchTerm">
         <div class="col-md-12" (click)="h1Variable.innerHTML = childComponent.getEmployeeNameAndGender()">

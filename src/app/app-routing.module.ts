@@ -6,6 +6,7 @@ import { ReadFilesComponent } from './read-files/read-files.component';
 import { CreateEmployeeComponent } from './create-employee/create-employee.component';
 import { CreateEmployeeCanDeactivateGuardService } from './employees/create-employee-can-deactivate-guard.service';
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
+import { EmployeesTableComponent } from './employees/employees-table.component';
 
 
 
@@ -21,6 +22,10 @@ const routes: Routes = [
   },
   {
     path: "employees/:id", component: EmployeeDetailsComponent,
+  },
+  {
+    path: "app-employees-table",
+    component: EmployeesTableComponent
   },
   {
     path: "app-instructions",

@@ -3,7 +3,6 @@ import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-list-employees',
   templateUrl: './list-employees.component.html',
@@ -16,6 +15,8 @@ export class ListEmployeesComponent implements OnInit {
   public employee: any;
   public employee_id: any;
   public employeeToDisplay: any;
+  filteredEmployees: Employee[];
+
   // public dataFromChild: Employee;
 
   public previousEmployee: any;
@@ -23,7 +24,23 @@ export class ListEmployeesComponent implements OnInit {
   private arrayIndex = 1;
 
   public FilteredEmployees: Employee[];
-  public searchTerm : string;
+
+  public _searchTerm : string ;
+
+    get searchTerm(): string{
+      return this._searchTerm;
+    }
+
+    set searchTerm(value: string){
+      this._searchTerm = value;
+      this.filteredEmployees = this.filtereEmployees(value);
+    }
+
+    filtereEmployees(searchString: string){
+      return this.employees.filter(employee=> 
+        employee.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+    }
+
   public errorMsg: any;
   public buttonNext: boolean = true;
   
@@ -43,6 +60,8 @@ export class ListEmployeesComponent implements OnInit {
 
     ngOnInit() {
       //this.buttonNext = false;
+       
+       this.filteredEmployees = this.employees;
        this.ShowAllEmployees();
      }
 
@@ -62,7 +81,6 @@ export class ListEmployeesComponent implements OnInit {
       }
 
       ShowAllEmployees(){
-        
         if(!this.searchTerm){
             this._employeeService.getEmployees()
               .subscribe(data => {
@@ -71,7 +89,7 @@ export class ListEmployeesComponent implements OnInit {
                   error => this.errorMsg = error;
                   this.arrayIndex= 0;                
         }
-        
+        this.searchTerm = ' ';
         // else{         
         //   this.searchTerm = null;
         //   this._employeeService.getEmployees()
@@ -80,16 +98,11 @@ export class ListEmployeesComponent implements OnInit {
         // }
       }
 
-      changeEmployeeName(){
-          this.employees[0].name = 'Jordan';         
-      }
-
       clearSearchInput(){
         //this._employeeService = null;
-        this.searchTerm = null;
+        this.searchTerm = ' ';
           //location.reload();
       }
-
        
       nextEmployee(): void {
           if( this.arrayIndex <  this.employees.length ){
@@ -111,7 +124,13 @@ export class ListEmployeesComponent implements OnInit {
       // }
 
       onClick(employeeId: number){
-          this._router.navigate(['/employees',employeeId]);
+          this._router.navigate(['/employees',employeeId],{
+            queryParams: {'searchTerm':this.searchTerm, 'testParam' : 'testValue'}
+          });
+      }
+
+      onMouseMove(){
+
       }
 
     }
