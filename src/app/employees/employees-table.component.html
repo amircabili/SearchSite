@@ -7,17 +7,14 @@
             <mat-form-field>
                 <input matInput (keyup)="applyFilterOne($event.target.value)" placeholder="Filter" />
             </mat-form-field>
-
-            <table mat-table matSort [dataSource]="dataSourceOne"  #TableOneSort="matSort" multiTemplateDataRows
-                    class="mat-elevation-z8 width-100" >
-
+            <table mat-table matSort [dataSource]="dataSourceOne" #TableOneSort="matSort" multiTemplateDataRows
+                class="mat-elevation-z8 width-100">
                 <ng-container matColumnDef="position">
                     <th mat-header-cell *matHeaderCellDef>No.</th>
                     <td mat-cell *matCellDef="let element">
                         {{ element.position }}
                     </td>
                 </ng-container>
-
                 <!-- Name Column -->
                 <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
@@ -25,7 +22,6 @@
                         {{ element.name }}
                     </td>
                 </ng-container>
-
                 <!-- Weight Column -->
                 <ng-container matColumnDef="weight">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Weight</th>
@@ -33,7 +29,6 @@
                         {{ element.weight }}
                     </td>
                 </ng-container>
-
                 <!-- Symbol Column -->
                 <ng-container matColumnDef="symbol">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Symbol</th>
@@ -41,7 +36,15 @@
                         {{ element.symbol }}
                     </td>
                 </ng-container>
-
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="icon">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header class="text-right"> </th>
+                    <td mat-cell *matCellDef="let element" class="text-right">
+                        <a href="javascript:alert('icon click');">
+                            <mat-icon>poll</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
                 <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
                 <ng-container matColumnDef="expandedDetail">
                     <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
@@ -52,29 +55,25 @@
                                 <div class="example-element-symbol"> {{element.symbol}} </div>
                                 <div class="example-element-name"> {{element.name}} </div>
                                 <div class="example-element-weight"> {{element.weight}} </div>
+                                <div class="example-element-icon"> {{element.icon}} </div>
                             </div>
                             <div class="example-element-description">
                                 {{element.description}}
-                                <span class="example-element-description-attribution"> -- Wikipedia </span>
                             </div>
                         </div>
                     </td>
                 </ng-container>
-
                 <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-
                 <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
                     [class.example-expanded-row]="expandedElement === element"
                     (click)="expandedElement = expandedElement === element ? null : element">
                 </tr>
-
                 <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
                 <!--- Note that these columns can be defined in any order.
                             The actual rendered columns are set as a property on the row definition" -->
                 <!-- Position Column -->
             </table>
-
-            <mat-paginator #TableOnePaginator="matPaginator" [pageSize]="3" [pageSizeOptions]="[5, 10, 25, 100]">
+            <mat-paginator #TableOnePaginator="matPaginator" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
             </mat-paginator>
         </div>
     </div>

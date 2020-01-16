@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 import { EmployeeService } from './employee.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { ListEmployeesComponent } from './employees/list-employees.component';
 import { EmployeeFilterPipe } from './employees/employee-filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,11 +31,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatListModule} from '@angular/material/list';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { AppInlineMessageComponent } from './employees/app-inline-message.component';
-
-
-
-
+import { MatIconModule } from '@angular/material';
+import { PrimeTableComponent } from './employees/prime-table.component';
+import {TableModule} from 'primeng/table';
+import { CommonModule  }  from '@angular/common';
+  
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,13 +52,13 @@ import { AppInlineMessageComponent } from './employees/app-inline-message.compon
     DisplayEmployeeComponent,
     EmployeeDetailsComponent,
     EmployeesTableComponent,
-    AppInlineMessageComponent
+    PrimeTableComponent 
   ],
 
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule,    
     FormsModule,      
     ReactiveFormsModule,
     FileSaverModule,
@@ -73,12 +73,22 @@ import { AppInlineMessageComponent } from './employees/app-inline-message.compon
     MatPaginatorModule,
     MatListModule,
     LayoutModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatIconModule,
+    TableModule ,
+    CommonModule  
+  ],
+  
+  exports: [
+     MatIconModule
   ],
 
   providers: [EmployeeService,CreateEmployeeCanDeactivateGuardService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA ]
 })
+
+
 
 export class AppModule { }
 

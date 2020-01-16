@@ -7,8 +7,7 @@ import { CreateEmployeeComponent } from './create-employee/create-employee.compo
 import { CreateEmployeeCanDeactivateGuardService } from './employees/create-employee-can-deactivate-guard.service';
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
 import { EmployeesTableComponent } from './employees/employees-table.component';
-
-
+import { PrimeTableComponent } from './employees/prime-table.component';
 
 const routes: Routes = [
   {
@@ -28,21 +27,22 @@ const routes: Routes = [
     component: EmployeesTableComponent
   },
   {
+    path: "app-prime-table",
+    component: PrimeTableComponent
+  },
+  {
     path: "app-instructions",
     component: InstructionsComponent
   },
- 
   {
     path: "app-create-employee",
     component: CreateEmployeeComponent,
     canDeactivate:  [CreateEmployeeCanDeactivateGuardService]
   },
-
   {
     path: "app-read-files",
     component: ReadFilesComponent
   }
-  
 ];
 
 @NgModule({

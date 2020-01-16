@@ -32,7 +32,10 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "src/styles.less",
-              "src/css/main.less"
+              "src/css/main.less",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-dark/theme.css",              
+              "node_modules/primeng/resources/primeng.min.css"              
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -103,7 +106,10 @@
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
-              "src/styles.less"
+              "src/styles.less",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-dark/theme.css",              
+              "node_modules/primeng/resources/primeng.min.css" 
             ],
             "scripts": []
           }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AutoCompleteModule} from 'primeng/autocomplete';
+
 
 @Component({
   selector: 'app-instructions',
@@ -7,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstructionsComponent implements OnInit {
 
+  
   constructor() { }
 
   ngOnInit() {
