@@ -14,7 +14,6 @@
                             {{col.header}}
                             <p-sortIcon [field]="col.field"></p-sortIcon>
                         </th>
-                         
                     </tr>
                     <tr>
                         <th style="width: 4em"></th>
@@ -28,19 +27,19 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
                     <tr [pSelectableRow]="rowData">
-                        <td>
+                        <td class="p-0 text-center">
                             <div class="pull- ">
                                 <a href="#" [pRowToggler]="rowData">
                                     <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
                                 </a>
                             </div>
                         </td>
-                        <td>
+                        <td class="p-0 text-center">
                             <div class="pull- ">
                                 <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
                             </div>
                         </td>
-                        <td *ngFor="let col of columns">
+                        <td class="p-0 text-center"  *ngFor="let col of columns">
                             {{rowData[col.field]}}
                         </td>
                     </tr>

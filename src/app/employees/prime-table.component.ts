@@ -99,7 +99,6 @@ export class PrimeTableComponent implements OnInit {
   onRowUnselect(event) {
       this.messageService.add({severity:'info', summary:'Car Unselected', detail:'Vin: ' + event.data.vin});
   }
-
   
     showSuccess() {
         this.messageService.add({severity:'success', summary: 'Success Message', detail:'Order submitted'});
