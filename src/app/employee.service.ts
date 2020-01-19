@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse,HttpHeaders } from '@angular/common/http';
 import { Employee } from './models/employee.model';
 import { Observable, Subject, throwError } from 'rxjs';
 import 'rxjs/add/operator/map'
@@ -14,10 +14,13 @@ import { ConvertActionBindingResult } from '@angular/compiler/src/compiler_util/
   providedIn: 'root'
 })
 
-export class EmployeeService {
 
-  private _url: string = "assets/data/employee.json";
+export class EmployeeService {
   
+  private _url: string = "assets/data/employee.json";
+  private _url2: string = "https://ctb2013.scp.co.il:8443/foreignTrade/table/currencies";
+
+
   constructor( private http: HttpClient ) { }
 
   // getEmployees(){
@@ -245,23 +248,30 @@ export class EmployeeService {
   }
   ]  
 
-  getEmployees(){
-    return this.http.get<Employee[]>(this._url); 
-  }
+  //  const url = `${environment.APP_API}/api/request`;
 
-  // getEmployee(id : any): Observable<Employee>  {
-  //   //return this.http.get<Employee[]>(this._url); 
+  // public headers = new HttpHeaders().set('header1', hvalue1); // create header object
+  // headers = headers.append('header2', hvalue2); // add a new header, creating a new object
+  // headers = headers.append('header3', hvalue3); // add another header
 
-  //   console.log(' <Employee> - ' + this.http.get<Employee>(this._url).find(e=>e.id === id))    
-  //   return this.http.get<Employee>(this._url).find(e => e.id === id) ; 
-  // }
+  // let params = new HttpParams().set('param1', value1); // create params object
+  // params = params.append('param2', value2); // add a new param, creating a new object
+  // params = params.append('param3', value3); // add another param 
 
-  errorHandler(error: HttpErrorResponse){
-    return Observable.throw(error.message || "Server Error");
-  }
+      
+    getEmployees(){
+      const headers = new HttpHeaders({'X-IDB-bank':'discount','Access-Control-Allow-Origin':'*'});
+      return this.http.get<Employee[]>(this._url, { headers: headers }); 
+    }
 
-  save(employee: Employee) {
-      this.listEmployees.push(employee);
-  }
+
+    errorHandler(error: HttpErrorResponse){
+      return Observable.throw(error.message || "Server Error");
+    }
+
+    save(employee: Employee) {
+        this.listEmployees.push(employee);
+    }
+
 
 }

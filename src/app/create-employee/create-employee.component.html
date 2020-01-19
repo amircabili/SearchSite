@@ -1,39 +1,37 @@
 <div class="container">
     <div class="jumbotron p-md-5 text-white rounded bg-white">
-        <form #employeeForm="ngForm" ngNativeValidate (ngSubmit)="saveEmployee(employeeForm)" >
+        <form #employeeForm="ngForm" ngNativeValidate (ngSubmit)="saveEmployee(employeeForm)">
             <div class="panel panel-info ">
                 <div class="panel-heading  bg-blue">
                     <h3 class="panel-title"> יצירת לקוח</h3>
                 </div>
-                <!-- <div class="text-dark">touched:{{employeeForm.touched}}</div>
-                <div class="text-dark">untouched:{{employeeForm.untouched}}</div>
-                <div class="text-dark">pristine:{{employeeForm.pristine}}</div>
-                <div class="text-dark">dirty:{{employeeForm.dirty}}</div>
-                <div class="text-dark">valid:{{employeeForm.valid}}</div>
-                <div class="text-dark">invalid:{{employeeForm.invalid}}</div> -->
                 <div class="panel-body">
                     <div class="form-group" [class.has-error]='name.invalid && name.touched'
                         [class.has-success]="name.valid">
-                        <label for="name" class="text-dark control-label">שם מלא</label>
-                        <input #name="ngModel" required [(ngModel)]="employee.name" name="name" id="name" type="text"
-                            class="form-control">
+                        <div class="ui-float-label">
+                            <input pInputText #name="ngModel" required [(ngModel)]="employee.name" name="name" id="name"
+                                type="text" class="form-control">
+                            <label for="name" class="text-bold  text-dark control-label">שם מלא</label>
+                        </div>
                         <span class="help-block" *ngIf="name.invalid && name.touched">Full Name is required</span>
                     </div>
-
                     <div class="form-group" [class.has-error]='email.invalid && email.touched'
                         [class.has-success]="email.valid">
-                        <label for="email" class=" control-label text-dark">אימייל</label>
-                        <input required [email]="employee.email!==''" #email="ngModel" [(ngModel)]="employee.email"
-                            name="email" id="email" type="text" class="form-control">
+                        <div class="ui-float-label">
+                            <input pInputText required [email]="employee.email!==''" #email="ngModel"
+                                [(ngModel)]="employee.email" name="email" id="email" type="text" class="form-control">
+                            <label for="email" class="text-bold control-label text-dark">אימייל</label>
+                        </div>
                         <span class="help-block" *ngIf="email.errors?.required && email.touched">Email is
                             required</span>
                         <span class="help-block" *ngIf="email.errors?.email && email.touched">Email is invalid</span>
                     </div>
-
                     <div class="form-group">
-                        <label for="phonenumber" class="text-dark">טלפון</label>
-                        <input [(ngModel)]="employee.phonenumber" name="phonenumber" id="phonenumber" type="text"
-                            class="form-control">
+                        <div class="ui-float-label">
+                            <input pInputText [(ngModel)]="employee.phonenumber" name="phonenumber" id="phonenumber"
+                                type="text" class="form-control">
+                            <label for="phonenumber" class="text-dark">טלפון</label>
+                        </div>
                     </div>
                     <div class="form-group" [class.has-error]='gender.invalid && gender.touched'>
                         <label class="text-dark">מין</label>
@@ -63,7 +61,6 @@
                         </div>
                         <span class="help-block" *ngIf="isActive.touched && isActive.errors?.required">isActive is
                             invalid</span>
-
                     </div>
                     <div class="row">
                         <div class="form-group col-md-3" [class.has-error]='department.invalid && department.touched'>
@@ -80,10 +77,13 @@
                             </span>
                         </div>
                         <div class="form-group col-md-3">
-                            <label for="dateOfBirth" class="text-dark"> תאריך לידה</label>
-                            <input [(ngModel)]="employee.dateOfBirth" name="dateOfBirth" bsDatepicker id="dateOfBirth"
-                                type="text" autocomplete="off" class="form-control" placement="top"
-                                placeholder="בחר תאריך" [bsConfig]="datePickerConfig">
+                            <br>
+                            <div class="ui-float-label">
+                                <input pInputText [(ngModel)]="employee.dateOfBirth" name="dateOfBirth" bsDatepicker
+                                    id="dateOfBirth" type="text" autocomplete="off" class="form-control" placement="top"
+                                    placeholder="   " [bsConfig]="datePickerConfig">
+                                <label for="dateOfBirth" class="text-dark"> תאריך לידה</label>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -94,20 +94,18 @@
                             <button (click)="togglePhotoPreview();" class="btn btn mt-2 btn-info pr-4 pl-4"
                                 type="button">{{previewPhoto? "הסתר" : "הראה" }} תמונה</button>
                         </div>
-
                     </div>
                     <div class="form-group">
                         <img *ngIf="previewPhoto" [src]="photoPath" height="200" width="200" />
                     </div>
-
                     <div ngModelGroup="passwordGroup" appConfirmEqualValidator #passwordGroup="ngModelGroup"
-                     [class.has-error]="passwordGroup.errors?.notEqual && !passwordGroup.errors?.required">
+                        [class.has-error]="passwordGroup.errors?.notEqual && !passwordGroup.errors?.required">
                         <div class="row">
                             <div class="form-group col-md-6" [class.has-error]='password.invalid && password.touched'>
                                 <label for="password" class="text-dark control-label">סיסמא</label>
                                 <input #password="ngModel" required [(ngModel)]="employee.password" class="form-control"
-                                    (input)="confirmPassword.control.updateValueAndValidity()"
-                                    name="password" id="password" type="text">
+                                    (input)="confirmPassword.control.updateValueAndValidity()" name="password"
+                                    id="password" type="text">
                                 <span class="help-block" *ngIf="password.touched && password.errors?.required">
                                     Password is required
                                 </span>
@@ -117,9 +115,8 @@
                             <div class="form-group col-md-6"
                                 [class.has-error]='confirmPassword.invalid && confirmPassword.touched'>
                                 <label for="confirmPassword" class="text-dark control-label">חזור על סיסמא</label>
-                                <input #confirmPassword="ngModel" required  
-                                    [(ngModel)]="employee.confirmPassword" class="form-control" name="confirmPassword"
-                                    id="confirmPassword" type="text">
+                                <input #confirmPassword="ngModel" required [(ngModel)]="employee.confirmPassword"
+                                    class="form-control" name="confirmPassword" id="confirmPassword" type="text">
                                 <span class="help-block"
                                     *ngIf="confirmPassword.touched && confirmPassword.errors?.required">
                                     Confirm a Password is required
@@ -131,7 +128,6 @@
                             </div>
                         </div>
                     </div>
-
                     <br>
                     <div class="row">
                         <div class="panel-footer col-md-6 text-right">

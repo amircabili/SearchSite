@@ -5,11 +5,12 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from '../employee.service';
 import { Routes, Router } from '@angular/router';
+import {InputTextModule} from 'primeng/inputtext';
 
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
-  styleUrls: ['./create-employee.component.less']
+  styleUrls: ['./create-employee.component.less'] 
 })
 
 export class CreateEmployeeComponent implements OnInit {

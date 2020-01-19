@@ -1,6 +1,78 @@
 <div class="container  direction-ltr text-left">
     <div class="row mb-2 box  box-shadow">
         <div class="col-md-12">
+            <h3 class="first">Session 2</h3>
+            <p-table #dt2 [columns]="cols" [value]="cars2" [paginator]="true" [rows]="10"
+                [rowsPerPageOptions]="[5,10,20]" dataKey="vin" [resizableColumns]="true" [reorderableColumns]="true"
+                selectionMode="multiple" [(selection)]="selectedCars2" [metaKeySelection]="true" stateStorage="session"
+                stateKey="statedemo-session">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th pResizableColumn style=" width: 33px;"> </th>
+                        <th pResizableColumn style=" width: 33px;"> </th>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                         
+                    </tr>
+                    <tr>
+                        <th style="width: 4em"></th>
+                        <th style="width: 4em"></th>
+                        <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
+                            <input pInputText type="text"
+                                (input)="dt2.filter($event.target.value, col.field, col.filterMatchMode)"
+                                [value]="dt2.filters[col.field]?.value">
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
+                    <tr [pSelectableRow]="rowData">
+                        <td>
+                            <div class="pull- ">
+                                <a href="#" [pRowToggler]="rowData">
+                                    <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
+                                </a>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="pull- ">
+                                <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
+                            </div>
+                        </td>
+                        <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+                    <tr>
+                        <td [attr.colspan]="columns.length + 1" @rowExpansionTrigger>
+                            <div class=" ui-g ui-fluid" style="font-size:16px;padding:20px">
+                                <div class="ui-g-12 ui-md-3" style="text-align:center">
+                                    <img [attr.alt]="rowData.brand" src="assets/images/cars/{{rowData.brand}}.png">
+                                </div>
+                                <div class="ui-g-12 ui-md-9">
+                                    <div class="ui-g">
+                                        <div class="ui-g-12">
+                                            <b>Vin:</b> {{rowData.vin}}
+                                        </div>
+                                        <div class="ui-g-12">
+                                            <b>Year:</b> {{rowData.year}}
+                                        </div>
+                                        <div class="ui-g-12">
+                                            <b>Brand:</b> {{rowData.brand}}
+                                        </div>
+                                        <div class="ui-g-12">
+                                            <b>Color:</b> {{rowData.color}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
             <div>
                 <h1>12312123</h1>
             </div>
@@ -64,7 +136,6 @@
                                 </ng-template>
                             </p-cellEditor>
                         </td>
-
                         <td style="text-align:center">
 
                             <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil"
@@ -81,16 +152,12 @@
                     </tr>
                 </ng-template>
             </p-table>
-
             <br><br><br>
             <hr>
             <h3 class="first">Session 1</h3>
-
             <p-table #dt1 [columns]="cols" [value]="cars1" [paginator]="true" [rows]="10"
                 [rowsPerPageOptions]="[5,10,20]" dataKey="vin" [resizableColumns]="true" [reorderableColumns]="true"
                 selectionMode="single" [(selection)]="selectedCar1" stateStorage="session" stateKey="statedemo-session">
-
-                
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th style="width: 4em"></th>
@@ -101,7 +168,7 @@
                         </th>
                     </tr>
                     <tr>
-                        <th style="width: 4em"></th>
+                        
                         <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
                             <input pInputText type="text"
                                 (input)="dt1.filter($event.target.value, col.field, col.filterMatchMode)"
@@ -124,78 +191,7 @@
                     </tr>
                 </ng-template>
             </p-table>
-            <br><br><br>
-            <hr>
-            <h3 class="first">Session 2</h3>
-
-            <p-table #dt2  [columns]="cols" [value]="cars2"  [paginator]="true" [rows]="10"
-            [rowsPerPageOptions]="[5,10,20]" dataKey="vin" [resizableColumns]="true" [reorderableColumns]="true"
-            selectionMode="single" [(selection)]="selectedCar2" stateStorage="session" stateKey="statedemo-session">
-
-                <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th pResizableColumn style=" width: 33px;">1</th>
-                        <th *ngFor="let col of columns" [pSortableColumn]="col.field" 
-                             >
-                            {{col.header}}
-                            <p-sortIcon [field]="col.field"></p-sortIcon>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th style="width: 4em"></th>
-                        <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
-                            <input pInputText type="text"
-                                (input)="dt2.filter($event.target.value, col.field, col.filterMatchMode)"
-                                [value]="dt2.filters[col.field]?.value">
-                        </th>
-                    </tr>
-                </ng-template>
-
-                <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
-                    <tr>
-                        <td style="width: 4em">
-                            <a href="#" [pRowToggler]="rowData" >
-                                <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
-                            </a>
-                        </td>
-                        <td *ngFor="let col of columns">
-                            {{rowData[col.field]}}
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
-                    <tr>
-                        <td [attr.colspan]="columns.length + 1">
-                            <div class="ui-g ui-fluid" style="font-size:16px;padding:20px">
-                                <div class="ui-g-12 ui-md-3" style="text-align:center">
-                                    <img [attr.alt]="rowData.brand"
-                                        src="assets/showcase/images/demo/car/{{rowData.brand}}.png">
-                                </div>
-                                <div class="ui-g-12 ui-md-9">
-                                    <div class="ui-g">
-                                        <div class="ui-g-12">
-                                            <b>Vin:</b> {{rowData.vin}}
-                                        </div>
-                                        <div class="ui-g-12">
-                                            <b>Year:</b> {{rowData.year}}
-                                        </div>
-                                        <div class="ui-g-12">
-                                            <b>Brand:</b> {{rowData.brand}}
-                                        </div>
-                                        <div class="ui-g-12">
-                                            <b>Color:</b> {{rowData.color}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-
-            <br><br><br>
-            <hr>
-
+           
         </div>
     </div>
 </div>

@@ -31,11 +31,19 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatListModule} from '@angular/material/list';
 import {LayoutModule} from '@angular/cdk/layout';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { MatIconModule } from '@angular/material';
-import { PrimeTableComponent } from './employees/prime-table.component';
+import {MatIconModule} from '@angular/material';
+import {PrimeTableComponent} from './employees/prime-table.component';
+
 import {TableModule} from 'primeng/table';
 import { CommonModule  }  from '@angular/common';
-  
+import {InputTextModule} from 'primeng/inputtext';
+import {ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+ 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,20 +78,24 @@ import { CommonModule  }  from '@angular/common';
     MatSelectModule,
     MatSortModule,
     MatTableModule,
+    InputTextModule,    
     MatPaginatorModule,
     MatListModule,
     LayoutModule,
     MatExpansionModule,
     MatIconModule,
     TableModule ,
-    CommonModule  
+    CommonModule,
+    ToastModule  ,
+    MessagesModule,
+    MessageModule 
   ],
   
   exports: [
      MatIconModule
   ],
 
-  providers: [EmployeeService,CreateEmployeeCanDeactivateGuardService],
+  providers: [EmployeeService,CreateEmployeeCanDeactivateGuardService,MessageService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA ]
 })
