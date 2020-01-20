@@ -2,22 +2,22 @@
     <div class="row mb-2 box  box-shadow">
         <div class="col-md-12">
             <h3 class="first">Session 2</h3>
-            <p-table #dt2 [columns]="cols" [value]="cars2" [paginator]="true" [rows]="10"
-                [rowsPerPageOptions]="[5,10,20]" dataKey="vin" [resizableColumns]="true" [reorderableColumns]="true"
+            <p-table #dt2  [columns]="cols" [value]="cars2"  [paginator]="true" [rows]="10"
+                [rowsPerPageOptions]="[5,10,20]" dataKey="vin"  [reorderableColumns]="true"
                 selectionMode="multiple" [(selection)]="selectedCars2" [metaKeySelection]="true" stateStorage="session"
                 stateKey="statedemo-session">
-                <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th pResizableColumn style=" width: 33px;"> </th>
-                        <th pResizableColumn style=" width: 33px;"> </th>
-                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                <ng-template pTemplate="header" let-columns>        
+                    <tr>      
+                        <th style="width:3em"> </th>
+                        <th style="width:3em"> </th>                    
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field" >
                             {{col.header}}
                             <p-sortIcon [field]="col.field"></p-sortIcon>
-                        </th>
+                        </th>   
                     </tr>
                     <tr>
-                        <th style="width: 4em"></th>
-                        <th style="width: 4em"></th>
+                        <th></th> 
+                        <th></th>                     
                         <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
                             <input pInputText type="text"
                                 (input)="dt2.filter($event.target.value, col.field, col.filterMatchMode)"
@@ -26,30 +26,31 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
-                    <tr [pSelectableRow]="rowData">
-                        <td class="p-0 text-center">
-                            <div class="pull- ">
+                    <tr [pSelectableRow]="rowData">                        
+                        <td class="p-0">
+                            <div class="text-center">
                                 <a href="#" [pRowToggler]="rowData">
                                     <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
                                 </a>
                             </div>
                         </td>
-                        <td class="p-0 text-center">
-                            <div class="pull- ">
+                          <td class="p-0">
+                            <div class="text-center">
                                 <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
-                            </div>
-                        </td>
-                        <td class="p-0 text-center"  *ngFor="let col of columns">
+                            </div>   
+                        </td>  
+                        <td *ngFor="let col of columns">
                             {{rowData[col.field]}}
                         </td>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+                <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns" >
                     <tr>
-                        <td [attr.colspan]="columns.length + 1" @rowExpansionTrigger>
+                        <td [attr.colspan]="columns.length + 2" @rowExpansionTrigger>
                             <div class=" ui-g ui-fluid" style="font-size:16px;padding:20px">
                                 <div class="ui-g-12 ui-md-3" style="text-align:center">
-                                    <img [attr.alt]="rowData.brand" src="assets/images/cars/{{rowData.brand}}.png">
+                                    <img [attr.alt]="rowData.brand"
+                                        src="assets/images/cars/{{rowData.brand}}.png">
                                 </div>
                                 <div class="ui-g-12 ui-md-9">
                                     <div class="ui-g">
@@ -72,6 +73,8 @@
                     </tr>
                 </ng-template>
             </p-table>
+
+            <br><br>
             <div>
                 <h1>12312123</h1>
             </div>
@@ -147,7 +150,6 @@
                             <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times"
                                 class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)">Cancel</button>
                         </td>
-
                     </tr>
                 </ng-template>
             </p-table>
@@ -159,7 +161,7 @@
                 selectionMode="single" [(selection)]="selectedCar1" stateStorage="session" stateKey="statedemo-session">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th style="width: 4em"></th>
+                        <th style=""></th>
                         <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn
                             pReorderableColumn>
                             {{col.header}}
@@ -167,7 +169,7 @@
                         </th>
                     </tr>
                     <tr>
-                        
+                        <th style=""></th>
                         <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
                             <input pInputText type="text"
                                 (input)="dt1.filter($event.target.value, col.field, col.filterMatchMode)"
@@ -175,7 +177,6 @@
                         </th>
                     </tr>
                 </ng-template>
-
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
                     <tr [pSelectableRow]="rowData">
                         <td>
@@ -183,14 +184,15 @@
                                 <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
                             </a>
                         </td>
-
                         <td *ngFor="let col of columns">
                             {{rowData[col.field]}}
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
-           
+            <br><br><br>
+            <hr>
+         
         </div>
     </div>
 </div>

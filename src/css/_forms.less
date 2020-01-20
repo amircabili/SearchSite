@@ -1,5 +1,4 @@
 input,.form-control{
-
     padding: .429em;
     border:solid 0px gray;
     border-radius: 0 !important;
@@ -12,8 +11,12 @@ input,.form-control{
     background: transparent!important;
     background-color: transparent !important;
     outline: none !important;
-}
 
+    &+label.control-label{
+      font-weight: bold;
+    }
+}
+ 
 table{
   th{
     border-right: solid 0px gray!important;
@@ -21,7 +24,7 @@ table{
     border-top: solid 0px gray!important;
     border-bottom: solid 0.5px lightgray!important;
     border: solid 0px gray;
-    background-color: #fdfcfc;
+    background-color: #ffffff;
   }
 }
 
@@ -41,7 +44,6 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px transparent inset;
   transition: background-color 5000s ease-in-out 0s;
 }
-
 
 .mat-radio-outer-circle {
     box-sizing: border-box;
