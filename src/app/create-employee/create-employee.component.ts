@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Department } from '../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -6,6 +6,8 @@ import { Employee } from '../models/employee.model';
 import { EmployeeService } from '../employee.service';
 import { Routes, Router } from '@angular/router';
 import {InputTextModule} from 'primeng/inputtext';
+import {CheckboxModule} from 'primeng/checkbox';
+
 
 @Component({
   selector: 'app-create-employee',
@@ -13,17 +15,22 @@ import {InputTextModule} from 'primeng/inputtext';
   styleUrls: ['./create-employee.component.less'] 
 })
 
+
+
 export class CreateEmployeeComponent implements OnInit {
 
   // dateOfBirth: Date = new Date(2018, 1, 28);
   
   @ViewChild('employeeForm', {static: false}) public createEmployeeForm: NgForm;
 
-  gender = 'male';
+  gender = '';
   isActive = true;
   department = 'HR';
   photoPath = '../assets/images/image1.png';
   previewPhoto = false;
+  isFocused = false;
+  public focusSettingEventEmitter = new EventEmitter<boolean>();
+
 
   datePickerConfig : Partial<BsDatepickerConfig>;
 
@@ -55,10 +62,9 @@ export class CreateEmployeeComponent implements OnInit {
        });
   }
 
-  ngOnInit() { 
-  }
+  ngOnInit() {  }
 
-
+  
   clearSearchInput():void{
     // this.searchTerm = null;
     // location.reload();
@@ -69,15 +75,12 @@ export class CreateEmployeeComponent implements OnInit {
     this.previewPhoto = !this.previewPhoto;
   }
 
-  
   saveEmployee(){
      // const newEmployee: Employee = Object.assign({},this.employee);
       // console.log('newEmployee - ' + newEmployee);
-
       console.log(this.employee);
       this._employeeService.save(this.employee);
       //this._router.navigate(['employees']);
   }
-
 
 }

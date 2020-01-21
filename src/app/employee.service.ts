@@ -8,18 +8,15 @@ import { map } from 'rxjs/operators';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-import { ConvertActionBindingResult } from '@angular/compiler/src/compiler_util/expression_converter';
 
-@Injectable({
+ @Injectable({
   providedIn: 'root'
 })
-
 
 export class EmployeeService {
   
   private _url: string = "assets/data/employee.json";
   private _url2: string = "https://ctb2013.scp.co.il:8443/foreignTrade/table/currencies";
-
 
   constructor( private http: HttpClient ) { }
 
@@ -246,7 +243,7 @@ export class EmployeeService {
     "isActive" : true,
     "photoPath" : "זכר"
   }
-  ]  
+]  
 
   //  const url = `${environment.APP_API}/api/request`;
 
@@ -258,12 +255,10 @@ export class EmployeeService {
   // params = params.append('param2', value2); // add a new param, creating a new object
   // params = params.append('param3', value3); // add another param 
 
-      
     getEmployees(){
       const headers = new HttpHeaders({'X-IDB-bank':'discount','Access-Control-Allow-Origin':'*'});
       return this.http.get<Employee[]>(this._url, { headers: headers }); 
     }
-
 
     errorHandler(error: HttpErrorResponse){
       return Observable.throw(error.message || "Server Error");
@@ -272,6 +267,5 @@ export class EmployeeService {
     save(employee: Employee) {
         this.listEmployees.push(employee);
     }
-
 
 }

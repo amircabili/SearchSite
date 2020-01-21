@@ -6,64 +6,88 @@
                     <h3 class="panel-title"> יצירת לקוח</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="form-group" [class.has-error]='name.invalid && name.touched'
-                        [class.has-success]="name.valid">
-                        <div class="ui-float-label">
-                            <input pInputText #name="ngModel" required [(ngModel)]="employee.name" name="name" id="name"
-                                type="text" class="form-control">
-                            <label for="name" class="text-bold  text-dark control-label">שם מלא</label>
+                    <br>
+                    <div class="row">
+                        <div class="form-group col-md-4" [class.has-error]='name.invalid && name.touched'
+                            [class.has-success]="name.valid">
+                            <div class="ui-float-label">
+                                <input ngModel appAutofocus pInputText #name="ngModel" required
+                                    [(ngModel)]="employee.name" name="name" id="name" type="text" class="form-control">
+                                <label for="name" class=" text-dark control-label">שם מלא</label>
+                                <div class="field-underline">
+                                    <span class="form-field-ripple"></span>
+                                </div>
+                            </div>
+                            <span class="help-block" *ngIf="name.invalid && name.touched">Full Name is required</span>
                         </div>
-                        <span class="help-block" *ngIf="name.invalid && name.touched">Full Name is required</span>
-                    </div>
-                    <div class="form-group" [class.has-error]='email.invalid && email.touched'
-                        [class.has-success]="email.valid">
-                        <div class="ui-float-label">
-                            <input pInputText required [email]="employee.email!==''" #email="ngModel"
-                                [(ngModel)]="employee.email" name="email" id="email" type="text" class="form-control">
-                            <label for="email" class="text-bold control-label text-dark">אימייל</label>
+                        <div class="form-group col-md-4" [class.has-error]='email.invalid && email.touched'
+                            [class.has-success]="email.valid">
+                            <div class="ui-float-label">
+                                <input pInputText required [email]="employee.email!==''" #email="ngModel"
+                                    [(ngModel)]="employee.email" name="email" id="email" type="text"
+                                    class="form-control">
+                                <label for="email" class="control-label text-dark">אימייל</label>
+                                <div class="field-underline">
+                                    <span class="form-field-ripple"></span>
+                                </div>
+                            </div>
+                            <span class="help-block" *ngIf="email.errors?.required && email.touched">Email is
+                                required</span>
+                            <span class="help-block" *ngIf="email.errors?.email && email.touched">Email is
+                                invalid</span>
                         </div>
-                        <span class="help-block" *ngIf="email.errors?.required && email.touched">Email is
-                            required</span>
-                        <span class="help-block" *ngIf="email.errors?.email && email.touched">Email is invalid</span>
-                    </div>
-                    <div class="form-group">
-                        <div class="ui-float-label">
-                            <input pInputText [(ngModel)]="employee.phonenumber" name="phonenumber" id="phonenumber"
-                                type="text" class="form-control">
-                            <label for="phonenumber" class="text-dark">טלפון</label>
+                        <div class="form-group col-md-4">
+                            <div class="ui-float-label">
+                                <input required pInputText [(ngModel)]="employee.phonenumber" name="phonenumber"
+                                    id="phonenumber" type="text" class="form-control">
+                                <label for="phonenumber" class="text-dark control-label">טלפון</label>
+                                <div class="field-underline">
+                                    <span class="form-field-ripple"></span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group" [class.has-error]='gender.invalid && gender.touched'>
-                        <label class="text-dark">מין</label>
-                        <div class="form-control">
-                            <label class="mr-4">
-                                <input type="radio" required #gender="ngModel" value="male" name="gender"
-                                    [(ngModel)]="employee.gender">
-                                זכר
-                            </label>
-                            <label class="mr-4">
-                                <input type="radio" required #gender="ngModel" value="female" name="gender"
-                                    [(ngModel)]="employee.gender">
-                                נקבה
-                            </label>
-                        </div>
-                        <span class="help-block" *ngIf="gender.errors?.required && gender.touched">Gender is
-                            required</span>
-                    </div>
-                    <div class="form-group" [class.has-error]='isActive.invalid && isActive.touched'>
-                        <label class="text-dark" for="department">פעיל \ לא פעיל</label>
-                        <div class="form-control">
-                            <label class=" control-label">
-                                <input required type="checkbox" [required]="employee.isActive==null" #isActive="ngModel"
-                                    name="isActive" [(ngModel)]="employee.isActive">
-                                פעיל
-                            </label>
-                        </div>
-                        <span class="help-block" *ngIf="isActive.touched && isActive.errors?.required">isActive is
-                            invalid</span>
                     </div>
                     <div class="row">
-                        <div class="form-group col-md-3" [class.has-error]='department.invalid && department.touched'>
+                        <div class="form-group col-md-4" [class.has-error]='gender.invalid && gender.touched'>
+                            <label class="text-dark">מין</label>
+                            <div class="form-control no-bottom"  binary="true">
+                                <label class="checkbox-container">
+                                    <input class="checkboxInput" type="radio" required #gender="ngModel"
+                                     value="male" name="gender"  checked="checked"
+                                     [(ngModel)]="employee.gender"
+                                     label="זכר">
+                                     <span class="checkmark"></span>
+                                </label>
+                                <label class="checkbox-container">
+                                    <input class="checkboxInput" type="radio" required #gender="ngModel"
+                                     value="female" name="gender"
+                                     [(ngModel)]="employee.gender"
+                                     label="נקבה" >
+                                     <span class="checkmark"></span>
+                                </label>
+                                <span class="help-block" *ngIf="gender.errors?.required && gender.touched">Gender is
+                                    required</span>
+                            </div>
+
+                        
+
+                        </div>
+                        <div class="form-group col-md-4" [class.has-error]='isActive.invalid && isActive.touched'>
+                            <label class="text-dark" for="department">פעיל \ לא פעיל</label>
+                            <div class="form-control no-bottom">
+                                <label class="checkbox-container">
+                                    <input required class="checkboxInput" 
+                                     [required]="employee.isActive==null" type="checkbox"
+                                     value="פעיל" name="isActive"   
+                                     [(ngModel)]="employee.isActive"
+                                     label="פעיל">
+                                     <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <span class="help-block" *ngIf="isActive.touched && isActive.errors?.required">isActive is
+                                invalid</span>
+                        </div>
+                        <div class="form-group  col-md-4" [class.has-error]='department.invalid && department.touched'>
                             <label class="text-dark" for="department">מחלקה</label>
                             <select id="department" appSelectValidator="select" #department="ngModel" name="department"
                                 [(ngModel)]="employee.department" class="form-control">
@@ -76,47 +100,72 @@
                                 department is required
                             </span>
                         </div>
-                        <div class="form-group col-md-3">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
                             <br>
                             <div class="ui-float-label">
                                 <input pInputText [(ngModel)]="employee.dateOfBirth" name="dateOfBirth" bsDatepicker
                                     id="dateOfBirth" type="text" autocomplete="off" class="form-control" placement="top"
-                                    placeholder="   " [bsConfig]="datePickerConfig">
-                                <label for="dateOfBirth" class="text-dark"> תאריך לידה</label>
+                                    placeholder="" [bsConfig]="datePickerConfig">
+
+                                <label for="dateOfBirth" class="text-dark control-label "> תאריך לידה</label>
+                                <div class="field-underline">
+                                    <span class="form-field-ripple"></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="photoPath" class="text-dark"> תמונה</label>
-                            <input [(ngModel)]="employee.photoPath" name="photoPath" id="photoPath" type="text"
-                                class="direction-ltr form-control">
+                        <div class="form-group col-md-4">
+                            <br>
+                            <div class="ui-float-label">
+                                <input pInputText [(ngModel)]="employee.photoPath" name="photoPath" id="photoPath"
+                                    type="text" autocomplete="off" class="form-control" placeholder="">
+
+                                <label for="photoPath" class="text-dark control-label "> תמונה </label>
+                                <div class="field-underline">
+                                    <span class="form-field-ripple"></span>
+                                </div>
+                            </div>
                             <button (click)="togglePhotoPreview();" class="btn btn mt-2 btn-info pr-4 pl-4"
                                 type="button">{{previewPhoto? "הסתר" : "הראה" }} תמונה</button>
                         </div>
+                        <div class="form-group col-md-4">
+                            <div class="form-group">
+                                <img *ngIf="previewPhoto" [src]="photoPath" height="200" width="200" />
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <img *ngIf="previewPhoto" [src]="photoPath" height="200" width="200" />
-                    </div>
+ 
+
+
                     <div ngModelGroup="passwordGroup" appConfirmEqualValidator #passwordGroup="ngModelGroup"
                         [class.has-error]="passwordGroup.errors?.notEqual && !passwordGroup.errors?.required">
+
                         <div class="row">
                             <div class="form-group col-md-6" [class.has-error]='password.invalid && password.touched'>
-                                <label for="password" class="text-dark control-label">סיסמא</label>
-                                <input #password="ngModel" required [(ngModel)]="employee.password" class="form-control"
+                                <div class="ui-float-label">
+                                <input pInputText #password="ngModel" required [(ngModel)]="employee.password" class="form-control"
                                     (input)="confirmPassword.control.updateValueAndValidity()" name="password"
                                     id="password" type="text">
+                                    <label for="password" class="text-dark control-label">סיסמא</label>
+                                    <div class="field-underline">
+                                        <span class="form-field-ripple"></span>
+                                    </div>
+                                </div>
                                 <span class="help-block" *ngIf="password.touched && password.errors?.required">
                                     Password is required
                                 </span>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="form-group col-md-6"
                                 [class.has-error]='confirmPassword.invalid && confirmPassword.touched'>
-                                <label for="confirmPassword" class="text-dark control-label">חזור על סיסמא</label>
-                                <input #confirmPassword="ngModel" required [(ngModel)]="employee.confirmPassword"
-                                    class="form-control" name="confirmPassword" id="confirmPassword" type="text">
+                                <div class="ui-float-label">
+                                    <input pInputText #confirmPassword="ngModel" required [(ngModel)]="employee.confirmPassword"
+                                        class="form-control" name="confirmPassword" id="confirmPassword" type="text">
+                                    <label for="confirmPassword" class="text-dark control-label">חזור על סיסמא</label>
+                                    <div class="field-underline">
+                                        <span class="form-field-ripple"></span>
+                                    </div>
+                                </div>
                                 <span class="help-block"
                                     *ngIf="confirmPassword.touched && confirmPassword.errors?.required">
                                     Confirm a Password is required

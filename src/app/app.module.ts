@@ -33,6 +33,8 @@ import {LayoutModule} from '@angular/cdk/layout';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material';
 import {PrimeTableComponent} from './employees/prime-table.component';
+import {CheckboxModule} from 'primeng/checkbox';
+
 
 import {TableModule} from 'primeng/table';
 import { CommonModule  }  from '@angular/common';
@@ -42,6 +44,7 @@ import { MessageService } from 'primeng/api';
 
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import { AutofocusDirective } from './autofocus.directive';
  
 
 @NgModule({
@@ -60,7 +63,8 @@ import {MessageModule} from 'primeng/message';
     DisplayEmployeeComponent,
     EmployeeDetailsComponent,
     EmployeesTableComponent,
-    PrimeTableComponent 
+    PrimeTableComponent,
+    AutofocusDirective 
   ],
 
   imports: [
@@ -88,7 +92,8 @@ import {MessageModule} from 'primeng/message';
     CommonModule,
     ToastModule  ,
     MessagesModule,
-    MessageModule 
+    MessageModule ,
+    CheckboxModule 
   ],
   
   exports: [
