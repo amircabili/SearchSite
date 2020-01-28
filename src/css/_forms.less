@@ -23,9 +23,10 @@
  .ui-inputtext.ui-state-filled,.ui-inputtext.ui-state-filled:-webkit-autofill,input:-webkit-autofill {   
   -webkit-box-shadow: 0 0 0px 1000px white inset!important;
   box-shadow: 0 0 0px 1000px white inset!important;   
-}
+} 
 
-input,
+
+input,p-autoComplete,
 .form-control {
 
   padding: 0.429em;
@@ -40,6 +41,27 @@ input,
   background: transparent !important;
   background-color: transparent !important;
   outline: none !important;
+
+  &.select{
+     option{
+      *width: 350px;
+      *background: #58B14C;
+      -webkit-appearance: none;
+      font-size:14px;
+      padding: 5px 0px;
+      display:block;
+       
+          span{
+            color: #333333;
+            text-indent:5px;
+            font-size:14px;
+            height:50px;
+            display:block;
+          }
+    }
+}
+
+ 
 
 
   /////////////////  CheckBox   /////////////////////

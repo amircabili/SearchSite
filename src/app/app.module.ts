@@ -34,6 +34,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material';
 import {PrimeTableComponent} from './employees/prime-table.component';
 import {CheckboxModule} from 'primeng/checkbox';
+import {DropdownModule} from 'primeng/dropdown';
+import {AutoCompleteModule} from 'primeng/autocomplete';
 
 
 import {TableModule} from 'primeng/table';
@@ -93,7 +95,9 @@ import { AutofocusDirective } from './autofocus.directive';
     ToastModule  ,
     MessagesModule,
     MessageModule ,
-    CheckboxModule 
+    CheckboxModule ,
+    DropdownModule,
+    AutoCompleteModule
   ],
   
   exports: [

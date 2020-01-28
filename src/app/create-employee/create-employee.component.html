@@ -8,6 +8,42 @@
                 <div class="panel-body">
                     <br>
                     <div class="row">
+                        <div class="form-group col-md-4">
+
+                            <p-autoComplete [(ngModel)]="employee" [suggestions]="filteredNamesSingle"
+                                (completeMethod)="filterNamesSingle($event)" field="employee" [size]="30"
+                                 placeholder="employees" [dropdown]="true"
+                                [minLength]="1">
+
+                                <ng-template let-brand pTemplate="item">
+                                    <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
+                                         <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{employee.name}}</div>
+                                    </div>
+                                </ng-template>
+
+                            </p-autoComplete>
+
+                            <span style="margin-left:10px">Employee: {{employee ? employee.name||employee : 'none'}}</span>
+
+                            <p-autoComplete [(ngModel)]="results" [suggestions]="results"
+                             (completeMethod)="searchInNames($event)" [size]="30"  [dropdown]="true"
+                                [minLength]="1" placeholder="כתוב שם"  >
+                                <ng-template let-group pTemplate="group">
+                                    <div>
+                                        <div style="font-size:18px">{{group.name}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+
+                            <label for="name" class="text-dark control-label">שם מלא</label>
+                                <div class="field-underline">
+                                    <span class="form-field-ripple"></span>
+                                </div>
+                        </div>
+                        <div class="form-group col-md-4"> </div>
+                        <div class="form-group col-md-4"> </div>
+                    </div>
+                    <div class="row">
                         <div class="form-group col-md-4" [class.has-error]='name.invalid && name.touched'
                             [class.has-success]="name.valid">
                             <div class="ui-float-label">
@@ -68,9 +104,6 @@
                                 <span class="help-block" *ngIf="gender.errors?.required && gender.touched">Gender is
                                     required</span>
                             </div>
-
-                        
-
                         </div>
                         <div class="form-group col-md-4" [class.has-error]='isActive.invalid && isActive.touched'>
                             <label class="text-dark" for="department">פעיל \ לא פעיל</label>
@@ -88,17 +121,24 @@
                                 invalid</span>
                         </div>
                         <div class="form-group  col-md-4" [class.has-error]='department.invalid && department.touched'>
+                            <br>
+                            <br>
                             <label class="text-dark" for="department">מחלקה</label>
                             <select id="department" appSelectValidator="select" #department="ngModel" name="department"
-                                [(ngModel)]="employee.department" class="form-control">
-                                <option disabled value="select">Select Department</option>
-                                <option *ngFor="let dept of departments" [ngValue]="dept" [id]="dept.name">
-                                    {{dept.name}}
+                                [(ngModel)]="employee.department" class="form-control select">
+                                <option disabled value="select"> <span>Select Department</span> </option>
+                                <option class="innerOption" *ngFor="let dept of departments"  >
+                                     <span class="innerSpan">{{dept.name}}</span> 
                                 </option>
                             </select>
-                            <span class="help-block" *ngIf="department.touched && department.errors?.defaultSelected">
-                                department is required
-                            </span>
+                            <br>
+                            <!-- <p-dropdown [options]="departments" [(ngModel)]="selectItem" 
+                                    appSelectValidator="select" #department="ngModel"  name="department"
+                                    placeholder="Select Department"  [group]="true" class="form-control select">
+                                    <ng-template let-group pTemplate="group">
+                                        <span>{{group.name}}</span>
+                                    </ng-template>
+                            </p-dropdown> -->
                         </div>
                     </div>
                     <div class="row">
@@ -135,9 +175,6 @@
                             </div>
                         </div>
                     </div>
- 
-
-
                     <div ngModelGroup="passwordGroup" appConfirmEqualValidator #passwordGroup="ngModelGroup"
                         [class.has-error]="passwordGroup.errors?.notEqual && !passwordGroup.errors?.required">
 
