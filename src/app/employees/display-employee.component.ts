@@ -45,11 +45,10 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
     return this._employee;
   }
 
-  constructor(private _route: ActivatedRoute) { }
+  constructor(private _route: ActivatedRoute){ }
 
   ngOnInit() { 
-    this.selectedEmployeeId = +this._route.snapshot.paramMap.get('id');
-    
+    this.selectedEmployeeId = +this._route.snapshot.paramMap.get('id');    
   }
 
   ngOnChanges(changes: SimpleChanges) {

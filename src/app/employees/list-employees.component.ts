@@ -82,7 +82,7 @@ export class ListEmployeesComponent implements OnInit {
 
       ShowAllEmployees(){
         if(!this.searchTerm){
-            this._employeeService.getEmployees()
+            this._employeeService.getEmployees()            
               .subscribe(data => {
                             this.employees = data;
                  }) 

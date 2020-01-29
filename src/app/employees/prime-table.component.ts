@@ -69,9 +69,9 @@ export class PrimeTableComponent implements OnInit {
 
       this.cols = [
           { field: 'vin', header: 'Vin', width: '25%' },
-          { field: 'year', header: 'Year', width: '15%' },
-          { field: 'brand', header: 'Brand', width: '35%' },
-          { field: 'color', header: 'Color', width: '25%' }
+          { field: 'year', header: 'Year', width: '25%' },
+          { field: 'brand', header: 'Brand', width: '25%' },
+          { field: 'color', header: 'Color', width: '25%' } 
       ];
     }
     

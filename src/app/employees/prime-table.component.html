@@ -9,24 +9,27 @@
                 <ng-template pTemplate="header" let-columns>        
                     <tr>      
                         <th style="width:3em"> </th>
-                        <th style="width:3em"> </th>                    
+                            <th style="width:3em"> </th>                             
                         <th *ngFor="let col of columns" [pSortableColumn]="col.field" >
                             {{col.header}}
                             <p-sortIcon [field]="col.field"></p-sortIcon>
-                        </th>   
+                        </th> 
+                        <th style="width:5em"></th > 
                     </tr>
                     <tr>
-                        <th></th> 
-                        <th></th>                     
+                        <th></th>    
+                        <th></th>                          
                         <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
                             <input pInputText type="text"
                                 (input)="dt2.filter($event.target.value, col.field, col.filterMatchMode)"
                                 [value]="dt2.filters[col.field]?.value">
                         </th>
+                        
+                        <th></th> 
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
-                    <tr [pSelectableRow]="rowData">                        
+                    <tr [pSelectableRow]="rowData">  
                         <td class="p-0">
                             <div class="text-center">
                                 <a href="#" [pRowToggler]="rowData">
@@ -41,7 +44,12 @@
                         </td>  
                         <td *ngFor="let col of columns">
                             {{rowData[col.field]}}
-                        </td>
+                        </td> 
+                            <td class="text-center">
+                                <a href="javascript:alert('icon click');">
+                                    <mat-icon>poll</mat-icon>
+                                </a>
+                            </td>                 
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns" >
@@ -75,6 +83,8 @@
             </p-table>
 
             <br><br>
+
+
             <div>
                 <h1>12312123</h1>
             </div>

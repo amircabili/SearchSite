@@ -17,7 +17,7 @@ export class EmployeeService {
   
   private _url: string = "assets/data/employee.json";
   
-  private _url2: string = "https://ctb2013.scp.co.il:8443/foreignTrade/table/currencies";
+  //private _url2: string = "https://ctb2013.scp.co.il:8443/foreignTrade/table/currencies";
 
   constructor( private http: HttpClient ) { }
 
@@ -257,15 +257,12 @@ export class EmployeeService {
   // params = params.append('param3', value3); // add another param 
 
     getEmployees(){
-      return this.http.get<Employee[]>(this._url ) ; 
+      return this.http.get<Employee[]>(this._url); 
     }
+  
+    results: string[];    
  
-    getEmployeesNames() {
-      return this.http.get('assets/data/employee.json')
-                  .toPromise()
-                  .then(res => <any[]> res.json().data)
-                  .then(data => { return data; });
-  }
+    
 
     errorHandler(error: HttpErrorResponse){
       return Observable.throw(error.message || "Server Error");

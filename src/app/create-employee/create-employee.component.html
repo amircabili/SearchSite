@@ -5,22 +5,22 @@
                 <div class="panel-heading  bg-blue">
                     <h3 class="panel-title"> יצירת לקוח</h3>
                 </div>
+                <br>
+
                 <div class="panel-body">
-                    <br>
-                    <div class="row">
+                 
+                    <!-- <div class="row">
                         <div class="form-group col-md-4">
-
+ 
                             <p-autoComplete [(ngModel)]="employee" [suggestions]="filteredNamesSingle"
-                                (completeMethod)="filterNamesSingle($event)" field="employee" [size]="30"
-                                 placeholder="employees" [dropdown]="true"
+                                    (completeMethod)="filterNamesSingle($event)" field="employee" [size]="30"
+                                    placeholder="employees" [dropdown]="true"
                                 [minLength]="1">
-
                                 <ng-template let-brand pTemplate="item">
                                     <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
                                          <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{employee.name}}</div>
                                     </div>
                                 </ng-template>
-
                             </p-autoComplete>
 
                             <span style="margin-left:10px">Employee: {{employee ? employee.name||employee : 'none'}}</span>
@@ -33,22 +33,25 @@
                                         <div style="font-size:18px">{{group.name}}</div>
                                     </div>
                                 </ng-template>
-                            </p-autoComplete>
+                            </p-autoComplete>  
 
-                            <label for="name" class="text-dark control-label">שם מלא</label>
-                                <div class="field-underline">
-                                    <span class="form-field-ripple"></span>
-                                </div>
+                             
                         </div>
                         <div class="form-group col-md-4"> </div>
                         <div class="form-group col-md-4"> </div>
-                    </div>
+                    </div> -->
+
                     <div class="row">
                         <div class="form-group col-md-4" [class.has-error]='name.invalid && name.touched'
                             [class.has-success]="name.valid">
                             <div class="ui-float-label">
+                                
                                 <input ngModel appAutofocus pInputText #name="ngModel" required
                                     [(ngModel)]="employee.name" name="name" id="name" type="text" class="form-control">
+
+                              
+
+
                                 <label for="name" class=" text-dark control-label">שם מלא</label>
                                 <div class="field-underline">
                                     <span class="form-field-ripple"></span>
@@ -124,13 +127,11 @@
                             <br>
                             <br>
                             <label class="text-dark" for="department">מחלקה</label>
-                            <select id="department" appSelectValidator="select" #department="ngModel" name="department"
-                                [(ngModel)]="employee.department" class="form-control select">
-                                <option disabled value="select"> <span>Select Department</span> </option>
-                                <option class="innerOption" *ngFor="let dept of departments"  >
-                                     <span class="innerSpan">{{dept.name}}</span> 
-                                </option>
-                            </select>
+
+ 
+                            <p-dropdown  placeholder="Select Department" class="form-control select" [options]="departments" 
+                                [(ngModel)]="selectedDepartment" #department="ngModel" optionLabel="name"></p-dropdown>
+ 
                             <br>
                             <!-- <p-dropdown [options]="departments" [(ngModel)]="selectItem" 
                                     appSelectValidator="select" #department="ngModel"  name="department"

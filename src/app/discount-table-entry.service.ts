@@ -13,6 +13,7 @@ import 'rxjs/add/observable/throw';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DiscountTableEntryService {
 
    private _url: string = "https://ctb2013.scp.co.il:8443/foreignTrade/table/currencies";
