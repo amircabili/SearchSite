@@ -29,11 +29,7 @@ export class CreateEmployeeComponent implements OnInit {
   isFocused = false;
   public employees: any;
 
-  
-  
    
-
- 
   text: string;
 
   public focusSettingEventEmitter = new EventEmitter<boolean>();
@@ -57,7 +53,7 @@ export class CreateEmployeeComponent implements OnInit {
   departments: Department[];
  
   selectedDepartment: Department;
-  
+
   
   constructor(private _employeeService : EmployeeService, private _router: Router) {
       this.datePickerConfig = Object.assign({}, {
@@ -108,9 +104,8 @@ export class CreateEmployeeComponent implements OnInit {
  
 
     department1: SelectItem[];
-    cities2: City[];
-    selectedCity1: City;
-    selectedCity2: City;
+    
+ 
   
     
  
