@@ -21,8 +21,8 @@ export class PrintElementComponent implements OnInit {
     ngOnInit() {
       this.invoiceDetails = this.invoiceIds
         .map(id => this.getInvoiceDetails(id));
-      Promise.all(this.invoiceDetails)
-      .then(() => this.printService.onDataReady());
+        Promise.all(this.invoiceDetails)
+        .then(() => this.printService.onDataReady());
     }
 
     getInvoiceDetails(invoiceId) {

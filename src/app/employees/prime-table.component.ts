@@ -1,6 +1,6 @@
 import { Component, OnInit , OnDestroy, OnChanges, SimpleChange, Input, ViewChild } from '@angular/core';
 import {TableModule} from 'primeng/table';
-
+import { ActivatedRoute } from '@angular/router';
 import { BookService, Book } from '../book.service';
 import { Car } from '../models/car.model';
 import { CarService } from '../cars.service';
@@ -8,7 +8,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { MessageService, LazyLoadEvent ,FilterMetadata} from 'primeng/api';
 import {enableProdMode} from '@angular/core';
 import { Table } from 'primeng/table/table';
-
 import {autoTable,jsPDF} from 'jspdf';
 import { PrintService } from '../print.service';
  
@@ -82,28 +81,33 @@ export class PrimeTableComponent implements OnInit {
     sortF: string;
 
     data: Car[];
+
+    invoiceIds: string[];
+    invoiceDetails: Promise<any>[];
  
-      constructor( 
+      constructor(      
+            route: ActivatedRoute ,        
             private bookService: BookService,
             private carService: CarService,
             private messageService: MessageService,
-            public printService: PrintService            
-          ) { }
+            public printService: PrintService  
+          ) { 
+            
+          }
     
     ngOnInit() {
-
-      //this.bookService.getBooks().then(books => this.books = books);
-      
-      //this.carService.getCarsSmall().then(cars => this.cars1 = cars);
-
-     // this.carService.getCarsMedium().then(cars => this.cars2 = cars);
  
+      
+
+ 
+      //this.bookService.getBooks().then(books => this.books = books);
+      //this.carService.getCarsSmall().then(cars => this.cars1 = cars);
+     // this.carService.getCarsMedium().then(cars => this.cars2 = cars);
       //datasource imitation
 
       this.getCarsSmall2TriggerAction();
      
       this.getCarsSmall3TriggerAction();
-
  
     //   this.cars3 = [
     //     {"brand": "VW", "year": 2012, "color": "Orange", "vin": "dsad231ff"},
@@ -132,7 +136,7 @@ export class PrimeTableComponent implements OnInit {
       this.loading = true;
       this.loading3 = true;
     }
-    
+     
     changeSort(event) {
       if (!event.order) {
         this.sortF = 'identifier';
@@ -192,23 +196,14 @@ export class PrimeTableComponent implements OnInit {
         setTimeout(() =>  {
           if (this.cars3)  {
               console.log('this.cars OBJECT---> ' + this.cars);
-
               console.log('event.first ---> ' + event.first);
-
               console.log('(event.first + event.rows)---> ' + (event.first + event.rows));
-
               console.log('slice(event.first, (event.first + event.rows) ' + ( this.cars3.slice(event.first, (event.first + event.rows))).length );
-
               console.log('this.cars before slice ' + this.cars);
-                             
               this.cars = this.cars3.slice(event.first, (event.first + event.rows));     
- 
               console.log('this.cars after slice ' + this.cars);
-
               this.loading3 = false;
-
               this.getCarsSmall3TriggerAction();
-              
               console.log('this.cars after slice OBJECT---> ' + this.cars);
            }
            console.log('loadCarsLazy3 cars3 length ---> ' + this.cars3.length);
@@ -285,7 +280,6 @@ export class PrimeTableComponent implements OnInit {
           });
       }
 
-
       getCars() {
           let cars = [];
           for(let car of this.cars2) {
@@ -299,12 +293,11 @@ export class PrimeTableComponent implements OnInit {
           var myWindow = window.open("", "MsgWindow", "width=900,height=900, top=30% , left=500 ");
           myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p> <script type='text/javascript'>window.print();</script>");
          }
-
+ 
          onPrintInvoice() {
-          const invoiceIds = ['101', '102'];
+          const invoiceIds = ['101', '102','103'];
           this.printService
             .printDocument('invoice', invoiceIds);
         }
-
-  
+ 
 }
