@@ -8,6 +8,7 @@ import { CreateEmployeeCanDeactivateGuardService } from './employees/create-empl
 import { EmployeeDetailsComponent } from './employees/employee-details.component';
 import { EmployeesTableComponent } from './employees/employees-table.component';
 import { PrimeTableComponent } from './employees/prime-table.component';
+import { PrintLayoutComponent } from './print-layout/print-layout.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,13 @@ const routes: Routes = [
   {
     path: "app-read-files",
     component: ReadFilesComponent
+  },
+  { path: 'print',outlet: 'print',
+    component: PrintLayoutComponent,
+    children: [
+      { path: 'tableToPrint', component: PrintLayoutComponent },
+      { path: 'invoice/:invoiceIds', component: PrintLayoutComponent }
+    ]
   }
 ];
 

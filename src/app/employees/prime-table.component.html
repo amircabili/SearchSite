@@ -2,15 +2,38 @@
     <div class="row mb-2 box  box-shadow">
         <div class="col-md-12">
             <h3 class="first">Session 2</h3>
-            <p-table #dt2 [columns]="cols" [value]="cars2" [paginator]="true" [rows]="10"
-                [rowsPerPageOptions]="[5,10,20]" dataKey="vin" [reorderableColumns]="true" selectionMode="multiple"
-                [(selection)]="selectedCars2" [metaKeySelection]="true" stateStorage="session"
-                stateKey="statedemo-session">
+
+            <p-table #dt2 [columns]="cols" [value]="cars3" [paginator]="true" [rows]="5" [totalRecords]="totalRecords3"
+                [resizableColumns]="true" [rowsPerPageOptions]="[5,12,20]" dataKey="vin" [reorderableColumns]="true"
+                selectionMode="multiple" [(selection)]="selectedCars2" [metaKeySelection]="true" stateStorage="session"
+                [virtualScroll]="true" scrollHeight="300px" stateKey="statedemo-session">
+
+                <ng-template pTemplate="caption">
+                    <div class="ui-helper-clearfix" style="text-align: left">
+                        <button type="button" pButton icon="pi pi-file-o" iconPos="left" label="CSV"
+                            (click)="dt.exportCSV()" style="margin-right: 0.5em;"
+                            class="ui-button-warning text-dark">export CSV</button>
+                        <button type="button" pButton icon="pi pi-file-excel" iconPos="left" label="EXCEL"
+                            (click)="exportExcel()" style="margin-right: 0.5em;"
+                            class="ui-button-success text-dark">export Excel</button>
+                        <button type="button" pButton icon="pi pi-file-pdf" iconPos="left" label="PDF"
+                            (click)="exportPdf()" class="ui-button-warning text-dark">export Pdf</button>
+                            
+                        <button type="button" pButton icon="pi pi-file" iconPos="left" label="CSV - Selection Only"
+                            (click)="printThis()" style="float:right"
+                            class="ui-button-warning text-dark ml-3 mr-3">Print Table</button>
+
+                            <button (click)="onPrintInvoice()" class="ui-button-warning text-dark ml-3 mr-3">PRINT THIS</button>
+
+
+                    </div>
+                </ng-template>
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th style="width:3em"> </th>
-                        <th style="width:3em"> </th>
-                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        <th style="width:3em"></th>
+                        <th style="width:3em"></th>
+                        <th pReorderableColumn pResizableColumn *ngFor="let col of columns"
+                            [pSortableColumn]="col.field">
                             {{col.header}}
                             <p-sortIcon [field]="col.field"></p-sortIcon>
                         </th>
@@ -28,7 +51,7 @@
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
-                    <tr [pSelectableRow]="rowData">
+                    <tr [pSelectableRow]="rowData" [pReorderableRow]="index">
                         <td class="p-0">
                             <div class="text-center">
                                 <a href="#" [pRowToggler]="rowData">
@@ -80,124 +103,48 @@
                 </ng-template>
             </p-table>
             <br><br>
-            <div>
-                <h1>12312123</h1>
-            </div>
-            <br>
-            <p-table [value]="books" [resizableColumns]="true">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th pResizableColumn>Name</th>
-                        <th pResizableColumn>Author</th>
-                        <th>Price In Dollars</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-book>
-                    <tr>
-                        <td>{{book.name}}</td>
-                        <td>{{book.author}}</td>
-                        <td>{{book.price}}</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-            <br><br><br>
-            <hr>
-            <p-table [value]="books" dataKey="name" editMode="row">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th>Name</th>
-                        <th>Author</th>
-                        <th>Price</th>
-                        <th>Editor</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
-                    <tr [pEditableRow]="rowData">
-                        <td>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <input pInputText type="text" [(ngModel)]="rowData.name">
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{rowData.name}}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <input pInputText type="text" [(ngModel)]="rowData.author">
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{rowData.author}}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td>
-                            <p-cellEditor>
-                                <ng-template pTemplate="input">
-                                    <input pInputText type="text" [(ngModel)]="rowData.price">
-                                </ng-template>
-                                <ng-template pTemplate="output">
-                                    {{rowData.price}}
-                                </ng-template>
-                            </p-cellEditor>
-                        </td>
-                        <td style="text-align:center">
-
-                            <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil"
-                                class="ui-button-info" (click)="onRowEditInit(rowData)">Edit</button>
-
-                            <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check"
-                                class="ui-button-success" style="margin-right: .5em"
-                                (click)="onRowEditSave(rowData)">Edit-Save</button>
-
-                            <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times"
-                                class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)">Cancel</button>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-            <br><br><br>
-            <hr>
-            <h3 class="first">Session 1</h3>
-            <p-table #dt1 [columns]="cols" [value]="cars1" [paginator]="true" [rows]="10"
-                [rowsPerPageOptions]="[5,10,20]" dataKey="vin" [resizableColumns]="true" [reorderableColumns]="true"
-                selectionMode="single" [(selection)]="selectedCar1" stateStorage="session" stateKey="statedemo-session">
+            <!-- [lazy]="true" [loading]="loading3" [immutable]=false
+              (onLazyLoad)="loadCarsLazy3($event)"  -->
+            <p-table [columns]="cols" [value]="cars2" [lazy]="true" (onLazyLoad)="loadCarsLazy2($event)"
+                [immutable]="false" [paginator]="true" [rows]="4" [totalRecords]="totalRecords" [loading]="loading"
+                [rowsPerPageOptions]="[5,12,20]">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
-                        <th style=""></th>
-                        <th *ngFor="let col of columns" [pSortableColumn]="col.field" pResizableColumn
-                            pReorderableColumn>
+                        <th *ngFor="let col of columns">
                             {{col.header}}
-                            <p-sortIcon [field]="col.field"></p-sortIcon>
-                        </th>
-                    </tr>
-                    <tr>
-                        <th style=""></th>
-                        <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
-                            <input pInputText type="text"
-                                (input)="dt1.filter($event.target.value, col.field, col.filterMatchMode)"
-                                [value]="dt1.filters[col.field]?.value">
                         </th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-rowData let-columns="columns">
-                    <tr [pSelectableRow]="rowData">
-                        <td>
-                            <a href="#" [pRowToggler]="rowData">
-                                <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
-                            </a>
-                        </td>
+                    <tr>
                         <td *ngFor="let col of columns">
                             {{rowData[col.field]}}
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
-            <br><br><br>
-            <hr>
-
+            <br><br>
         </div>
     </div>
+
+    <div class="modal" tabindex="-1" role="dialog" onload="window.print()">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
 </div>

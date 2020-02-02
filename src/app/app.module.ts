@@ -36,19 +36,19 @@ import {PrimeTableComponent} from './employees/prime-table.component';
 import {CheckboxModule} from 'primeng/checkbox';
 import {DropdownModule} from 'primeng/dropdown';
 import {AutoCompleteModule} from 'primeng/autocomplete';
-
-
 import {TableModule} from 'primeng/table';
 import { CommonModule  }  from '@angular/common';
 import {InputTextModule} from 'primeng/inputtext';
 import {ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
+ 
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
-import { AutofocusDirective } from './autofocus.directive';
- 
+import {AutofocusDirective} from './autofocus.directive';
+import { PrintLayoutComponent } from './print-layout/print-layout.component';
+import { PrintElementComponent } from './print-element/print-element.component';
 
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -66,7 +66,9 @@ import { AutofocusDirective } from './autofocus.directive';
     EmployeeDetailsComponent,
     EmployeesTableComponent,
     PrimeTableComponent,
-    AutofocusDirective 
+    AutofocusDirective,
+    PrintLayoutComponent,
+    PrintElementComponent 
   ],
 
   imports: [
@@ -97,7 +99,7 @@ import { AutofocusDirective } from './autofocus.directive';
     MessageModule ,
     CheckboxModule ,
     DropdownModule,
-    AutoCompleteModule
+    AutoCompleteModule 
   ],
   
   exports: [

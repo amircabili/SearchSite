@@ -260,9 +260,7 @@ export class EmployeeService {
       return this.http.get<Employee[]>(this._url); 
     }
   
-    results: string[];    
- 
-    
+    results: string[];         
 
     errorHandler(error: HttpErrorResponse){
       return Observable.throw(error.message || "Server Error");

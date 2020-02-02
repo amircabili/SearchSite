@@ -9,7 +9,25 @@ import { Car } from './models/car.model';
 
 export class CarService {
 
-    constructor(private http: HttpClient) { }
+    constructor( private http: HttpClient ) { }
+
+    private _url: string = "assets/data/cars-small.json";
+
+
+    getCarsSmall2(){
+      return this.http.get<any>(this._url)
+      .toPromise()
+        .then(res => <Car[]>res.data)
+        .then(data => { return data; }); 
+    }
+
+    getCarsSmall3(){
+      return this.http.get<any>('assets/data/cars-medium.json')
+      .toPromise()
+        .then(res => <Car[]>res.data)
+        .then(data => { return data; }); 
+    }
+
 
     getCarsSmall() {
     return this.http.get<any>('assets/data/cars-small.json')
@@ -32,10 +50,10 @@ export class CarService {
       .then(data => { return data; });
     }
 
-  getCarsHuge() {
-    return this.http.get<any>('assets/data/cars-huge.json')
-      .toPromise()
-      .then(res => <Car[]>res.data)
-      .then(data => { return data; });
-  }
+    getCarsHuge() {
+      return this.http.get<any>('assets/data/cars-huge.json')
+        .toPromise()
+        .then(res => <Car[]>res.data)
+        .then(data => { return data; });
+    }
 }
