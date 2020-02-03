@@ -10,9 +10,8 @@ export class EmployeeFilterPipe implements PipeTransform{
     
     private counter = 0;
     transform(employees: Employee[], searchTerm: string ) :Employee[] {
-         // console.log('Filter pipe executed count :'  + this.counter + 'times');
          this.counter++;
-         console.log('Filter pipe executed count - ' + this.counter);
+         console.log('Filter pipe executed count :'  + this.counter + 'times');
 
         if(!employees || !searchTerm){
              return employees;

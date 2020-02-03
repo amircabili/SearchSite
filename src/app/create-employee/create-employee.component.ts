@@ -88,7 +88,7 @@ export class CreateEmployeeComponent implements OnInit {
   saveEmployee(){
      // const newEmployee: Employee = Object.assign({},this.employee);
       // console.log('newEmployee - ' + newEmployee);
-      console.log(this.employee);
+      //console.log(this.employee);
       this._employeeService.save(this.employee);
       //this._router.navigate(['employees']);
   }

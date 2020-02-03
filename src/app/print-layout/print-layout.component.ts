@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './print-layout.component.html',
   styleUrls: ['./print-layout.component.less']
 })
+
 export class PrintLayoutComponent implements OnInit {
 
   constructor() { }

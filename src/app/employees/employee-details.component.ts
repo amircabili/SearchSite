@@ -31,16 +31,14 @@ export class EmployeeDetailsComponent implements OnInit {
       })
       this._router.navigate(['/employees', this._id])
     });
-
     // this._router.navigate(['/employees', this._id])
-    console.log('this._route.snapshot.paramMap - id ------- ' + this._id)
-    console.log('this.employee ------- ' + this.employee);
   }
 
   viewNextEmployee() {
     if (this._id < this.employees.length) {
       this._id = this._id + 1;
       this._router.navigate(['/employees', this._id])
+
     }
     else {
       this._id = 1;
@@ -50,11 +48,9 @@ export class EmployeeDetailsComponent implements OnInit {
 
   changeEmployeeName(){        
     // this.employees[0].name = 'Jordan Cohen';  
-    
     const newEmployeeArray : Employee[] = Object.assign([], this.employees);
     newEmployeeArray[0].name = 'Jordan Levine';
     this.employees = newEmployeeArray;
   }
-
 
 }

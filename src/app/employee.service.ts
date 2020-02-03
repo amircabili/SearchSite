@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse,HttpHeaders } from '@angular/common/http';
 import { Employee } from './models/employee.model';
-import { Observable, Subject, throwError } from 'rxjs';
+import {  Subject, throwError } from 'rxjs';
 import 'rxjs/add/operator/map'
 import { pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/delay';
 import 'rxjs/add/observable/throw';
+import 'rxjs/add/observable/of';
+import { Observable} from 'rxjs/observable';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 
  @Injectable({
   providedIn: 'root'
@@ -256,10 +260,15 @@ export class EmployeeService {
   // params = params.append('param2', value2); // add a new param, creating a new object
   // params = params.append('param3', value3); // add another param 
 
-    getEmployees(){
-      return this.http.get<Employee[]>(this._url); 
+    // getEmployees(){
+    //   return this.http.get<Employee[]>(this._url); 
+    // }
+
+    getEmployees() : Observable<Employee[]>{
+        //return this.http.get<Employee[]>(this._url);      
+        return Observable.of(this.listEmployees).delay(200);
     }
-  
+ 
     results: string[];         
 
     errorHandler(error: HttpErrorResponse){
