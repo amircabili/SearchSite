@@ -10,6 +10,7 @@ import { EmployeesTableComponent } from './employees/employees-table.component';
 import { PrimeTableComponent } from './employees/prime-table.component';
 import { PrintLayoutComponent } from './print-layout/print-layout.component';
 import { PrintElementComponent } from './print-element/print-element.component';
+import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
   },
   {
     path: "employees",
-    component: ListEmployeesComponent
+    component: ListEmployeesComponent,
+    resolve: { employeeList: EmployeeListResolverService }
   },
   {
     path: "employees/:id", component: EmployeeDetailsComponent,
@@ -39,28 +41,32 @@ const routes: Routes = [
   {
     path: "app-create-employee",
     component: CreateEmployeeComponent,
-    canDeactivate:  [CreateEmployeeCanDeactivateGuardService]
+    canDeactivate: [CreateEmployeeCanDeactivateGuardService]
   },
   {
     path: "app-read-files",
     component: ReadFilesComponent
   },
-  { path: 'print',
+  {
+    path: 'print',
     outlet: 'print',
     component: PrintLayoutComponent,
     children: [
-      // { path: 'tableToPrint', component: PrintElementComponent },
-      
-      { path: 'invoice/:invoiceIds', component: PrintElementComponent }
+      // { path: 'tableToPrint', component: PrintElementComponent },      
+      { path: 'invoice/:invoiceIds', component: PrimeTableComponent }
     ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {enableTracing: true})
+  ],
+  exports:[
+     RouterModule
+    ]
 })
 
 export class AppRoutingModule { }
 
-export const routingComponents = [InstructionsComponent,ListEmployeesComponent]
+export const routingComponents = [InstructionsComponent, ListEmployeesComponent]

@@ -149,10 +149,21 @@ export class PrimeTableComponent implements OnInit {
     getCarsSmall2TriggerAction(){
         this.carService.getCarsSmall2().then(data => {
           this.cars2 = data;
-          this.totalRecords = this.cars2.length;
+          this.totalRecords = 22;
           console.log('carService totalRecords  getCarsSmall2TriggerAction ---> ' + this.cars2.length);
       });
     }
+
+    getCarsSmall2_1_TriggerAction(eventFirst,eventRows){
+      this.carService.getCarsSmall2_1(eventFirst,eventRows).then(data => {
+        this.cars2 = data;
+        this.totalRecords = 22;
+
+        console.log('carService totalRecords  getCarsSmall2TriggerAction ---> ' + this.cars2.length);
+    });
+  }
+
+
 
     getCarsSmall3TriggerAction(){
         this.carService.getCarsSmall3().then(cars => {
@@ -165,16 +176,22 @@ export class PrimeTableComponent implements OnInit {
     loadCarsLazy2(event: LazyLoadEvent) {
       this.loading = true;
  
-      setTimeout(() => {
+      
           if (this.cars2) {
               console.log('this.cars2 OBJECT--->  - ' + this.cars2.length);
-              this.data = this.cars2.slice(event.first, (event.first + event.rows));
-              this.loading = false;
+
+
+              this.getCarsSmall2_1_TriggerAction(event.first,event.first + event.rows);
+
+
+              console.log(' event.first - ' +  event.first  + '   ' +  '(event.first + event.rows) - ' +   (event.first + event.rows)  );
+               this.loading = false;
+
               //this.getCarsSmall2TriggerAction();
 
               console.log('this.cars2 OBJECT---> slice - ' + this.cars2.length);            }
             
-          }, 900);                               
+                                       
       }
 
       loadPersonsLazy(event: LazyLoadEvent) {

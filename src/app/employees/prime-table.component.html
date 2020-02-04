@@ -113,9 +113,10 @@
             <br><br>
             <!-- [lazy]="true" [loading]="loading3" [immutable]=false
               (onLazyLoad)="loadCarsLazy3($event)"  -->
+              
             <p-table [columns]="cols" [value]="cars2" [lazy]="true" (onLazyLoad)="loadCarsLazy2($event)"
-                [immutable]="false" [paginator]="true" [rows]="4" [totalRecords]="totalRecords" [loading]="loading"
-                [rowsPerPageOptions]="[5,12,20]">
+                [immutable]="false" [paginator]="true" [rows]="10" [totalRecords]="totalRecords"  
+                [rowsPerPageOptions]="[5,10,20]">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th *ngFor="let col of columns">

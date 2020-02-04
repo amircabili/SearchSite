@@ -5,6 +5,7 @@ import {  Subject, throwError } from 'rxjs';
 import 'rxjs/add/operator/map'
 import { pipe } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/delay';
@@ -260,17 +261,16 @@ export class EmployeeService {
   // params = params.append('param2', value2); // add a new param, creating a new object
   // params = params.append('param3', value3); // add another param 
 
-    // getEmployees(){
-    //   return this.http.get<Employee[]>(this._url); 
-    // }
-
-    getEmployees() : Observable<Employee[]>{
-        //return this.http.get<Employee[]>(this._url);      
-        return Observable.of(this.listEmployees).delay(200);
+    getEmployees(){
+      return this.http.get<Employee[]>(this._url).delay(400);
     }
+
+    // getEmployees() : Observable<Employee[]>{
+    //     //return this.http.get<Employee[]>(this._url);      
+    //     return Observable.of(this.listEmployees).delay(200);
+    // }
  
     results: string[];         
-
     errorHandler(error: HttpErrorResponse){
       return Observable.throw(error.message || "Server Error");
     }

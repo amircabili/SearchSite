@@ -12,10 +12,19 @@ export class CarService {
     constructor( private http: HttpClient ) { }
 
     private _url: string = "assets/data/cars-small.json";
-
+    private _url_1: string = "assets/data/cars-small_1.json";
 
     getCarsSmall2(){
       return this.http.get<any>(this._url)
+      .toPromise()
+        .then(res => <Car[]>res.data)
+        .then(data => { return data; }); 
+    }
+
+    getCarsSmall2_1(eventFirst,eventRows){
+      console.log(eventFirst +' ' + eventRows );
+      
+      return this.http.get<any>(this._url_1) 
       .toPromise()
         .then(res => <Car[]>res.data)
         .then(data => { return data; }); 

@@ -2,6 +2,7 @@ import { Component, OnInit, SimpleChanges, Output, ViewChild, ElementRef } from 
 import { EmployeeService } from '../employee.service';
 import { Employee } from '../models/employee.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-list-employees',
@@ -10,7 +11,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class ListEmployeesComponent implements OnInit {
-
 
   public employees: Employee[];
   public employee: any;
@@ -57,41 +57,49 @@ export class ListEmployeesComponent implements OnInit {
   //     employee.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1);
   // }
 
+  public getEmployeesRef: Subscription;
+
   constructor(
     private _employeeService: EmployeeService,
     private _router: Router,
     private _route: ActivatedRoute
-  ) { }
+  ) {
+    this.employees = this._route.snapshot.data['employeeList'];
+    if (this._route.snapshot.queryParamMap.has('searchTerm')) {
+      this.searchTerm = this._route.snapshot.queryParamMap.get('searchTerm');
+    }
+    else {
+      this.filteredEmployees = this.employees;
+      console.log('else : ' + new Date().toTimeString());
+      console.log('----------------------------- ');
+    }
+  }
+
+  ngOnDestroy() {
+    this.getEmployeesRef.unsubscribe();
+    console.log('list employees unsubscribed and destroyed!');
+  }
 
   ngOnInit() {
 
     //this.buttonNext = false;
-    
-      this._employeeService.getEmployees().subscribe((data) => { 
-        this.employees = data;
-        console.log('Subscribe : ' + new Date().toTimeString());
 
-              if (this._route.snapshot.queryParamMap.has('searchTerm')) {
-                this.searchTerm = this._route.snapshot.queryParamMap.get('searchTerm');
-              }
-              else {
-                this.filteredEmployees = this.employees;
-                console.log('else : ' + new Date().toTimeString());
-                console.log('----------------------------- '  );
-              }
-       })
-      error => this.errorMsg = error;
-      this.arrayIndex = 0;
-       console.log('this._route.snapshot.queryParamMap.get( name ) ' + this._route.snapshot.queryParamMap.get('name'));
+    this.getEmployeesRef = this._employeeService.getEmployees().subscribe((data) => {
+      this.employees = data;
+      console.log('Subscribe : ' + new Date().toTimeString());
+    })
+    error => this.errorMsg = error;
+    this.arrayIndex = 0;
+    console.log('this._route.snapshot.queryParamMap.get( name ) ' + this._route.snapshot.queryParamMap.get('name'));
 
-   }
+  }
 
   clickSearchInput() {
     console.log(this._searchTerm);
 
     this._employeeService.getEmployees()
-        .subscribe(data => this.employees = data)
-          error => this.errorMsg = error;
+      .subscribe(data => this.employees = data)
+    error => this.errorMsg = error;
 
     // this.FilteredEmployees = this.employees;
     //this.employeeToDisplay = this.employees[0];
@@ -101,7 +109,7 @@ export class ListEmployeesComponent implements OnInit {
     if (!this.searchTerm) {
       this._employeeService.getEmployees()
         .subscribe(data => {
-        this.employees = data;
+          this.employees = data;
         })
       error => this.errorMsg = error;
       this.arrayIndex = 0;
@@ -119,11 +127,11 @@ export class ListEmployeesComponent implements OnInit {
 
   clearSearchInput() {
     //this._employeeService = null;
-   this.searchTerm = '';
+    this.searchTerm = '';
     // if(this.employees!){
     //   this.employees = this.employees.splice(0,this.employees.length)
     // }
-     //location.reload();
+    //location.reload();
   }
 
   nextEmployee(): void {

@@ -42,7 +42,12 @@
     <h1>Main Page </h1>
 </div>
 
-<router-outlet></router-outlet>
+<div *ngIf="showLoadingIndicator" class="loader2Wrapper">
+    <div class="loader2"></div>
+</div>
+
+<div *ngIf="!showLoadingIndicator"><router-outlet ></router-outlet></div>
+
 <router-outlet name="print"></router-outlet>
 
 <footer class="footer background-cyan direction-rtl p-2">
