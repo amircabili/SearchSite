@@ -62,7 +62,7 @@ export class ListEmployeesComponent implements OnInit {
   constructor(
     private _employeeService: EmployeeService,
     private _router: Router,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute 
   ) {
     this.employees = this._route.snapshot.data['employeeList'];
     if (this._route.snapshot.queryParamMap.has('searchTerm')) {
@@ -81,17 +81,18 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   ngOnInit() {
-
     //this.buttonNext = false;
 
     this.getEmployeesRef = this._employeeService.getEmployees().subscribe((data) => {
       this.employees = data;
-      console.log('Subscribe : ' + new Date().toTimeString());
-    })
-    error => this.errorMsg = error;
+      console.log(' Subscribe : ' + new Date().toTimeString() + '  ' + ' Success!! ');
+    }),
+    (error) => {
+      console.log('There was an error!');
+      console.log(error);
+    }
     this.arrayIndex = 0;
     console.log('this._route.snapshot.queryParamMap.get( name ) ' + this._route.snapshot.queryParamMap.get('name'));
-
   }
 
   clickSearchInput() {
@@ -149,19 +150,19 @@ export class ListEmployeesComponent implements OnInit {
     }
   }
 
-  // handleNotify(eventData: Employee){
-  //     this.dataFromChild = eventData;
-  // }
+    // handleNotify(eventData: Employee){
+    //     this.dataFromChild = eventData;
+    // }
 
-  onClick(employeeId: number) {
-    this._router.navigate(['/employees', employeeId], {
-      queryParams: { 'searchTerm': this.searchTerm, 'testParam': 'testValue' }
-    });
-  }
+    // onClick(employeeId: number) {
+    //   this._router.navigate(['/employees', employeeId], {
+    //     queryParams: { 'searchTerm': this.searchTerm, 'testParam': 'testValue' }
+    //   });
+    // }
 
-  onMouseMove() {
+    // onMouseMove() {
 
-  }
+    // }
 
 }
 

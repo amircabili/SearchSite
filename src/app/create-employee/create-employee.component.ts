@@ -4,7 +4,7 @@ import { Department } from '../models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from '../employee.service';
-import { Routes, Router } from '@angular/router';
+import { Routes, Router, ActivatedRoute } from '@angular/router';
 import {InputTextModule} from 'primeng/inputtext';
 import {CheckboxModule} from 'primeng/checkbox';
 import {SelectItem} from 'primeng/api';
@@ -14,7 +14,6 @@ import {SelectItem} from 'primeng/api';
   templateUrl: './create-employee.component.html',
   styleUrls: ['./create-employee.component.less'] 
 })
-
 
 export class CreateEmployeeComponent implements OnInit {
   // dateOfBirth: Date = new Date(2018, 1, 28);
@@ -28,12 +27,10 @@ export class CreateEmployeeComponent implements OnInit {
   previewPhoto = false;
   isFocused = false;
   public employees: any;
-
-   
   text: string;
+  employee1: any;
 
   public focusSettingEventEmitter = new EventEmitter<boolean>();
-
 
   datePickerConfig : Partial<BsDatepickerConfig>;
 
@@ -51,17 +48,19 @@ export class CreateEmployeeComponent implements OnInit {
   };
 
   departments: Department[];
- 
   selectedDepartment: Department;
-
+  emp: any;
   
-  constructor(private _employeeService : EmployeeService, private _router: Router) {
+  constructor(
+        private _employeeService : EmployeeService,
+        private _router: Router,
+        private _route: ActivatedRoute
+      ){
       this.datePickerConfig = Object.assign({}, {
         dateInputFormat: 'DD-MM-YYYY',
         containerClass: 'theme-blue',
         isAnimated: true ,
        });
-
        this.departments  = [
         {id:1, name:'Help Desk'},
         {id:2, name:'HR'},
@@ -70,10 +69,41 @@ export class CreateEmployeeComponent implements OnInit {
         {id:5, name:'123'},
         {id:6, name:'4444444444'}
       ];
-
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._route.paramMap.subscribe(parameterMap => {
+      const id = +parameterMap.get('id');
+      this.getEmployee(id);
+      alert(this.getEmployee(id))
+    });
+  }
+
+ 
+
+
+
+  private getEmployee(id: number){
+    if(id===0){
+      this.employee ={
+        id : null, 
+        name : null,
+        gender : null,
+        email : null,
+        phonenumber: null,
+        contactPreference : null,
+        dateOfBirth : null,
+        department : 'select',
+        isActive : null,
+        photoPath : null
+      }
+    }
+    else{
+      this.employee1 = this._employeeService.getEmployee(id);
+      alert(this.employee1)
+    }
+  }
+
   
   clearSearchInput():void{
     // this.searchTerm = null;
@@ -93,7 +123,6 @@ export class CreateEmployeeComponent implements OnInit {
       //this._router.navigate(['employees']);
   }
 
-
     val: Employee;    
     results: Department[];
 
@@ -101,14 +130,9 @@ export class CreateEmployeeComponent implements OnInit {
             this.results= this.departments;
     }
 
- 
-
     department1: SelectItem[];
+
     
- 
-  
-    
- 
   // searchInNames(event) 
   // {
   //   let query = event.query;
@@ -139,4 +163,5 @@ export class CreateEmployeeComponent implements OnInit {
     //       }
     //       return filtered;
     //   }
+
 }

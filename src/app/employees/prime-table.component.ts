@@ -97,9 +97,6 @@ export class PrimeTableComponent implements OnInit {
     
     ngOnInit() {
  
-      
-
- 
       //this.bookService.getBooks().then(books => this.books = books);
       //this.carService.getCarsSmall().then(cars => this.cars1 = cars);
      // this.carService.getCarsMedium().then(cars => this.cars2 = cars);
@@ -176,21 +173,15 @@ export class PrimeTableComponent implements OnInit {
     loadCarsLazy2(event: LazyLoadEvent) {
       this.loading = true;
  
-      
           if (this.cars2) {
+
               console.log('this.cars2 OBJECT--->  - ' + this.cars2.length);
-
-
               this.getCarsSmall2_1_TriggerAction(event.first,event.first + event.rows);
-
-
               console.log(' event.first - ' +  event.first  + '   ' +  '(event.first + event.rows) - ' +   (event.first + event.rows)  );
                this.loading = false;
-
               //this.getCarsSmall2TriggerAction();
 
               console.log('this.cars2 OBJECT---> slice - ' + this.cars2.length);            }
-            
                                        
       }
 

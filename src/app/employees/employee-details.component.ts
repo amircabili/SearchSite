@@ -24,7 +24,6 @@ export class EmployeeDetailsComponent implements OnInit {
 
     this._route.paramMap.subscribe(params => {
       this._id = +params.get('id');
-
       this._employeeService.getEmployees().subscribe(data => {
         this.employees = data;
         this.employee = this.employees[this._id - 1];
@@ -38,7 +37,6 @@ export class EmployeeDetailsComponent implements OnInit {
     if (this._id < this.employees.length) {
       this._id = this._id + 1;
       this._router.navigate(['/employees', this._id])
-
     }
     else {
       this._id = 1;
@@ -46,11 +44,11 @@ export class EmployeeDetailsComponent implements OnInit {
     }
   }
 
-  changeEmployeeName(){        
-    // this.employees[0].name = 'Jordan Cohen';  
-    const newEmployeeArray : Employee[] = Object.assign([], this.employees);
-    newEmployeeArray[0].name = 'Jordan Levine';
-    this.employees = newEmployeeArray;
-  }
+      // changeEmployeeName(){        
+      //   // this.employees[0].name = 'Jordan Cohen';  
+      //   const newEmployeeArray : Employee[] = Object.assign([], this.employees);
+      //   newEmployeeArray[0].name = 'Jordan Levine';
+      //   this.employees = newEmployeeArray;
+      // }
 
 }

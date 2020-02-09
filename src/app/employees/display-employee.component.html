@@ -1,11 +1,10 @@
 <!-- <div class="row mb-2 box  box-shadow" *ngFor="let employee of FilteredEmployees"> -->
 <!-- <div class="panel" (click)="handleClick()"> -->
-<div class="panel" >
-   
+<div class="panel">
+
     <div class="row no-gutters rounded overflow-hidden flex-md-row mb-4 
-    shadow-sm h-md-250 position-relative panel-primary"
-     [class.panel-success]="selectedEmployeeId === employee.id">
-     
+    shadow-sm h-md-250 position-relative panel-primary" [class.panel-success]="selectedEmployeeId === employee.id">
+
         <div class=" col p-4 d-flex flex-column position-static vertical-align ">
             <strong class="d-inline-block mb-2 text-primary">מספר סידורי : {{employee.id}} </strong>
             <div class="panel-heading">
@@ -46,5 +45,10 @@
             <br>
             <div class="stretched-link"> עוד פרטים -> </div>
         </div>
+    </div>
+    <div class="footer">
+        <button class="btn btn-danger mr-2">Delete</button>
+        <button class="btn btn-primary mr-2" (click)="viewEmployee()">View</button>
+        <button class="btn btn-primary mr-2" (click)="editEmployee()">Edit</button>
     </div>
 </div>

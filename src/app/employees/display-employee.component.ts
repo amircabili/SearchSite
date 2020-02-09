@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnChanges,Output, SimpleChanges , EventEmitte
 import { Employee } from '../models/employee.model';
 import { ActivatedRoute,Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-display-employee',
   templateUrl: './display-employee.component.html',
@@ -16,12 +15,15 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
 
   // @Output() notify: EventEmitter<Employee> = new EventEmitter<Employee>();
 
+
+  @Input() searchTerm: string;
+
   @Input()
   set employeeId(val: number) {
 
-    // console.log('Previous  :' + (this._employee ? this._employee.name : 'NULL'));
-    // console.log('Current  :' + val.name);
-    // console.log( '--------employeeId-------   employeeId changed from ' + 
+    // console.log(' Previous  :' + (this._employee ? this._employee.name : 'NULL'));
+    // console.log(' Current  :' + val.name);
+    // console.log(' --------  employeeId  -------   employeeId changed from ' + 
     //                 JSON.stringify(this._employeeId) + ' to ' +  JSON.stringify(val));
 
     this._employeeId = val;
@@ -32,12 +34,9 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
   }
 
   @Input()
-  
   set employee(val: Employee) {
-
 //  console.log( '--------employee------- emplemployeeoyeeId changed from ' + 
 //                     JSON.stringify(this._employee) + ' to ' +  JSON.stringify(val));
-
     this._employee = val;
   }
 
@@ -45,7 +44,7 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
     return this._employee;
   }
 
-  constructor(private _route: ActivatedRoute){ }
+  constructor(private _route: ActivatedRoute , private _router:Router){ }
 
   ngOnInit() { 
     this.selectedEmployeeId = +this._route.snapshot.paramMap.get('id'); 
@@ -77,5 +76,16 @@ export class DisplayEmployeeComponent implements OnInit, OnChanges {
   getEmployeeNameAndGender(): string{
     return this.employee.name + ' ' + this.employee.gender;
   }
+
+  viewEmployee() {
+    this._router.navigate(['/employees', this.employeeId], {
+      queryParams: { 'searchTerm': this.searchTerm  }
+    });
+  }
+
+  editEmployee() {
+    this._router.navigate(['/edit', this.employeeId] );
+  }
+
 
 }

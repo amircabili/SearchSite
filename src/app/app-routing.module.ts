@@ -11,6 +11,8 @@ import { PrimeTableComponent } from './employees/prime-table.component';
 import { PrintLayoutComponent } from './print-layout/print-layout.component';
 import { PrintElementComponent } from './print-element/print-element.component';
 import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { EmployeeDetailsGuardService } from './employees/employee-details-guard.service';
 
 const routes: Routes = [
   {
@@ -18,18 +20,27 @@ const routes: Routes = [
     redirectTo: "/employees",
     pathMatch: "full"
   },
+
   {
     path: "employees",
     component: ListEmployeesComponent,
     resolve: { employeeList: EmployeeListResolverService }
   },
+
   {
     path: "employees/:id", component: EmployeeDetailsComponent,
+    canActivate: [EmployeeDetailsGuardService]
   },
+
+  {
+    path: "notFound", component: PageNotFoundComponent
+  },
+
   {
     path: "app-employees-table",
     component: EmployeesTableComponent
   },
+
   {
     path: "app-prime-table",
     component: PrimeTableComponent
@@ -39,7 +50,7 @@ const routes: Routes = [
     component: InstructionsComponent
   },
   {
-    path: "app-create-employee",
+    path: "edit/:id",
     component: CreateEmployeeComponent,
     canDeactivate: [CreateEmployeeCanDeactivateGuardService]
   },
@@ -47,6 +58,7 @@ const routes: Routes = [
     path: "app-read-files",
     component: ReadFilesComponent
   },
+
   {
     path: 'print',
     outlet: 'print',
@@ -60,11 +72,11 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {enableTracing: true})
+    RouterModule.forRoot(routes)  //, {enableTracing: true}
   ],
-  exports:[
-     RouterModule
-    ]
+  exports: [
+    RouterModule
+  ]
 })
 
 export class AppRoutingModule { }

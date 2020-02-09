@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse,HttpHeaders } from '@angular/common/http';
 import { Employee } from './models/employee.model';
-import {  Subject, throwError } from 'rxjs';
+import {  Subject, throwError, of } from 'rxjs';
 import 'rxjs/add/operator/map'
 import { pipe } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map ,timeout , startWith} from 'rxjs/operators';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/catch';
@@ -13,6 +13,9 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/of';
 import { Observable} from 'rxjs/observable';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+const CACHE_KEY = 'httpRepoCach'
 
  @Injectable({
   providedIn: 'root'
@@ -21,10 +24,30 @@ import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 export class EmployeeService {
   
   private _url: string = "assets/data/employee.json";
+   baseUrl: any;
+   public allEmployees:any;
+   public employees: any ;
+   emp : Employee[]  ;
   
   //private _url2: string = "https://ctb2013.scp.co.il:8443/foreignTrade/table/currencies";
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient ) { 
+
+    // this.allEmployees = this.http.get<Employee[]>(this._url).delay(1400)
+    // .pipe(
+    //       timeout(1000)
+    // );
+
+    // this.allEmployees.subscribe(next => {
+    //   localStorage[CACHE_KEY] = JSON.stringify(next);
+    // });
+
+    // this.allEmployees = this.allEmployees.pipe(
+    //     startWith( JSON.parse(localStorage[CACHE_KEY] || '[]' ))
+    //   )
+  }
+
+
 
   // getEmployees(){
   //   return this.http.get<Employee[]>(this._url)
@@ -262,13 +285,57 @@ export class EmployeeService {
   // params = params.append('param3', value3); // add another param 
 
     getEmployees(){
-      return this.http.get<Employee[]>(this._url).delay(400);
+      return this.http.get<Employee[]>(this._url).delay(400)
+      .pipe(
+        timeout(1800)
+      );
     }
 
-    // getEmployees() : Observable<Employee[]>{
-    //     //return this.http.get<Employee[]>(this._url);      
-    //     return Observable.of(this.listEmployees).delay(200);
-    // }
+    // getEmp(id:number):Observable<Employee>{
+    //   return this.http.get<Employee>(this._url + id);
+    //   }
+
+
+    private initializeEmployee(): Employee {  
+      return {  
+        id : null, 
+        name : null,
+        gender : null,
+        email : null,
+        phonenumber: null,
+        contactPreference : null,
+        dateOfBirth : null,
+        department : 'select',
+        isActive : null,
+        photoPath : null
+      };  
+    }  
+
+    getEmployee(id: number): Observable<any> {
+      return this.http.get(`${this.baseUrl}/${id}`);
+    }
+
+
+    getEmployee2(id: any)  {  
+
+      this.getEmployees()
+        .subscribe(data => {
+          this.employees = data;
+        })
+ 
+        this.employees.forEach(function (value) {
+          console.log(value);
+        }); 
+
+    }  
+    
+
+   
+
+    //  getEmployees() : Observable<Employee[]>{
+    //      //return this.http.get<Employee[]>(this._url);      
+    //      return Observable.of(this.listEmployees).delay(200);
+    //  }
  
     results: string[];         
     errorHandler(error: HttpErrorResponse){

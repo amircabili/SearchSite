@@ -41,14 +41,16 @@ import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { AutofocusDirective } from './autofocus.directive';
 import { PrintLayoutComponent } from './print-layout/print-layout.component';
 import { PrintElementComponent } from './print-element/print-element.component';
 import { EmployeeListResolverService } from './employees/employee-list-resolver.service';
-
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+import { EmployeeDetailsGuardService } from './employees/employee-details-guard.service';
 
 @NgModule({
   declarations: [
@@ -69,9 +71,9 @@ import { EmployeeListResolverService } from './employees/employee-list-resolver.
     PrimeTableComponent,
     AutofocusDirective,
     PrintLayoutComponent,
-    PrintElementComponent
+    PrintElementComponent,
+    PageNotFoundComponent
   ],
-
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -100,18 +102,16 @@ import { EmployeeListResolverService } from './employees/employee-list-resolver.
     MessageModule,
     CheckboxModule,
     DropdownModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
-
   exports: [
     MatIconModule
   ],
-
-  providers: [EmployeeService, CreateEmployeeCanDeactivateGuardService, MessageService, EmployeeListResolverService],
+  providers: [EmployeeService, CreateEmployeeCanDeactivateGuardService, MessageService, EmployeeListResolverService,EmployeeDetailsGuardService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-
 
 
 export class AppModule { }
