@@ -20,7 +20,7 @@
         <button (click)="nextEmployee()" class="btn btn-primary">View Next Employee</button>
     </div>
     <div class="row mb-2 box  box-shadow" *ngFor="let employee of filteredEmployees | employeeFilter:searchTerm"  >
-        <div class="col-md-12 pointerCursor" >
+        <div class="col-md-12" >
             <app-display-employee [employee]="employee" [employeeId]="employee.id"  [searchTerm]="searchTerm">
             </app-display-employee>
         </div>

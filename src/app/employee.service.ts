@@ -25,10 +25,13 @@ export class EmployeeService {
   
   private _url: string = "assets/data/employee.json";
    baseUrl: any;
-   public allEmployees:any;
+     allEmployees:any;
    public employees: any ;
    emp : Employee[]  ;
-  
+
+   public tempEmployee :any;
+   public tempAllEmployee :any[];
+
   //private _url2: string = "https://ctb2013.scp.co.il:8443/foreignTrade/table/currencies";
 
   constructor( private http: HttpClient ) { 
@@ -284,6 +287,17 @@ export class EmployeeService {
   // params = params.append('param2', value2); // add a new param, creating a new object
   // params = params.append('param3', value3); // add another param 
 
+  
+
+              // getEmployee(id: number){
+              //   console.log(this.http.get<Employee>(this._url).delay(400).find(e => e.id ===id) )
+
+              //   return this.http.get<Employee>(this._url).delay(400).find(e => e.id ===id)    
+              //   .pipe(
+              //     timeout(1800)
+              //   );
+              // }
+  
     getEmployees(){
       return this.http.get<Employee[]>(this._url).delay(400)
       .pipe(
@@ -291,10 +305,53 @@ export class EmployeeService {
       );
     }
 
-    // getEmp(id:number):Observable<Employee>{
+    getEmployee(this_id:number):Observable<Employee>{   
+
+        this.getEmployees().subscribe((data) => {
+        this.tempAllEmployee = data;        
+        for(let i = 0; i < this.tempAllEmployee.length; i++) {          
+            if(this.tempAllEmployee[i].id == this_id){
+              this.tempEmployee = this.tempAllEmployee[i]; 
+              console.log('  this.tempEmployee ********** ------->  : ' + this.tempEmployee.name  );                                
+              }           
+          } 
+        })
+        //console.log('  this.tempEmployee ********** ------->  : ' + this.tempEmployee.name  ); 
+            return  this.tempEmployee
+      }
+
+      results: string[];         
+      errorHandler(error: HttpErrorResponse){
+        return Observable.throw(error.message || "Server Error");
+      }
+  
+      save(employee: Employee) {
+        this.getEmployees().subscribe((data) => {
+          this.tempAllEmployee = data;  
+
+      if(employee.id == null){
+                const maxid = this.tempAllEmployee.reduce(function (e1,e2){
+                return (e1.id > e2.id) ? e1 : e2;
+            }).id;
+                employee.id = maxid + 1;
+                this.tempAllEmployee.push(employee);
+            }else{
+                const foundIndex = this.listEmployees.findIndex(e => e.id ===employee.id) 
+                this.tempAllEmployee[foundIndex] = employee;
+
+                console.log('this.tempEmployee ********** ------->  : ' + this.tempEmployee.name  ); 
+                console.log(' this.tempAllEmployee[foundIndex] ********** ------->  : ' +  this.tempAllEmployee[foundIndex] );   
+                console.log('this.listEmployees.findIndex(e => e.id ===employee.id)   : ' + this.listEmployees.findIndex(e => e.id ===employee.id)   );                                          
+                
+            }
+           
+          }
+        )
+      }
+
+    // getEmployee(id:number):Observable<Employee>{
     //   return this.http.get<Employee>(this._url + id);
     //   }
-
 
     private initializeEmployee(): Employee {  
       return {  
@@ -311,39 +368,26 @@ export class EmployeeService {
       };  
     }  
 
-    getEmployee(id: number): Observable<any> {
-      return this.http.get(`${this.baseUrl}/${id}`);
-    }
-
-
-    getEmployee2(id: any)  {  
-
-      this.getEmployees()
-        .subscribe(data => {
-          this.employees = data;
-        })
+  
  
-        this.employees.forEach(function (value) {
-          console.log(value);
-        }); 
+    // getEmployee2(id: any)  {  
 
-    }  
-    
+    //   this.getEmployees()
+    //     .subscribe(data => {
+    //       this.employees = data;
+    //     })
+ 
+    //     this.employees.forEach(function (value) {
+    //       console.log(value);
+    //     }); 
 
-   
-
+    // }  
+     
     //  getEmployees() : Observable<Employee[]>{
     //      //return this.http.get<Employee[]>(this._url);      
     //      return Observable.of(this.listEmployees).delay(200);
     //  }
  
-    results: string[];         
-    errorHandler(error: HttpErrorResponse){
-      return Observable.throw(error.message || "Server Error");
-    }
-
-    save(employee: Employee) {
-        this.listEmployees.push(employee);
-    }
+   
 
 }

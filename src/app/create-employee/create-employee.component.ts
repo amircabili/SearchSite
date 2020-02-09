@@ -9,6 +9,7 @@ import {InputTextModule} from 'primeng/inputtext';
 import {CheckboxModule} from 'primeng/checkbox';
 import {SelectItem} from 'primeng/api';
 
+
 @Component({
   selector: 'app-create-employee',
   templateUrl: './create-employee.component.html',
@@ -28,13 +29,14 @@ export class CreateEmployeeComponent implements OnInit {
   isFocused = false;
   public employees: any;
   text: string;
-  employee1: any;
+  public panelTitle:string;
+
 
   public focusSettingEventEmitter = new EventEmitter<boolean>();
 
   datePickerConfig : Partial<BsDatepickerConfig>;
 
-  employee: Employee = {
+  employee: any = {
     id : null, 
     name : null,
     gender : null,
@@ -74,16 +76,14 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit() {
     this._route.paramMap.subscribe(parameterMap => {
       const id = +parameterMap.get('id');
-      this.getEmployee(id);
-      alert(this.getEmployee(id))
+      console.log('this query id is  =>' + id)
+      this._employeeService.getEmployee(id);     
     });
   }
-
  
 
-
-
   private getEmployee(id: number){
+    alert(this.panelTitle);
     if(id===0){
       this.employee ={
         id : null, 
@@ -97,11 +97,15 @@ export class CreateEmployeeComponent implements OnInit {
         isActive : null,
         photoPath : null
       }
+      this.panelTitle = 'Create Employee'
+      alert(this.panelTitle);
+      this.createEmployeeForm.reset();
     }
     else{
-      this.employee1 = this._employeeService.getEmployee(id);
-      alert(this.employee1)
-    }
+      this.panelTitle = 'Edit Employee'
+      //alert('this._employeeService.getEmployee(id) - ' + this._employeeService.getEmployee(id));   
+      this.employee = Object.assign({}, this._employeeService.getEmployee(id));
+    }    
   }
 
   
@@ -116,11 +120,11 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   saveEmployee(){
-     // const newEmployee: Employee = Object.assign({},this.employee);
-      // console.log('newEmployee - ' + newEmployee);
-      //console.log(this.employee);
+      const newEmployee: Employee = Object.assign({},this.employee);
+      console.log('newEmployee - ' + newEmployee);
+      console.log(this.employee);
       this._employeeService.save(this.employee);
-      //this._router.navigate(['employees']);
+      this._router.navigate(['employees']);
   }
 
     val: Employee;    

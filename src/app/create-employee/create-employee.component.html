@@ -40,11 +40,11 @@
                         <div class="form-group col-md-4" [class.has-error]='name.invalid && name.touched'
                             [class.has-success]="name.valid">
                             <div class="ui-float-label">
-                                <input ngModel appAutofocus pInputText #name="ngModel" required
+                                <input ngModel appAutofocus pInputText #name="ngModel" required   
                                     [(ngModel)]="employee.name" name="name" id="name" type="text" class="form-control">
                                 <label for="name" class=" text-dark control-label">שם מלא</label>
                                 <div class="field-underline">
-                                    <span class="form-field-ripple"></span>
+                                    <span class="form-field-ripple">{{employee.name}}</span>
                                 </div>
                             </div>
                             <span class="help-block" *ngIf="name.invalid && name.touched">Full Name is required</span>
