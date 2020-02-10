@@ -3,44 +3,15 @@
         <form #employeeForm="ngForm" ngNativeValidate (ngSubmit)="saveEmployee(employeeForm)">
             <div class="panel panel-info ">
                 <div class="panel-heading  bg-blue">
-                    <h3 class="panel-title"> יצירת לקוח</h3>
+                    <h3 class="panel-title">{{panelTitle}} {{employee.name}}</h3>
                 </div>
                 <br>
                 <div class="panel-body">
-                    <!-- <div class="row">
-                        <div class="form-group col-md-4">
- 
-                            <p-autoComplete [(ngModel)]="employee" [suggestions]="filteredNamesSingle"
-                                    (completeMethod)="filterNamesSingle($event)" field="employee" [size]="30"
-                                    placeholder="employees" [dropdown]="true"
-                                [minLength]="1">
-                                <ng-template let-brand pTemplate="item">
-                                    <div class="ui-helper-clearfix" style="border-bottom:1px solid #D5D5D5">
-                                         <div style="font-size:18px;float:right;margin:10px 10px 0 0">{{employee.name}}</div>
-                                    </div>
-                                </ng-template>
-                            </p-autoComplete>
-
-                            <span style="margin-left:10px">Employee: {{employee ? employee.name||employee : 'none'}}</span>
-
-                            <p-autoComplete [(ngModel)]="results" [suggestions]="results"
-                             (completeMethod)="searchInNames($event)" [size]="30"  [dropdown]="true"
-                                [minLength]="1" placeholder="כתוב שם"  >
-                                <ng-template let-group pTemplate="group">
-                                    <div>
-                                        <div style="font-size:18px">{{group.name}}</div>
-                                    </div>
-                                </ng-template>
-                            </p-autoComplete>  
-                        </div>
-                        <div class="form-group col-md-4"> </div>
-                        <div class="form-group col-md-4"> </div>
-                    </div> -->
                     <div class="row">
                         <div class="form-group col-md-4" [class.has-error]='name.invalid && name.touched'
                             [class.has-success]="name.valid">
                             <div class="ui-float-label">
-                                <input ngModel appAutofocus pInputText #name="ngModel" required   
+                                <input ngModel appAutofocus pInputText #name="ngModel" required
                                     [(ngModel)]="employee.name" name="name" id="name" type="text" class="form-control">
                                 <label for="name" class=" text-dark control-label">שם מלא</label>
                                 <div class="field-underline">
@@ -79,20 +50,16 @@
                     <div class="row">
                         <div class="form-group col-md-4" [class.has-error]='gender.invalid && gender.touched'>
                             <label class="text-dark">מין</label>
-                            <div class="form-control no-bottom"  binary="true">
+                            <div class="form-control no-bottom" binary="true">
                                 <label class="checkbox-container">
-                                    <input class="checkboxInput" type="radio" required #gender="ngModel"
-                                     value="male" name="gender"  checked="checked"
-                                     [(ngModel)]="employee.gender"
-                                     label="זכר">
-                                     <span class="checkmark"></span>
+                                    <input class="checkboxInput" type="radio" required #gender="ngModel" value="male"
+                                        name="gender" checked="checked" [(ngModel)]="employee.gender" label="זכר">
+                                    <span class="checkmark"></span>
                                 </label>
                                 <label class="checkbox-container">
-                                    <input class="checkboxInput" type="radio" required #gender="ngModel"
-                                     value="female" name="gender"
-                                     [(ngModel)]="employee.gender"
-                                     label="נקבה" >
-                                     <span class="checkmark"></span>
+                                    <input class="checkboxInput" type="radio" required #gender="ngModel" value="female"
+                                        name="gender" [(ngModel)]="employee.gender" label="נקבה">
+                                    <span class="checkmark"></span>
                                 </label>
                                 <span class="help-block" *ngIf="gender.errors?.required && gender.touched">Gender is
                                     required</span>
@@ -102,12 +69,10 @@
                             <label class="text-dark" for="department">פעיל \ לא פעיל</label>
                             <div class="form-control no-bottom">
                                 <label class="checkbox-container">
-                                    <input required class="checkboxInput" 
-                                     [required]="employee.isActive==null" type="checkbox"
-                                     value="פעיל" name="isActive"   
-                                     [(ngModel)]="employee.isActive"
-                                     label="פעיל">
-                                     <span class="checkmark"></span>
+                                    <input required class="checkboxInput" [required]="employee.isActive==null"
+                                        type="checkbox" value="פעיל" name="isActive" [(ngModel)]="employee.isActive"
+                                        label="פעיל">
+                                    <span class="checkmark"></span>
                                 </label>
                             </div>
                             <span class="help-block" *ngIf="isActive.touched && isActive.errors?.required">isActive is
@@ -117,8 +82,9 @@
                             <br>
                             <br>
                             <label class="text-dark" for="department">מחלקה</label>
-                            <p-dropdown  placeholder="Select Department" class="form-control select" [options]="departments" 
-                                [(ngModel)]="selectedDepartment" #department="ngModel" optionLabel="name"></p-dropdown>
+                            <p-dropdown placeholder="Select Department" name="selectedDepartment"
+                                class="form-control select" [options]="departments" [(ngModel)]="selectedDepartment"
+                                #department="ngModel" optionLabel="name"></p-dropdown>
                             <br>
                             <!-- <p-dropdown [options]="departments" [(ngModel)]="selectItem" 
                                     appSelectValidator="select" #department="ngModel"  name="department"
@@ -136,7 +102,6 @@
                                 <input pInputText [(ngModel)]="employee.dateOfBirth" name="dateOfBirth" bsDatepicker
                                     id="dateOfBirth" type="text" autocomplete="off" class="form-control" placement="top"
                                     placeholder="" [bsConfig]="datePickerConfig">
-
                                 <label for="dateOfBirth" class="text-dark control-label "> תאריך לידה</label>
                                 <div class="field-underline">
                                     <span class="form-field-ripple"></span>
@@ -147,19 +112,21 @@
                             <br>
                             <div class="ui-float-label">
                                 <input pInputText [(ngModel)]="employee.photoPath" name="photoPath" id="photoPath"
-                                    type="text" autocomplete="off" class="form-control" placeholder="">
-
+                                    type="text" autocomplete="off" name="photoPath" class="form-control"
+                                    placeholder="{{employee.photoPath}}">
                                 <label for="photoPath" class="text-dark control-label "> תמונה </label>
                                 <div class="field-underline">
                                     <span class="form-field-ripple"></span>
                                 </div>
                             </div>
-                            <button (click)="togglePhotoPreview();" class="btn btn mt-2 btn-info pr-4 pl-4"
+                            <button *ngIf="employee.photoPath !== '' && employee.photoPath!== null"
+                                (click)="togglePhotoPreview();" class="btn btn mt-2 btn-info pr-4 pl-4"
                                 type="button">{{previewPhoto? "הסתר" : "הראה" }} תמונה</button>
                         </div>
                         <div class="form-group col-md-4">
                             <div class="form-group">
-                                <img *ngIf="previewPhoto" [src]="photoPath" height="200" width="200" />
+                                <img *ngIf="previewPhoto && employee.photoPath !== '' && employee.photoPath!== null"
+                                    [src]="employee.photoPath" height="200" width="200" />
                             </div>
                         </div>
                     </div>
@@ -168,9 +135,9 @@
                         <div class="row">
                             <div class="form-group col-md-6" [class.has-error]='password.invalid && password.touched'>
                                 <div class="ui-float-label">
-                                <input pInputText #password="ngModel" required [(ngModel)]="employee.password" class="form-control"
-                                    (input)="confirmPassword.control.updateValueAndValidity()" name="password"
-                                    id="password" type="text">
+                                    <input pInputText #password="ngModel" required [(ngModel)]="employee.password"
+                                        class="form-control" (input)="confirmPassword.control.updateValueAndValidity()"
+                                        name="password" id="password" type="text">
                                     <label for="password" class="text-dark control-label">סיסמא</label>
                                     <div class="field-underline">
                                         <span class="form-field-ripple"></span>
@@ -183,8 +150,9 @@
                             <div class="form-group col-md-6"
                                 [class.has-error]='confirmPassword.invalid && confirmPassword.touched'>
                                 <div class="ui-float-label">
-                                    <input pInputText #confirmPassword="ngModel" required [(ngModel)]="employee.confirmPassword"
-                                        class="form-control" name="confirmPassword" id="confirmPassword" type="text">
+                                    <input pInputText #confirmPassword="ngModel" required
+                                        [(ngModel)]="employee.confirmPassword" class="form-control"
+                                        name="confirmPassword" id="confirmPassword" type="text">
                                     <label for="confirmPassword" class="text-dark control-label">חזור על סיסמא</label>
                                     <div class="field-underline">
                                         <span class="form-field-ripple"></span>

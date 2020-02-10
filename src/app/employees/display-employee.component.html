@@ -3,49 +3,53 @@
 <div class="panel">
     <div class="row no-gutters rounded overflow-hidden flex-md-row mb-4 
     shadow-sm h-md-250 position-relative panel-primary" [class.panel-success]="selectedEmployeeId === employee.id">
-        <div class=" col p-4 d-flex flex-column position-static vertical-align ">
-            <strong class="d-inline-block mb-2 text-primary">מספר סידורי : {{employee.id}} </strong>
-            <div class="panel-heading">
-                <h4 class="mb-2"> שם פרטי ומשפחה: {{ employee.name }} </h4>
+        <div class=" col p-4 d-flex flex-column position-static vertical-align" >
+            <div class="row panel-heading pointerCursor" (click)="panelExpanded = !panelExpanded">
+                <div class="col-xs-12">
+                    <strong class="d-inline-block mb-2 text-primary">מספר סידורי : {{employee.id}} </strong>
+                    <div class="">
+                        <h4 class="mb-2"> שם פרטי ומשפחה: {{ employee.name }} </h4>
+                    </div>
+                </div>
             </div>
             <hr>
-            <div class="row">
-                <div class="col-sm-6">
+            <div class="row"  [hidden]="!panelExpanded">
+                <div class="col-sm-4">
+                    <div class="text-center"></div>
+                </div>
+                <div class="col-sm-4">
                     <h4 class="mb-2"> מין : <span class="text-muted"> {{employee.gender}}</span></h4>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <h4 class="mb-2"> טלפון : <span class="text-muted"> {{employee.phonenumber}}</span></h4>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
+            <div class="row" *ngIf="!panelExpanded">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img [src]="employee.photoPath" height="100" width="100" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
                     <h4 class="mb-2"> אי-מייל : <span class="text-muted"> {{employee.email}}</span></h4>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <h4 class="mb-2"> תאריך לידה : <span class="text-muted"> {{employee.dateOfBirth}}</span></h4>
                 </div>
             </div>
-            <!-- <div class="row">
-                    <div class="col-sm-6">
-                        <h4 class="mb-2" [ngSwitch]="employee.department"> מחלקה:  
-                            <span *ngSwitchCase="1">Help Desk</span>
-                            <span *ngSwitchCase="2">HR</span>
-                            <span *ngSwitchCase="3">IT</span>
-                            <span *ngSwitchCase="4">PayRoll</span>
-                            <span *ngSwitchCase="5">Dev</span>
-                            <span *ngSwitchDefault >N/A</span>
-                         </h4>
-                    </div>
-                    <div class="col-sm-6">
-                        <h4 class="mb-2"> פעיל: <span class="text-muted"> {{employee.isActive}}</span></h4>
-                    </div>
-                </div> -->
             <br>
             <div class="stretched-link"> עוד פרטים -> </div>
         </div>
     </div>
     <div class="footer">
-        <button class="btn btn-danger mr-2">Delete</button>
+        <span *ngIf="confirmDelete">
+            <span>
+                <button class="mr-2 btn btn-danger" (click)="deleteEmployee()">Yes</button>
+                <button class="mr-2 btn btn-primary" (click)="confirmDelete=false">No</button>
+                ? Are you sure you want to delete
+            </span>
+        </span>
+        <button *ngIf="!confirmDelete" class="btn btn-danger mr-2" (click)="confirmDelete=true">Delete</button>
         <button class="btn btn-primary mr-2" (click)="viewEmployee()">View</button>
         <button class="btn btn-primary mr-2" (click)="editEmployee()">Edit</button>
     </div>

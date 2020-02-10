@@ -9,7 +9,7 @@
     "dateOfBirth" : "20/10/2001",
     "department" : "2", 
     "isActive" : true,
-    "photoPath" : "זכר"
+     "photoPath" : "../assets/images/image3.png" 
 },
 {
   "id": 2,
@@ -21,7 +21,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "1",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image1.png" 
 },
 {
   "id": 3,
@@ -33,7 +33,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "3",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image1.png" 
 },
 {
   "id": 4,
@@ -45,7 +45,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "4",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image2.png" 
 },
 {
   "id": 5,
@@ -57,7 +57,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "3",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image3.png" 
 },
 {
   "id": 6,
@@ -69,7 +69,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "2",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image1.png" 
 },
 {
   "id": 7,
@@ -81,7 +81,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "1",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image2.png" 
 },
 {
   "id": 8,
@@ -93,7 +93,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "2",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image1.png" 
 },
 {
   "id": 9,
@@ -105,7 +105,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "4",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image2.png" 
 },
 {
   "id": 10,
@@ -117,7 +117,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "3",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image3.png" 
 },
 {
   "id": 11,
@@ -129,7 +129,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "2",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image1.png" 
 },
 {
   "id": 12,
@@ -141,7 +141,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "3",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image2.png" 
 },
 {
   "id": 13,
@@ -153,7 +153,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "2",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image2.png" 
 },
 {
   "id": 14,
@@ -165,7 +165,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "1",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image2.png" 
 },
 {
   "id": 15,
@@ -177,7 +177,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "3",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image2.png" 
 },
 {
   "id": 16,
@@ -189,7 +189,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "4",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image2.png" 
 },
 {
   "id": 17,
@@ -201,7 +201,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "2",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image2.png" 
 },
 {
   "id": 18,
@@ -213,7 +213,7 @@
   "dateOfBirth" : "20/10/2001",
   "department" : "4",
   "isActive" : true,
-  "photoPath" : "זכר"
+   "photoPath" : "../assets/images/image2.png" 
 }
 
 ] 

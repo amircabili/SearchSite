@@ -31,7 +31,6 @@ export class CreateEmployeeComponent implements OnInit {
   text: string;
   public panelTitle:string;
 
-
   public focusSettingEventEmitter = new EventEmitter<boolean>();
 
   datePickerConfig : Partial<BsDatepickerConfig>;
@@ -59,31 +58,34 @@ export class CreateEmployeeComponent implements OnInit {
         private _route: ActivatedRoute
       ){
       this.datePickerConfig = Object.assign({}, {
-        dateInputFormat: 'DD-MM-YYYY',
-        containerClass: 'theme-blue',
-        isAnimated: true ,
+          dateInputFormat: 'DD-MM-YYYY',
+          containerClass: 'theme-blue',
+          isAnimated: true ,
        });
        this.departments  = [
-        {id:1, name:'Help Desk'},
-        {id:2, name:'HR'},
-        {id:3, name:'IT'},
-        {id:4, name:'PayRoll'},
-        {id:5, name:'123'},
-        {id:6, name:'4444444444'}
+          {id:1, name:'Help Desk'},
+          {id:2, name:'HR'},
+          {id:3, name:'IT'},
+          {id:4, name:'PayRoll'},
+          {id:5, name:'123'},
+          {id:6, name:'4444444444'}
       ];
+  }
+
+  ngOnDestroy() {
+    // this.employee.unsubscribe();
+    console.log('list employees unsubscribed and destroyed!');
   }
 
   ngOnInit() {
     this._route.paramMap.subscribe(parameterMap => {
       const id = +parameterMap.get('id');
       console.log('this query id is  =>' + id)
-      this._employeeService.getEmployee(id);     
+      this.getEmployee(id);     
     });
   }
- 
 
   private getEmployee(id: number){
-    alert(this.panelTitle);
     if(id===0){
       this.employee ={
         id : null, 
@@ -97,17 +99,15 @@ export class CreateEmployeeComponent implements OnInit {
         isActive : null,
         photoPath : null
       }
-      this.panelTitle = 'Create Employee'
-      alert(this.panelTitle);
+      this.panelTitle = 'Create Employee'      
       this.createEmployeeForm.reset();
     }
-    else{
+    else{       
       this.panelTitle = 'Edit Employee'
       //alert('this._employeeService.getEmployee(id) - ' + this._employeeService.getEmployee(id));   
       this.employee = Object.assign({}, this._employeeService.getEmployee(id));
     }    
   }
-
   
   clearSearchInput():void{
     // this.searchTerm = null;
@@ -126,15 +126,15 @@ export class CreateEmployeeComponent implements OnInit {
       this._employeeService.save(this.employee);
       this._router.navigate(['employees']);
   }
-
+  
     val: Employee;    
     results: Department[];
 
-    SearchDepartment(event) {
-            this.results= this.departments;
-    }
+    // SearchDepartment(event) {
+    //         this.results= this.departments;
+    // }
 
-    department1: SelectItem[];
+    //department1: SelectItem[];
 
     
   // searchInNames(event) 

@@ -306,14 +306,14 @@ export class EmployeeService {
     }
 
     getEmployee(this_id:number):Observable<Employee>{   
-
+       
         this.getEmployees().subscribe((data) => {
         this.tempAllEmployee = data;        
         for(let i = 0; i < this.tempAllEmployee.length; i++) {          
             if(this.tempAllEmployee[i].id == this_id){
               this.tempEmployee = this.tempAllEmployee[i]; 
               console.log('  this.tempEmployee ********** ------->  : ' + this.tempEmployee.name  );                                
-              }           
+            }           
           } 
         })
         //console.log('  this.tempEmployee ********** ------->  : ' + this.tempEmployee.name  ); 
@@ -338,20 +338,24 @@ export class EmployeeService {
             }else{
                 const foundIndex = this.listEmployees.findIndex(e => e.id ===employee.id) 
                 this.tempAllEmployee[foundIndex] = employee;
-
                 console.log('this.tempEmployee ********** ------->  : ' + this.tempEmployee.name  ); 
                 console.log(' this.tempAllEmployee[foundIndex] ********** ------->  : ' +  this.tempAllEmployee[foundIndex] );   
                 console.log('this.listEmployees.findIndex(e => e.id ===employee.id)   : ' + this.listEmployees.findIndex(e => e.id ===employee.id)   );                                          
-                
             }
-           
           }
         )
       }
 
-    // getEmployee(id:number):Observable<Employee>{
-    //   return this.http.get<Employee>(this._url + id);
-    //   }
+    deleteEmployee(id:number) {
+        this.getEmployees().subscribe((data) => {
+          this.tempAllEmployee = data;  
+          const foundIndex = this.listEmployees.findIndex(e => e.id ===id);
+                if(foundIndex != -1){
+                    this.tempAllEmployee.splice(foundIndex, 1);
+                }
+        })
+      }
+
 
     private initializeEmployee(): Employee {  
       return {  
